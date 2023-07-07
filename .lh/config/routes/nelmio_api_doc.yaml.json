@@ -1,0 +1,18 @@
+{
+    "sourceFile": "config/routes/nelmio_api_doc.yaml",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1688763345764,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1688763345764,
+            "name": "Commit-0",
+            "content": "# Expose your documentation as JSON swagger compliant\napp.swagger:\n    path: /api/doc.json\n    methods: GET\n    defaults: { _controller: nelmio_api_doc.controller.swagger }\n\n## Requires the Asset component and the Twig bundle\n## $ composer require twig asset\napp.swagger_ui:\n   path: /api/doc\n   methods: GET\n   defaults: { _controller: nelmio_api_doc.controller.swagger_ui }\n"
+        }
+    ]
+}

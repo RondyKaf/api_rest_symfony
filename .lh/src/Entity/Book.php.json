@@ -1,0 +1,90 @@
+{
+    "sourceFile": "src/Entity/Book.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 18,
+            "patches": [
+                {
+                    "date": 1688551979966,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1688551986424,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,16 +3,17 @@\n namespace App\\Entity;\n \n use App\\Repository\\BookRepository;\n use Doctrine\\ORM\\Mapping as ORM;\n+use Symfony\\Component\\Serializer\\Annotation\\Groups;\n \n #[ORM\\Entity(repositoryClass: BookRepository::class)]\n class Book\n {\n     #[ORM\\Id]\n     #[ORM\\GeneratedValue]\n     #[ORM\\Column]\n-    #\n+    #[Groups(\"\")]\n     private ?int $id = null;\n \n     #[ORM\\Column(length: 255)]\n     private ?string $title = null;\n"
+                },
+                {
+                    "date": 1688551996545,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n {\n     #[ORM\\Id]\n     #[ORM\\GeneratedValue]\n     #[ORM\\Column]\n-    #[Groups(\"\")]\n+    #[Groups(\"getBooks\",\"getAuthors\")]\n     private ?int $id = null;\n \n     #[ORM\\Column(length: 255)]\n     private ?string $title = null;\n"
+                },
+                {
+                    "date": 1688552002582,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,8 +15,10 @@\n     #[Groups(\"getBooks\",\"getAuthors\")]\n     private ?int $id = null;\n \n     #[ORM\\Column(length: 255)]\n+    #[Groups(\"getBooks\",\"getAuthors\")]\n+\n     private ?string $title = null;\n \n     #[ORM\\Column(length: 255)]\n     private ?string $coverTitle = null;\n"
+                },
+                {
+                    "date": 1688552009451,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,8 +20,10 @@\n \n     private ?string $title = null;\n \n     #[ORM\\Column(length: 255)]\n+    #[Groups(\"getBooks\",\"getAuthors\")]\n+\n     private ?string $coverTitle = null;\n \n     #[ORM\\ManyToOne(inversedBy: 'books')]\n     private ?Author $author = null;\n"
+                },
+                {
+                    "date": 1688552389901,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n {\n     #[ORM\\Id]\n     #[ORM\\GeneratedValue]\n     #[ORM\\Column]\n-    #[Groups(\"getBooks\",\"getAuthors\")]\n+    #[Groups(\"getBooks\",)]\n     private ?int $id = null;\n \n     #[ORM\\Column(length: 255)]\n     #[Groups(\"getBooks\",\"getAuthors\")]\n@@ -21,9 +21,8 @@\n     private ?string $title = null;\n \n     #[ORM\\Column(length: 255)]\n     #[Groups(\"getBooks\",\"getAuthors\")]\n-\n     private ?string $coverTitle = null;\n \n     #[ORM\\ManyToOne(inversedBy: 'books')]\n     private ?Author $author = null;\n"
+                },
+                {
+                    "date": 1688552396212,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,14 +15,14 @@\n     #[Groups(\"getBooks\",)]\n     private ?int $id = null;\n \n     #[ORM\\Column(length: 255)]\n-    #[Groups(\"getBooks\",\"getAuthors\")]\n+    #[Groups(\"getBooks\",)]\n \n     private ?string $title = null;\n \n     #[ORM\\Column(length: 255)]\n-    #[Groups(\"getBooks\",\"getAuthors\")]\n+    #[Groups(\"getBooks\",)]\n     private ?string $coverTitle = null;\n \n     #[ORM\\ManyToOne(inversedBy: 'books')]\n     private ?Author $author = null;\n"
+                },
+                {
+                    "date": 1688552455981,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,18 +11,18 @@\n {\n     #[ORM\\Id]\n     #[ORM\\GeneratedValue]\n     #[ORM\\Column]\n-    #[Groups(\"getBooks\",)]\n+    #[Groups(\"getBooks\",\"getAuthors\")]\n     private ?int $id = null;\n \n     #[ORM\\Column(length: 255)]\n-    #[Groups(\"getBooks\",)]\n+    #[Groups(\"getBooks\",\"getAuthors\")]\n \n     private ?string $title = null;\n \n     #[ORM\\Column(length: 255)]\n-    #[Groups(\"getBooks\",)]\n+    #[Groups(\"getBooks\",\"getAuthors\")]\n     private ?string $coverTitle = null;\n \n     #[ORM\\ManyToOne(inversedBy: 'books')]\n     private ?Author $author = null;\n"
+                },
+                {
+                    "date": 1688552557978,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,8 +24,9 @@\n     #[Groups(\"getBooks\",\"getAuthors\")]\n     private ?string $coverTitle = null;\n \n     #[ORM\\ManyToOne(inversedBy: 'books')]\n+    #[ORM\\JoinColumn(onDelete:\"CASCADE\")]\n     private ?Author $author = null;\n \n     public function getId(): ?int\n     {\n"
+                },
+                {
+                    "date": 1688552563982,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,8 +25,10 @@\n     private ?string $coverTitle = null;\n \n     #[ORM\\ManyToOne(inversedBy: 'books')]\n     #[ORM\\JoinColumn(onDelete:\"CASCADE\")]\n+    #[Groups(\"getBooks\",\"getAuthors\")]\n+\n     private ?Author $author = null;\n \n     public function getId(): ?int\n     {\n"
+                },
+                {
+                    "date": 1688552573236,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,10 +25,9 @@\n     private ?string $coverTitle = null;\n \n     #[ORM\\ManyToOne(inversedBy: 'books')]\n     #[ORM\\JoinColumn(onDelete:\"CASCADE\")]\n-    #[Groups(\"getBooks\",\"getAuthors\")]\n-\n+    #[Groups(\"getBooks\")]\n     private ?Author $author = null;\n \n     public function getId(): ?int\n     {\n"
+                },
+                {
+                    "date": 1688677554713,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,8 +4,9 @@\n \n use App\\Repository\\BookRepository;\n use Doctrine\\ORM\\Mapping as ORM;\n use Symfony\\Component\\Serializer\\Annotation\\Groups;\n+use Symfony\\Component\\Validator\\Constraints as Assert;\n \n #[ORM\\Entity(repositoryClass: BookRepository::class)]\n class Book\n {\n"
+                },
+                {
+                    "date": 1688677572823,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n     private ?int $id = null;\n \n     #[ORM\\Column(length: 255)]\n     #[Groups(\"getBooks\",\"getAuthors\")]\n-\n+    \n     private ?string $title = null;\n \n     #[ORM\\Column(length: 255)]\n     #[Groups(\"getBooks\",\"getAuthors\")]\n"
+                },
+                {
+                    "date": 1688677579299,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n     private ?int $id = null;\n \n     #[ORM\\Column(length: 255)]\n     #[Groups(\"getBooks\",\"getAuthors\")]\n-    \n+    #\n     private ?string $title = null;\n \n     #[ORM\\Column(length: 255)]\n     #[Groups(\"getBooks\",\"getAuthors\")]\n"
+                },
+                {
+                    "date": 1688677585320,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n     private ?int $id = null;\n \n     #[ORM\\Column(length: 255)]\n     #[Groups(\"getBooks\",\"getAuthors\")]\n-    #\n+    #[Assert\\]\n     private ?string $title = null;\n \n     #[ORM\\Column(length: 255)]\n     #[Groups(\"getBooks\",\"getAuthors\")]\n"
+                },
+                {
+                    "date": 1688677590703,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n     private ?int $id = null;\n \n     #[ORM\\Column(length: 255)]\n     #[Groups(\"getBooks\",\"getAuthors\")]\n-    #[Assert\\]\n+    #[Assert\\NotBlank()]\n     private ?string $title = null;\n \n     #[ORM\\Column(length: 255)]\n     #[Groups(\"getBooks\",\"getAuthors\")]\n"
+                },
+                {
+                    "date": 1688677598858,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n     private ?int $id = null;\n \n     #[ORM\\Column(length: 255)]\n     #[Groups(\"getBooks\",\"getAuthors\")]\n-    #[Assert\\NotBlank()]\n+    #[Assert\\NotBlank(message:\"\")]\n     private ?string $title = null;\n \n     #[ORM\\Column(length: 255)]\n     #[Groups(\"getBooks\",\"getAuthors\")]\n"
+                },
+                {
+                    "date": 1688677605045,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n     private ?int $id = null;\n \n     #[ORM\\Column(length: 255)]\n     #[Groups(\"getBooks\",\"getAuthors\")]\n-    #[Assert\\NotBlank(message:\"Le titre u\")]\n+    #[Assert\\NotBlank(message:\"Le titre \")]\n     private ?string $title = null;\n \n     #[ORM\\Column(length: 255)]\n     #[Groups(\"getBooks\",\"getAuthors\")]\n"
+                },
+                {
+                    "date": 1688677907650,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n \n     #[ORM\\Column(length: 255)]\n     #[Groups(\"getBooks\",\"getAuthors\")]\n     #[Assert\\NotBlank(message:\"Le titre du livre est obligatoire\")]\n-    #[Assert\\NotBlank(min:1,max:255,minMessage:\"Le titre doit faire au moins {{ limit}}\",maxMessage:\"le titre doit faire un moins {{ \")]\n+    #[Assert\\NotBlank(min:1,max:255,minMessage:\"Le titre doit faire au moins {{ limit}}\",maxMessage:\"le titre doit faire un moins {{  \")]\n     private ?string $title = null;\n \n     #[ORM\\Column(length: 255)]\n     #[Groups(\"getBooks\",\"getAuthors\")]\n"
+                }
+            ],
+            "date": 1688551979966,
+            "name": "Commit-0",
+            "content": "<?php\n\nnamespace App\\Entity;\n\nuse App\\Repository\\BookRepository;\nuse Doctrine\\ORM\\Mapping as ORM;\n\n#[ORM\\Entity(repositoryClass: BookRepository::class)]\nclass Book\n{\n    #[ORM\\Id]\n    #[ORM\\GeneratedValue]\n    #[ORM\\Column]\n    #\n    private ?int $id = null;\n\n    #[ORM\\Column(length: 255)]\n    private ?string $title = null;\n\n    #[ORM\\Column(length: 255)]\n    private ?string $coverTitle = null;\n\n    #[ORM\\ManyToOne(inversedBy: 'books')]\n    private ?Author $author = null;\n\n    public function getId(): ?int\n    {\n        return $this->id;\n    }\n\n    public function getTitle(): ?string\n    {\n        return $this->title;\n    }\n\n    public function setTitle(string $title): static\n    {\n        $this->title = $title;\n\n        return $this;\n    }\n\n    public function getCoverTitle(): ?string\n    {\n        return $this->coverTitle;\n    }\n\n    public function setCoverTitle(string $coverTitle): static\n    {\n        $this->coverTitle = $coverTitle;\n\n        return $this;\n    }\n\n    public function getAuthor(): ?Author\n    {\n        return $this->author;\n    }\n\n    public function setAuthor(?Author $author): static\n    {\n        $this->author = $author;\n\n        return $this;\n    }\n}\n"
+        }
+    ]
+}

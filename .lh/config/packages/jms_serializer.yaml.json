@@ -1,0 +1,26 @@
+{
+    "sourceFile": "config/packages/jms_serializer.yaml",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1688700879073,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1688700888969,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,8 @@\n             json_serialization:\n                 options:\n                     - JSON_UNESCAPED_SLASHES\n                     - JSON_PRESERVE_ZERO_FRACTION\n-        \n \n when@dev:\n     jms_serializer:\n         visitors:\n"
+                },
+                {
+                    "date": 1688732777632,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,10 @@\n jms_serializer:\n     visitors:\n         xml_serialization:\n             format_output: '%kernel.debug%'\n+    property_naming:\n+        id: jms_serializer.identical_property_naming_strategy\n #    metadata:\n #        auto_detection: false\n #        directories:\n #            any-name:\n@@ -11,20 +13,20 @@\n #            another-name:\n #                namespace_prefix: \"My\\\\BarBundle\"\n #                path: \"@MyBarBundle/Resources/config/serializer\"\n \n-when@prod:\n-    jms_serializer:\n-        visitors:\n-            json_serialization:\n-                options:\n-                    - JSON_UNESCAPED_SLASHES\n-                    - JSON_PRESERVE_ZERO_FRACTION\n+# when@prod:\n+#     jms_serializer:\n+#         visitors:\n+#             json_serialization:\n+#                 options:\n+#                     - JSON_UNESCAPED_SLASHES\n+#                     - JSON_PRESERVE_ZERO_FRACTION\n \n-when@dev:\n-    jms_serializer:\n-        visitors:\n-            json_serialization:\n-                options:\n-                    - JSON_PRETTY_PRINT\n-                    - JSON_UNESCAPED_SLASHES\n-                    - JSON_PRESERVE_ZERO_FRACTION\n+# when@dev:\n+#     jms_serializer:\n+#         visitors:\n+#             json_serialization:\n+#                 options:\n+#                     - JSON_PRETTY_PRINT\n+#                     - JSON_UNESCAPED_SLASHES\n+#                     - JSON_PRESERVE_ZERO_FRACTION\n"
+                }
+            ],
+            "date": 1688700879073,
+            "name": "Commit-0",
+            "content": "jms_serializer:\n    visitors:\n        xml_serialization:\n            format_output: '%kernel.debug%'\n#    metadata:\n#        auto_detection: false\n#        directories:\n#            any-name:\n#                namespace_prefix: \"My\\\\FooBundle\"\n#                path: \"@MyFooBundle/Resources/config/serializer\"\n#            another-name:\n#                namespace_prefix: \"My\\\\BarBundle\"\n#                path: \"@MyBarBundle/Resources/config/serializer\"\n\nwhen@prod:\n    jms_serializer:\n        visitors:\n            json_serialization:\n                options:\n                    - JSON_UNESCAPED_SLASHES\n                    - JSON_PRESERVE_ZERO_FRACTION\n        \n\nwhen@dev:\n    jms_serializer:\n        visitors:\n            json_serialization:\n                options:\n                    - JSON_PRETTY_PRINT\n                    - JSON_UNESCAPED_SLASHES\n                    - JSON_PRESERVE_ZERO_FRACTION\n"
+        }
+    ]
+}

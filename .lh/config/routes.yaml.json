@@ -1,0 +1,30 @@
+{
+    "sourceFile": "config/routes.yaml",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 3,
+            "patches": [
+                {
+                    "date": 1688549775886,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1688549783143,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,4 +4,7 @@\n         namespace: App\\Controller\n     type: attribute\n \n \n+access_control:\n+    - { path: ^/api/login, roles: PUBLIC_ACCESS }\n+        - { path: ^/api,       roles: IS_AUTHENTICATED_FULLY }\n"
+                },
+                {
+                    "date": 1688549809942,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,7 +4,4 @@\n         namespace: App\\Controller\n     type: attribute\n \n \n-access_control:\n-    - { path: ^/api/login, roles: PUBLIC_ACCESS }\n-        - { path: ^/api,       roles: IS_AUTHENTICATED_FULLY }\n"
+                },
+                {
+                    "date": 1688549833400,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,4 +4,6 @@\n         namespace: App\\Controller\n     type: attribute\n \n \n+api_login_check:\n+    path: /api/login_check\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1688549775886,
+            "name": "Commit-0",
+            "content": "controllers:\n    resource:\n        path: ../src/Controller/\n        namespace: App\\Controller\n    type: attribute\n\n\n"
+        }
+    ]
+}

@@ -1,0 +1,146 @@
+{
+    "sourceFile": "src/Entity/Author.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 32,
+            "patches": [
+                {
+                    "date": 1688552023907,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1688552033620,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,17 +5,17 @@\n use App\\Repository\\AuthorRepository;\n use Doctrine\\Common\\Collections\\ArrayCollection;\n use Doctrine\\Common\\Collections\\Collection;\n use Doctrine\\ORM\\Mapping as ORM;\n+use Symfony\\Component\\Serializer\\Annotation\\Groups;\n \n #[ORM\\Entity(repositoryClass: AuthorRepository::class)]\n class Author\n {\n     #[ORM\\Id]\n     #[ORM\\GeneratedValue]\n     #[ORM\\Column]\n     #[Groups(\"getBooks\",\"getAuthors\")]\n-\n     private ?int $id = null;\n \n     #[ORM\\Column(length: 255)]\n     private ?string $firstName = null;\n"
+                },
+                {
+                    "date": 1688552042035,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,10 +17,14 @@\n     #[Groups(\"getBooks\",\"getAuthors\")]\n     private ?int $id = null;\n \n     #[ORM\\Column(length: 255)]\n+    #[Groups(\"getBooks\",\"getAuthors\")]\n+\n     private ?string $firstName = null;\n+    #[Groups(\"getBooks\",\"getAuthors\")]\n \n+\n     #[ORM\\Column(length: 255)]\n     private ?string $lastName = null;\n \n     #[ORM\\OneToMany(mappedBy: 'author', targetEntity: Book::class)]\n"
+                },
+                {
+                    "date": 1688552485015,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,13 +22,13 @@\n \n     private ?string $firstName = null;\n     #[Groups(\"getBooks\",\"getAuthors\")]\n \n-\n     #[ORM\\Column(length: 255)]\n     private ?string $lastName = null;\n \n     #[ORM\\OneToMany(mappedBy: 'author', targetEntity: Book::class)]\n+    #[Groups([\"getAuthors\"])]\n     private Collection $books;\n \n     public function __construct()\n     {\n"
+                },
+                {
+                    "date": 1688692220938,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,8 +6,9 @@\n use Doctrine\\Common\\Collections\\ArrayCollection;\n use Doctrine\\Common\\Collections\\Collection;\n use Doctrine\\ORM\\Mapping as ORM;\n use Symfony\\Component\\Serializer\\Annotation\\Groups;\n+use Symfony\\Component\\Validator\\Constraints as Assert;\n \n #[ORM\\Entity(repositoryClass: AuthorRepository::class)]\n class Author\n {\n"
+                },
+                {
+                    "date": 1688692231292,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,8 @@\n     #[Groups(\"getBooks\",\"getAuthors\")]\n \n     private ?string $firstName = null;\n     #[Groups(\"getBooks\",\"getAuthors\")]\n-\n     #[ORM\\Column(length: 255)]\n     private ?string $lastName = null;\n \n     #[ORM\\OneToMany(mappedBy: 'author', targetEntity: Book::class)]\n"
+                },
+                {
+                    "date": 1688692238400,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,10 +19,12 @@\n     private ?int $id = null;\n \n     #[ORM\\Column(length: 255)]\n     #[Groups(\"getBooks\",\"getAuthors\")]\n+    #\n+    private ?string $firstName = null;\n \n-    private ?string $firstName = null;\n+\n     #[Groups(\"getBooks\",\"getAuthors\")]\n     #[ORM\\Column(length: 255)]\n     private ?string $lastName = null;\n \n"
+                },
+                {
+                    "date": 1688692243627,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,9 @@\n     private ?int $id = null;\n \n     #[ORM\\Column(length: 255)]\n     #[Groups(\"getBooks\",\"getAuthors\")]\n-    #\n+    #[Assert]\n     private ?string $firstName = null;\n \n \n     #[Groups(\"getBooks\",\"getAuthors\")]\n"
+                },
+                {
+                    "date": 1688692249663,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,9 @@\n     private ?int $id = null;\n \n     #[ORM\\Column(length: 255)]\n     #[Groups(\"getBooks\",\"getAuthors\")]\n-    #[Assert]\n+    #[Assert\\NotBlank()]\n     private ?string $firstName = null;\n \n \n     #[Groups(\"getBooks\",\"getAuthors\")]\n"
+                },
+                {
+                    "date": 1688692255608,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,9 @@\n     private ?int $id = null;\n \n     #[ORM\\Column(length: 255)]\n     #[Groups(\"getBooks\",\"getAuthors\")]\n-    #[Assert\\NotBlank()]\n+    #[Assert\\NotBlank(message:\"le \")]\n     private ?string $firstName = null;\n \n \n     #[Groups(\"getBooks\",\"getAuthors\")]\n"
+                },
+                {
+                    "date": 1688692262818,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,9 @@\n     private ?int $id = null;\n \n     #[ORM\\Column(length: 255)]\n     #[Groups(\"getBooks\",\"getAuthors\")]\n-    #[Assert\\NotBlank(message:\"le \")]\n+    #[Assert\\NotBlank(message:\"le nom est obligatoire\")]\n     private ?string $firstName = null;\n \n \n     #[Groups(\"getBooks\",\"getAuthors\")]\n"
+                },
+                {
+                    "date": 1688692274023,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,8 +20,9 @@\n \n     #[ORM\\Column(length: 255)]\n     #[Groups(\"getBooks\",\"getAuthors\")]\n     #[Assert\\NotBlank(message:\"le nom est obligatoire\")]\n+    #[Assert\\L(message:\"le nom est obligatoire\")]\n     private ?string $firstName = null;\n \n \n     #[Groups(\"getBooks\",\"getAuthors\")]\n"
+                },
+                {
+                    "date": 1688692290334,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n \n     #[ORM\\Column(length: 255)]\n     #[Groups(\"getBooks\",\"getAuthors\")]\n     #[Assert\\NotBlank(message:\"le nom est obligatoire\")]\n-    #[Assert\\L(message:\"le nom est obligatoire\")]\n+    #[Assert\\Length(,message:\"le nom est obligatoire\")]\n     private ?string $firstName = null;\n \n \n     #[Groups(\"getBooks\",\"getAuthors\")]\n"
+                },
+                {
+                    "date": 1688692297219,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n \n     #[ORM\\Column(length: 255)]\n     #[Groups(\"getBooks\",\"getAuthors\")]\n     #[Assert\\NotBlank(message:\"le nom est obligatoire\")]\n-    #[Assert\\Length(,message:\"le nom est obligatoire\")]\n+    #[Assert\\Length(min:,message:\"le nom est obligatoire\")]\n     private ?string $firstName = null;\n \n \n     #[Groups(\"getBooks\",\"getAuthors\")]\n"
+                },
+                {
+                    "date": 1688692303908,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n \n     #[ORM\\Column(length: 255)]\n     #[Groups(\"getBooks\",\"getAuthors\")]\n     #[Assert\\NotBlank(message:\"le nom est obligatoire\")]\n-    #[Assert\\Length(min:,message:\"le nom est obligatoire\")]\n+    #[Assert\\Length(min:1,mai,message:\"le nom est obligatoire\")]\n     private ?string $firstName = null;\n \n \n     #[Groups(\"getBooks\",\"getAuthors\")]\n"
+                },
+                {
+                    "date": 1688692310002,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n \n     #[ORM\\Column(length: 255)]\n     #[Groups(\"getBooks\",\"getAuthors\")]\n     #[Assert\\NotBlank(message:\"le nom est obligatoire\")]\n-    #[Assert\\Length(min:1,mai,message:\"le nom est obligatoire\")]\n+    #[Assert\\Length(min:1,max:,message:\"le nom est obligatoire\")]\n     private ?string $firstName = null;\n \n \n     #[Groups(\"getBooks\",\"getAuthors\")]\n"
+                },
+                {
+                    "date": 1688692315996,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n \n     #[ORM\\Column(length: 255)]\n     #[Groups(\"getBooks\",\"getAuthors\")]\n     #[Assert\\NotBlank(message:\"le nom est obligatoire\")]\n-    #[Assert\\Length(min:1,max:,message:\"le nom est obligatoire\")]\n+    #[Assert\\Length(min:1,max:50,minmessage:\"le nom est obligatoire\")]\n     private ?string $firstName = null;\n \n \n     #[Groups(\"getBooks\",\"getAuthors\")]\n"
+                },
+                {
+                    "date": 1688692341857,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n \n     #[ORM\\Column(length: 255)]\n     #[Groups(\"getBooks\",\"getAuthors\")]\n     #[Assert\\NotBlank(message:\"le nom est obligatoire\")]\n-    #[Assert\\Length(min:1,max:50,minmessage:\"le nom est obligatoire\")]\n+    #[Assert\\Length(min:1,max:50,minMessage:\"le nom doit contenir au moins \")]\n     private ?string $firstName = null;\n \n \n     #[Groups(\"getBooks\",\"getAuthors\")]\n"
+                },
+                {
+                    "date": 1688692347721,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n \n     #[ORM\\Column(length: 255)]\n     #[Groups(\"getBooks\",\"getAuthors\")]\n     #[Assert\\NotBlank(message:\"le nom est obligatoire\")]\n-    #[Assert\\Length(min:1,max:50,minMessage:\"le nom doit contenir au moins \")]\n+    #[Assert\\Length(min:1,max:50,minMessage:\"le nom doit contenir au moins {{}\")]\n     private ?string $firstName = null;\n \n \n     #[Groups(\"getBooks\",\"getAuthors\")]\n"
+                },
+                {
+                    "date": 1688692356116,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n \n     #[ORM\\Column(length: 255)]\n     #[Groups(\"getBooks\",\"getAuthors\")]\n     #[Assert\\NotBlank(message:\"le nom est obligatoire\")]\n-    #[Assert\\Length(min:1,max:50,minMessage:\"le nom doit contenir au moins {{}\")]\n+    #[Assert\\Length(min:1,max:50,minMessage:\"le nom doit contenir au moins {{ limit}}\", max)]\n     private ?string $firstName = null;\n \n \n     #[Groups(\"getBooks\",\"getAuthors\")]\n"
+                },
+                {
+                    "date": 1688692369907,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n \n     #[ORM\\Column(length: 255)]\n     #[Groups(\"getBooks\",\"getAuthors\")]\n     #[Assert\\NotBlank(message:\"le nom est obligatoire\")]\n-    #[Assert\\Length(min:1,max:50,minMessage:\"le nom doit contenir au moins {{ limit}}\", max)]\n+    #[Assert\\Length(min:1,max:50,minMessage:\"le nom doit contenir au moins {{ limit}}\", maxMessage:\"le nom doit contenir au max\")]\n     private ?string $firstName = null;\n \n \n     #[Groups(\"getBooks\",\"getAuthors\")]\n"
+                },
+                {
+                    "date": 1688692376814,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n \n     #[ORM\\Column(length: 255)]\n     #[Groups(\"getBooks\",\"getAuthors\")]\n     #[Assert\\NotBlank(message:\"le nom est obligatoire\")]\n-    #[Assert\\Length(min:1,max:50,minMessage:\"le nom doit contenir au moins {{ limit}}\", maxMessage:\"le nom doit contenir au max\")]\n+    #[Assert\\Length(min:1,max:50,minMessage:\"le nom doit contenir au moins {{ limit}}\", maxMessage:\"le nom doit contenir au max \")]\n     private ?string $firstName = null;\n \n \n     #[Groups(\"getBooks\",\"getAuthors\")]\n"
+                },
+                {
+                    "date": 1688692385828,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n \n     #[ORM\\Column(length: 255)]\n     #[Groups(\"getBooks\",\"getAuthors\")]\n     #[Assert\\NotBlank(message:\"le nom est obligatoire\")]\n-    #[Assert\\Length(min:1,max:50,minMessage:\"le nom doit contenir au moins {{ limit}}\", maxMessage:\"le nom doit contenir au max \")]\n+    #[Assert\\Length(min:1,max:50,minMessage:\"le nom doit contenir au moins {{ limit}}\", maxMessage:\"le nom doit contenir au max {{ limit }}\")]\n     private ?string $firstName = null;\n \n \n     #[Groups(\"getBooks\",\"getAuthors\")]\n"
+                },
+                {
+                    "date": 1688701836211,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,10 @@\n use App\\Repository\\AuthorRepository;\n use Doctrine\\Common\\Collections\\ArrayCollection;\n use Doctrine\\Common\\Collections\\Collection;\n use Doctrine\\ORM\\Mapping as ORM;\n-use Symfony\\Component\\Serializer\\Annotation\\Groups;\n+use JMS\\Serializer\\Annotation\\Groups;\n+\n use Symfony\\Component\\Validator\\Constraints as Assert;\n \n #[ORM\\Entity(repositoryClass: AuthorRepository::class)]\n class Author\n"
+                },
+                {
+                    "date": 1688732880225,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,8 @@\n use Doctrine\\Common\\Collections\\ArrayCollection;\n use Doctrine\\Common\\Collections\\Collection;\n use Doctrine\\ORM\\Mapping as ORM;\n use JMS\\Serializer\\Annotation\\Groups;\n-\n use Symfony\\Component\\Validator\\Constraints as Assert;\n \n #[ORM\\Entity(repositoryClass: AuthorRepository::class)]\n class Author\n"
+                },
+                {
+                    "date": 1688752301033,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n {\n     #[ORM\\Id]\n     #[ORM\\GeneratedValue]\n     #[ORM\\Column]\n-    #[Groups(\"getBooks\",\"getAuthors\")]\n+    \n     private ?int $id = null;\n \n     #[ORM\\Column(length: 255)]\n     #[Groups(\"getBooks\",\"getAuthors\")]\n"
+                },
+                {
+                    "date": 1688752307834,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,13 +14,17 @@\n {\n     #[ORM\\Id]\n     #[ORM\\GeneratedValue]\n     #[ORM\\Column]\n-    \n+    /**\n+        @Groups({\"getBooks\",\"getAuthors})\n+     */\n     private ?int $id = null;\n \n     #[ORM\\Column(length: 255)]\n-    #[Groups(\"getBooks\",\"getAuthors\")]\n+    /**\n+        @Groups({\"getBooks\",\"getAuthors})\n+     */\n     #[Assert\\NotBlank(message:\"le nom est obligatoire\")]\n     #[Assert\\Length(min:1,max:50,minMessage:\"le nom doit contenir au moins {{ limit}}\", maxMessage:\"le nom doit contenir au max {{ limit }}\")]\n     private ?string $firstName = null;\n \n"
+                },
+                {
+                    "date": 1688752320567,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,9 @@\n     #[Assert\\Length(min:1,max:50,minMessage:\"le nom doit contenir au moins {{ limit}}\", maxMessage:\"le nom doit contenir au max {{ limit }}\")]\n     private ?string $firstName = null;\n \n \n-    #[Groups(\"getBooks\",\"getAuthors\")]\n+    \n     #[ORM\\Column(length: 255)]\n     private ?string $lastName = null;\n \n     #[ORM\\OneToMany(mappedBy: 'author', targetEntity: Book::class)]\n"
+                },
+                {
+                    "date": 1688752329068,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,10 +28,12 @@\n     #[Assert\\Length(min:1,max:50,minMessage:\"le nom doit contenir au moins {{ limit}}\", maxMessage:\"le nom doit contenir au max {{ limit }}\")]\n     private ?string $firstName = null;\n \n \n-    \n     #[ORM\\Column(length: 255)]\n+    /**\n+        @Groups({\"getBooks\",\"getAuthors})\n+     */\n     private ?string $lastName = null;\n \n     #[ORM\\OneToMany(mappedBy: 'author', targetEntity: Book::class)]\n     #[Groups([\"getAuthors\"])]\n"
+                },
+                {
+                    "date": 1688752335593,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,9 +35,11 @@\n      */\n     private ?string $lastName = null;\n \n     #[ORM\\OneToMany(mappedBy: 'author', targetEntity: Book::class)]\n-    #[Groups([\"getAuthors\"])]\n+    /**\n+        @Groups({\"getBooks\",\"getAuthors})\n+     */\n     private Collection $books;\n \n     public function __construct()\n     {\n"
+                },
+                {
+                    "date": 1688752343959,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,9 +36,9 @@\n     private ?string $lastName = null;\n \n     #[ORM\\OneToMany(mappedBy: 'author', targetEntity: Book::class)]\n     /**\n-        @Groups({\"getBooks\",\"getAuthors})\n+        @Groups({\"getAuthors\"})\n      */\n     private Collection $books;\n \n     public function __construct()\n"
+                },
+                {
+                    "date": 1688752349901,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,18 +21,18 @@\n     private ?int $id = null;\n \n     #[ORM\\Column(length: 255)]\n     /**\n-        @Groups({\"getBooks\",\"getAuthors})\n+        @Groups({\"getBooks\",\"getAuthors\"})\n      */\n     #[Assert\\NotBlank(message:\"le nom est obligatoire\")]\n     #[Assert\\Length(min:1,max:50,minMessage:\"le nom doit contenir au moins {{ limit}}\", maxMessage:\"le nom doit contenir au max {{ limit }}\")]\n     private ?string $firstName = null;\n \n \n     #[ORM\\Column(length: 255)]\n     /**\n-        @Groups({\"getBooks\",\"getAuthors})\n+        @Groups({\"getBooks\",\"getAuthors\"})\n      */\n     private ?string $lastName = null;\n \n     #[ORM\\OneToMany(mappedBy: 'author', targetEntity: Book::class)]\n"
+                },
+                {
+                    "date": 1688752461848,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n     #[ORM\\Id]\n     #[ORM\\GeneratedValue]\n     #[ORM\\Column]\n     /**\n-        @Groups({\"getBooks\",\"getAuthors})\n+        @Groups({\"getBooks\",\"getAuthors\"})\n      */\n     private ?int $id = null;\n \n     #[ORM\\Column(length: 255)]\n"
+                }
+            ],
+            "date": 1688552023907,
+            "name": "Commit-0",
+            "content": "<?php\n\nnamespace App\\Entity;\n\nuse App\\Repository\\AuthorRepository;\nuse Doctrine\\Common\\Collections\\ArrayCollection;\nuse Doctrine\\Common\\Collections\\Collection;\nuse Doctrine\\ORM\\Mapping as ORM;\n\n#[ORM\\Entity(repositoryClass: AuthorRepository::class)]\nclass Author\n{\n    #[ORM\\Id]\n    #[ORM\\GeneratedValue]\n    #[ORM\\Column]\n    #[Groups(\"getBooks\",\"getAuthors\")]\n\n    private ?int $id = null;\n\n    #[ORM\\Column(length: 255)]\n    private ?string $firstName = null;\n\n    #[ORM\\Column(length: 255)]\n    private ?string $lastName = null;\n\n    #[ORM\\OneToMany(mappedBy: 'author', targetEntity: Book::class)]\n    private Collection $books;\n\n    public function __construct()\n    {\n        $this->books = new ArrayCollection();\n    }\n\n    public function getId(): ?int\n    {\n        return $this->id;\n    }\n\n    public function getFirstName(): ?string\n    {\n        return $this->firstName;\n    }\n\n    public function setFirstName(string $firstName): static\n    {\n        $this->firstName = $firstName;\n\n        return $this;\n    }\n\n    public function getLastName(): ?string\n    {\n        return $this->lastName;\n    }\n\n    public function setLastName(string $lastName): static\n    {\n        $this->lastName = $lastName;\n\n        return $this;\n    }\n\n    /**\n     * @return Collection<int, Book>\n     */\n    public function getBooks(): Collection\n    {\n        return $this->books;\n    }\n\n    public function addBook(Book $book): static\n    {\n        if (!$this->books->contains($book)) {\n            $this->books->add($book);\n            $book->setAuthor($this);\n        }\n\n        return $this;\n    }\n\n    public function removeBook(Book $book): static\n    {\n        if ($this->books->removeElement($book)) {\n            // set the owning side to null (unless already changed)\n            if ($book->getAuthor() === $this) {\n                $book->setAuthor(null);\n            }\n        }\n\n        return $this;\n    }\n}\n"
+        }
+    ]
+}

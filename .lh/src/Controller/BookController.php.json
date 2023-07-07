@@ -1,0 +1,350 @@
+{
+    "sourceFile": "src/Controller/BookController.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 83,
+            "patches": [
+                {
+                    "date": 1688550168584,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1688550313848,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n use Symfony\\Component\\Routing\\Annotation\\Route;\n \n class BookController extends AbstractController\n {\n-    #[Route('/api/book', name: 'app_book')]\n+    #[Route('/book/', name: 'app_book')]\n     public function index(): JsonResponse\n     {\n         return $this->json([\n             'message' => 'Welcome to your new controller!',\n"
+                },
+                {
+                    "date": 1688550321714,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n use Symfony\\Component\\Routing\\Annotation\\Route;\n \n class BookController extends AbstractController\n {\n-    #[Route('/book/', name: 'app_book')]\n+    #[Route('/book', name: 'app_book')]\n     public function index(): JsonResponse\n     {\n         return $this->json([\n             'message' => 'Welcome to your new controller!',\n"
+                },
+                {
+                    "date": 1688550357176,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n use Symfony\\Component\\Routing\\Annotation\\Route;\n \n class BookController extends AbstractController\n {\n-    #[Route('/book', name: 'app_book')]\n+    #[Route('api/book', name: 'app_book')]\n     public function index(): JsonResponse\n     {\n         return $this->json([\n             'message' => 'Welcome to your new controller!',\n"
+                },
+                {
+                    "date": 1688550515762,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n use Symfony\\Component\\Routing\\Annotation\\Route;\n \n class BookController extends AbstractController\n {\n-    #[Route('api/book', name: 'app_book')]\n+    #[Route('/api/book', name: 'app_book',)]\n     public function index(): JsonResponse\n     {\n         return $this->json([\n             'message' => 'Welcome to your new controller!',\n"
+                },
+                {
+                    "date": 1688550522049,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n use Symfony\\Component\\Routing\\Annotation\\Route;\n \n class BookController extends AbstractController\n {\n-    #[Route('/api/book', name: 'app_book',)]\n+    #[Route('/api/book', name: 'app_book',methods:)]\n     public function index(): JsonResponse\n     {\n         return $this->json([\n             'message' => 'Welcome to your new controller!',\n"
+                },
+                {
+                    "date": 1688550920428,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,13 +7,69 @@\n use Symfony\\Component\\Routing\\Annotation\\Route;\n \n class BookController extends AbstractController\n {\n-    #[Route('/api/book', name: 'app_book',methods:)]\n-    public function index(): JsonResponse\n+    #[Route('/api/books/', name: 'app_total_book',methods:[\"GET\"])]\n+    public function getAllBooks(BookRepository $bookRepository,SerializerInterface $serializer): JsonResponse\n     {\n-        return $this->json([\n-            'message' => 'Welcome to your new controller!',\n-            'path' => 'src/Controller/BookController.php',\n-        ]);\n+        $Listbooks = $bookRepository->findAll();\n+        $jsonBook = $serializer->serialize($Listbooks,'json',[\"groups\"=>\"getBooks\"]);\n+\n+        return new JsonResponse(\n+            $jsonBook,Response::HTTP_OK,[],true\n+        );\n+        \n     }\n+\n+    #[Route('/api/books/{id}',name:'app_detail_book', methods:[\"GET\"])]\n+    public function getDetailBooks(int $id,BookRepository $bookRepository,SerializerInterface $serializer):JsonResponse\n+    {\n+        $detailBooks = $bookRepository->find($id);\n+\n+\n+        if($detailBooks){\n+            $jsonBook = $serializer->serialize($detailBooks,'json',[\"groups\"=>\"getBooks\"]);\n+            return new JsonResponse($jsonBook,Response::HTTP_OK,[],true);\n+        }\n+    }\n+\n+    #[Route('/api/books/{id}',name:'app_delete_book', methods:[\"DELETE\"])]\n+    public function deleteBooks(Book $book,EntityManagerInterface $em):JsonResponse\n+    {\n+        $em->remove($book);\n+        $em->flush();\n+\n+        return new JsonResponse(null,Response::HTTP_NO_CONTENT);\n+    }\n+\n+    #[Route('/api/books',name:'app_create_book', methods:[\"POST\"])]\n+    public function createBooks(Request $request,EntityManagerInterface $em,SerializerInterface $serializer,AuthorRepository $authorRepository):JsonResponse\n+    {\n+       $book = $serializer->deserialize($request->getContent(),Book::class, 'json');\n+\n+       $content = $request->toArray();\n+       $idAuthor = $content['idAuthor'] ?? -1;\n+       $book->setAuthor($authorRepository->find($idAuthor));\n+\n+       $em->persist($book);\n+       $em->flush();\n+\n+       $jsonBook = $serializer->serialize($book,'json');\n+       //$location = $urlGenerator->generate('detailBook',['id'=>$book->getId()],UrlGeneratorInterface::ABSOLUTE_URL);\n+\n+        return new JsonResponse($jsonBook,Response::HTTP_CREATED,[],true);\n+    }\n+\n+    \n+    #[Route('/api/books/{id}',name:'app_update_book', methods:[\"PUT\"])]\n+    public function updateBooks(Request $request,EntityManagerInterface $em,SerializerInterface $serializer,Book $currentBook):JsonResponse\n+    {\n+       $updateBook = $serializer->deserialize($request->getContent(), Book::class,'json',[AbstractNormalizer::OBJECT_TO_POPULATE=>$currentBook]);\n+       \n+       $em->persist($updateBook);\n+       $em->flush();\n+       //$location = $urlGenerator->generate('detailBook',['id'=>$book->getId()],UrlGeneratorInterface::ABSOLUTE_URL);\n+\n+        return new JsonResponse(null,Response::HTTP_NOT_FOUND,);\n+    }\n+\n }\n"
+                },
+                {
+                    "date": 1688550928673,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,8 +3,9 @@\n namespace App\\Controller;\n \n use Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController;\n use Symfony\\Component\\HttpFoundation\\JsonResponse;\n+use Symfony\\Component\\HttpFoundation\\Response;\n use Symfony\\Component\\Routing\\Annotation\\Route;\n \n class BookController extends AbstractController\n {\n"
+                },
+                {
+                    "date": 1688550937528,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,12 @@\n <?php\n \n namespace App\\Controller;\n \n+use Doctrine\\ORM\\EntityManagerInterface;\n use Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController;\n use Symfony\\Component\\HttpFoundation\\JsonResponse;\n+use Symfony\\Component\\HttpFoundation\\Request;\n use Symfony\\Component\\HttpFoundation\\Response;\n use Symfony\\Component\\Routing\\Annotation\\Route;\n \n class BookController extends AbstractController\n"
+                },
+                {
+                    "date": 1688550944420,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,14 +1,16 @@\n <?php\n \n namespace App\\Controller;\n \n+use App\\Entity\\Book;\n use Doctrine\\ORM\\EntityManagerInterface;\n use Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController;\n use Symfony\\Component\\HttpFoundation\\JsonResponse;\n use Symfony\\Component\\HttpFoundation\\Request;\n use Symfony\\Component\\HttpFoundation\\Response;\n use Symfony\\Component\\Routing\\Annotation\\Route;\n+use Symfony\\Component\\Serializer\\SerializerInterface;\n \n class BookController extends AbstractController\n {\n     #[Route('/api/books/', name: 'app_total_book',methods:[\"GET\"])]\n"
+                },
+                {
+                    "date": 1688551185259,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,14 +2,16 @@\n \n namespace App\\Controller;\n \n use App\\Entity\\Book;\n+use App\\Repository\\AuthorRepository;\n use Doctrine\\ORM\\EntityManagerInterface;\n use Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController;\n use Symfony\\Component\\HttpFoundation\\JsonResponse;\n use Symfony\\Component\\HttpFoundation\\Request;\n use Symfony\\Component\\HttpFoundation\\Response;\n use Symfony\\Component\\Routing\\Annotation\\Route;\n+use Symfony\\Component\\Serializer\\Normalizer\\AbstractNormalizer;\n use Symfony\\Component\\Serializer\\SerializerInterface;\n \n class BookController extends AbstractController\n {\n"
+                },
+                {
+                    "date": 1688551192301,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,8 +3,9 @@\n namespace App\\Controller;\n \n use App\\Entity\\Book;\n use App\\Repository\\AuthorRepository;\n+use App\\Repository\\BookRepository;\n use Doctrine\\ORM\\EntityManagerInterface;\n use Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController;\n use Symfony\\Component\\HttpFoundation\\JsonResponse;\n use Symfony\\Component\\HttpFoundation\\Request;\n"
+                },
+                {
+                    "date": 1688600247440,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,8 +37,9 @@\n         if($detailBooks){\n             $jsonBook = $serializer->serialize($detailBooks,'json',[\"groups\"=>\"getBooks\"]);\n             return new JsonResponse($jsonBook,Response::HTTP_OK,[],true);\n         }\n+        return new JsonResponse(null,Response::HTTP_NO_CONTENT);\n     }\n \n     #[Route('/api/books/{id}',name:'app_delete_book', methods:[\"DELETE\"])]\n     public function deleteBooks(Book $book,EntityManagerInterface $em):JsonResponse\n"
+                },
+                {
+                    "date": 1688677980304,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -54,8 +54,9 @@\n     public function createBooks(Request $request,EntityManagerInterface $em,SerializerInterface $serializer,AuthorRepository $authorRepository):JsonResponse\n     {\n        $book = $serializer->deserialize($request->getContent(),Book::class, 'json');\n \n+       \n        $content = $request->toArray();\n        $idAuthor = $content['idAuthor'] ?? -1;\n        $book->setAuthor($authorRepository->find($idAuthor));\n \n"
+                },
+                {
+                    "date": 1688677993699,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -54,9 +54,9 @@\n     public function createBooks(Request $request,EntityManagerInterface $em,SerializerInterface $serializer,AuthorRepository $authorRepository):JsonResponse\n     {\n        $book = $serializer->deserialize($request->getContent(),Book::class, 'json');\n \n-       \n+       //on verifie les erreurs \n        $content = $request->toArray();\n        $idAuthor = $content['idAuthor'] ?? -1;\n        $book->setAuthor($authorRepository->find($idAuthor));\n \n"
+                },
+                {
+                    "date": 1688678000785,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -55,8 +55,9 @@\n     {\n        $book = $serializer->deserialize($request->getContent(),Book::class, 'json');\n \n        //on verifie les erreurs \n+       $errors = \n        $content = $request->toArray();\n        $idAuthor = $content['idAuthor'] ?? -1;\n        $book->setAuthor($authorRepository->find($idAuthor));\n \n"
+                },
+                {
+                    "date": 1688678017119,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,14 +50,14 @@\n         return new JsonResponse(null,Response::HTTP_NO_CONTENT);\n     }\n \n     #[Route('/api/books',name:'app_create_book', methods:[\"POST\"])]\n-    public function createBooks(Request $request,EntityManagerInterface $em,SerializerInterface $serializer,AuthorRepository $authorRepository):JsonResponse\n+    public function createBooks(Request $request,EntityManagerInterface $em,SerializerInterface $serializer,AuthorRepository $authorRepository,Valida):JsonResponse\n     {\n        $book = $serializer->deserialize($request->getContent(),Book::class, 'json');\n \n        //on verifie les erreurs \n-       $errors = \n+       $errors = $v\n        $content = $request->toArray();\n        $idAuthor = $content['idAuthor'] ?? -1;\n        $book->setAuthor($authorRepository->find($idAuthor));\n \n"
+                },
+                {
+                    "date": 1688678023076,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,8 +6,9 @@\n use App\\Repository\\AuthorRepository;\n use App\\Repository\\BookRepository;\n use Doctrine\\ORM\\EntityManagerInterface;\n use Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController;\n+use Symfony\\Bundle\\MakerBundle\\Validator;\n use Symfony\\Component\\HttpFoundation\\JsonResponse;\n use Symfony\\Component\\HttpFoundation\\Request;\n use Symfony\\Component\\HttpFoundation\\Response;\n use Symfony\\Component\\Routing\\Annotation\\Route;\n@@ -50,9 +51,9 @@\n         return new JsonResponse(null,Response::HTTP_NO_CONTENT);\n     }\n \n     #[Route('/api/books',name:'app_create_book', methods:[\"POST\"])]\n-    public function createBooks(Request $request,EntityManagerInterface $em,SerializerInterface $serializer,AuthorRepository $authorRepository,Valida):JsonResponse\n+    public function createBooks(Request $request,EntityManagerInterface $em,SerializerInterface $serializer,AuthorRepository $authorRepository,Validator):JsonResponse\n     {\n        $book = $serializer->deserialize($request->getContent(),Book::class, 'json');\n \n        //on verifie les erreurs \n"
+                },
+                {
+                    "date": 1688678034133,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,14 +51,14 @@\n         return new JsonResponse(null,Response::HTTP_NO_CONTENT);\n     }\n \n     #[Route('/api/books',name:'app_create_book', methods:[\"POST\"])]\n-    public function createBooks(Request $request,EntityManagerInterface $em,SerializerInterface $serializer,AuthorRepository $authorRepository,Validator):JsonResponse\n+    public function createBooks(Request $request,EntityManagerInterface $em,SerializerInterface $serializer,AuthorRepository $authorRepository,Validator $validator):JsonResponse\n     {\n        $book = $serializer->deserialize($request->getContent(),Book::class, 'json');\n \n        //on verifie les erreurs \n-       $errors = $v\n+       $errors = $validator->\n        $content = $request->toArray();\n        $idAuthor = $content['idAuthor'] ?? -1;\n        $book->setAuthor($authorRepository->find($idAuthor));\n \n"
+                },
+                {
+                    "date": 1688678041017,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -56,9 +56,9 @@\n     {\n        $book = $serializer->deserialize($request->getContent(),Book::class, 'json');\n \n        //on verifie les erreurs \n-       $errors = $validator->\n+       $errors = $validator->vali\n        $content = $request->toArray();\n        $idAuthor = $content['idAuthor'] ?? -1;\n        $book->setAuthor($authorRepository->find($idAuthor));\n \n"
+                },
+                {
+                    "date": 1688678059969,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,8 +13,9 @@\n use Symfony\\Component\\HttpFoundation\\Response;\n use Symfony\\Component\\Routing\\Annotation\\Route;\n use Symfony\\Component\\Serializer\\Normalizer\\AbstractNormalizer;\n use Symfony\\Component\\Serializer\\SerializerInterface;\n+use Symfony\\Component\\Validator\\Validator\\ValidatorInterface;\n \n class BookController extends AbstractController\n {\n     #[Route('/api/books/', name: 'app_total_book',methods:[\"GET\"])]\n@@ -51,14 +52,14 @@\n         return new JsonResponse(null,Response::HTTP_NO_CONTENT);\n     }\n \n     #[Route('/api/books',name:'app_create_book', methods:[\"POST\"])]\n-    public function createBooks(Request $request,EntityManagerInterface $em,SerializerInterface $serializer,AuthorRepository $authorRepository,Validator $validator):JsonResponse\n+    public function createBooks(Request $request,EntityManagerInterface $em,SerializerInterface $serializer,AuthorRepository $authorRepository,ValidatorInterface $validator):JsonResponse\n     {\n        $book = $serializer->deserialize($request->getContent(),Book::class, 'json');\n \n        //on verifie les erreurs \n-       $errors = $validator->vali\n+       $errors = $validator->valida\n        $content = $request->toArray();\n        $idAuthor = $content['idAuthor'] ?? -1;\n        $book->setAuthor($authorRepository->find($idAuthor));\n \n"
+                },
+                {
+                    "date": 1688678069103,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -57,9 +57,9 @@\n     {\n        $book = $serializer->deserialize($request->getContent(),Book::class, 'json');\n \n        //on verifie les erreurs \n-       $errors = $validator->valida\n+       $errors = $validator->validate($book);\n        $content = $request->toArray();\n        $idAuthor = $content['idAuthor'] ?? -1;\n        $book->setAuthor($authorRepository->find($idAuthor));\n \n"
+                },
+                {
+                    "date": 1688678075671,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -58,8 +58,9 @@\n        $book = $serializer->deserialize($request->getContent(),Book::class, 'json');\n \n        //on verifie les erreurs \n        $errors = $validator->validate($book);\n+        \n        $content = $request->toArray();\n        $idAuthor = $content['idAuthor'] ?? -1;\n        $book->setAuthor($authorRepository->find($idAuthor));\n \n"
+                },
+                {
+                    "date": 1688678081050,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -58,9 +58,9 @@\n        $book = $serializer->deserialize($request->getContent(),Book::class, 'json');\n \n        //on verifie les erreurs \n        $errors = $validator->validate($book);\n-        \n+        if($error)\n        $content = $request->toArray();\n        $idAuthor = $content['idAuthor'] ?? -1;\n        $book->setAuthor($authorRepository->find($idAuthor));\n \n"
+                },
+                {
+                    "date": 1688678087780,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -58,9 +58,9 @@\n        $book = $serializer->deserialize($request->getContent(),Book::class, 'json');\n \n        //on verifie les erreurs \n        $errors = $validator->validate($book);\n-        if($error)\n+        if($errors)\n        $content = $request->toArray();\n        $idAuthor = $content['idAuthor'] ?? -1;\n        $book->setAuthor($authorRepository->find($idAuthor));\n \n"
+                },
+                {
+                    "date": 1688678098534,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -58,9 +58,9 @@\n        $book = $serializer->deserialize($request->getContent(),Book::class, 'json');\n \n        //on verifie les erreurs \n        $errors = $validator->validate($book);\n-        if($errors)\n+        if($errors->count() > 0)\n        $content = $request->toArray();\n        $idAuthor = $content['idAuthor'] ?? -1;\n        $book->setAuthor($authorRepository->find($idAuthor));\n \n"
+                },
+                {
+                    "date": 1688678105195,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -58,9 +58,11 @@\n        $book = $serializer->deserialize($request->getContent(),Book::class, 'json');\n \n        //on verifie les erreurs \n        $errors = $validator->validate($book);\n-        if($errors->count() > 0)\n+        if($errors->count() > 0){\n+            retur\n+        }\n        $content = $request->toArray();\n        $idAuthor = $content['idAuthor'] ?? -1;\n        $book->setAuthor($authorRepository->find($idAuthor));\n \n"
+                },
+                {
+                    "date": 1688678110771,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -59,9 +59,9 @@\n \n        //on verifie les erreurs \n        $errors = $validator->validate($book);\n         if($errors->count() > 0){\n-            retur\n+            return new JsonResponse\n         }\n        $content = $request->toArray();\n        $idAuthor = $content['idAuthor'] ?? -1;\n        $book->setAuthor($authorRepository->find($idAuthor));\n"
+                },
+                {
+                    "date": 1688678119953,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -59,9 +59,9 @@\n \n        //on verifie les erreurs \n        $errors = $validator->validate($book);\n         if($errors->count() > 0){\n-            return new JsonResponse\n+            return new JsonResponse($serializer->serialize())\n         }\n        $content = $request->toArray();\n        $idAuthor = $content['idAuthor'] ?? -1;\n        $book->setAuthor($authorRepository->find($idAuthor));\n"
+                },
+                {
+                    "date": 1688678127595,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -59,9 +59,9 @@\n \n        //on verifie les erreurs \n        $errors = $validator->validate($book);\n         if($errors->count() > 0){\n-            return new JsonResponse($serializer->serialize())\n+            return new JsonResponse($serializer->serialize($errors,'json'))\n         }\n        $content = $request->toArray();\n        $idAuthor = $content['idAuthor'] ?? -1;\n        $book->setAuthor($authorRepository->find($idAuthor));\n"
+                },
+                {
+                    "date": 1688678137987,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -59,9 +59,9 @@\n \n        //on verifie les erreurs \n        $errors = $validator->validate($book);\n         if($errors->count() > 0){\n-            return new JsonResponse($serializer->serialize($errors,'json'))\n+            return new JsonResponse($serializer->serialize($errors,'json'),);\n         }\n        $content = $request->toArray();\n        $idAuthor = $content['idAuthor'] ?? -1;\n        $book->setAuthor($authorRepository->find($idAuthor));\n"
+                },
+                {
+                    "date": 1688678147691,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -59,9 +59,9 @@\n \n        //on verifie les erreurs \n        $errors = $validator->validate($book);\n         if($errors->count() > 0){\n-            return new JsonResponse($serializer->serialize($errors,'json'),);\n+            return new JsonResponse($serializer->serialize($errors,'json'),Response::HTTP_BAD_REQUEST);\n         }\n        $content = $request->toArray();\n        $idAuthor = $content['idAuthor'] ?? -1;\n        $book->setAuthor($authorRepository->find($idAuthor));\n"
+                },
+                {
+                    "date": 1688678152765,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -59,9 +59,9 @@\n \n        //on verifie les erreurs \n        $errors = $validator->validate($book);\n         if($errors->count() > 0){\n-            return new JsonResponse($serializer->serialize($errors,'json'),Response::HTTP_BAD_REQUEST);\n+            return new JsonResponse($serializer->serialize($errors,'json'),Response::HTTP_BAD_REQUEST,[],true);\n         }\n        $content = $request->toArray();\n        $idAuthor = $content['idAuthor'] ?? -1;\n        $book->setAuthor($authorRepository->find($idAuthor));\n"
+                },
+                {
+                    "date": 1688678795776,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -88,4 +88,5 @@\n         return new JsonResponse(null,Response::HTTP_NOT_FOUND,);\n     }\n \n }\n+lorm\n"
+                },
+                {
+                    "date": 1688678801193,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -88,5 +88,5 @@\n         return new JsonResponse(null,Response::HTTP_NOT_FOUND,);\n     }\n \n }\n-lorm\n+lorem1\n"
+                },
+                {
+                    "date": 1688692208635,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,8 @@\n use App\\Repository\\AuthorRepository;\n use App\\Repository\\BookRepository;\n use Doctrine\\ORM\\EntityManagerInterface;\n use Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController;\n-use Symfony\\Bundle\\MakerBundle\\Validator;\n use Symfony\\Component\\HttpFoundation\\JsonResponse;\n use Symfony\\Component\\HttpFoundation\\Request;\n use Symfony\\Component\\HttpFoundation\\Response;\n use Symfony\\Component\\Routing\\Annotation\\Route;\n@@ -88,5 +87,5 @@\n         return new JsonResponse(null,Response::HTTP_NOT_FOUND,);\n     }\n \n }\n-lorem1\n+\n"
+                },
+                {
+                    "date": 1688692900685,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,8 +51,9 @@\n         return new JsonResponse(null,Response::HTTP_NO_CONTENT);\n     }\n \n     #[Route('/api/books',name:'app_create_book', methods:[\"POST\"])]\n+    \n     public function createBooks(Request $request,EntityManagerInterface $em,SerializerInterface $serializer,AuthorRepository $authorRepository,ValidatorInterface $validator):JsonResponse\n     {\n        $book = $serializer->deserialize($request->getContent(),Book::class, 'json');\n \n"
+                },
+                {
+                    "date": 1688692907760,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,9 +51,9 @@\n         return new JsonResponse(null,Response::HTTP_NO_CONTENT);\n     }\n \n     #[Route('/api/books',name:'app_create_book', methods:[\"POST\"])]\n-    \n+    #[Is]\n     public function createBooks(Request $request,EntityManagerInterface $em,SerializerInterface $serializer,AuthorRepository $authorRepository,ValidatorInterface $validator):JsonResponse\n     {\n        $book = $serializer->deserialize($request->getContent(),Book::class, 'json');\n \n"
+                },
+                {
+                    "date": 1688692912865,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,8 +10,9 @@\n use Symfony\\Component\\HttpFoundation\\JsonResponse;\n use Symfony\\Component\\HttpFoundation\\Request;\n use Symfony\\Component\\HttpFoundation\\Response;\n use Symfony\\Component\\Routing\\Annotation\\Route;\n+use Symfony\\Component\\Security\\Http\\Attribute\\IsGranted;\n use Symfony\\Component\\Serializer\\Normalizer\\AbstractNormalizer;\n use Symfony\\Component\\Serializer\\SerializerInterface;\n use Symfony\\Component\\Validator\\Validator\\ValidatorInterface;\n \n@@ -51,9 +52,9 @@\n         return new JsonResponse(null,Response::HTTP_NO_CONTENT);\n     }\n \n     #[Route('/api/books',name:'app_create_book', methods:[\"POST\"])]\n-    #[Is]\n+    #[IsGranted(())]\n     public function createBooks(Request $request,EntityManagerInterface $em,SerializerInterface $serializer,AuthorRepository $authorRepository,ValidatorInterface $validator):JsonResponse\n     {\n        $book = $serializer->deserialize($request->getContent(),Book::class, 'json');\n \n"
+                },
+                {
+                    "date": 1688692919946,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -52,9 +52,9 @@\n         return new JsonResponse(null,Response::HTTP_NO_CONTENT);\n     }\n \n     #[Route('/api/books',name:'app_create_book', methods:[\"POST\"])]\n-    #[IsGranted(())]\n+    #[IsGranted('ROLE_ADMIN')]\n     public function createBooks(Request $request,EntityManagerInterface $em,SerializerInterface $serializer,AuthorRepository $authorRepository,ValidatorInterface $validator):JsonResponse\n     {\n        $book = $serializer->deserialize($request->getContent(),Book::class, 'json');\n \n"
+                },
+                {
+                    "date": 1688692925648,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -52,9 +52,9 @@\n         return new JsonResponse(null,Response::HTTP_NO_CONTENT);\n     }\n \n     #[Route('/api/books',name:'app_create_book', methods:[\"POST\"])]\n-    #[IsGranted('ROLE_ADMIN')]\n+    #[IsGranted('ROLE_ADMIN', me)]\n     public function createBooks(Request $request,EntityManagerInterface $em,SerializerInterface $serializer,AuthorRepository $authorRepository,ValidatorInterface $validator):JsonResponse\n     {\n        $book = $serializer->deserialize($request->getContent(),Book::class, 'json');\n \n"
+                },
+                {
+                    "date": 1688692931228,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -52,9 +52,9 @@\n         return new JsonResponse(null,Response::HTTP_NO_CONTENT);\n     }\n \n     #[Route('/api/books',name:'app_create_book', methods:[\"POST\"])]\n-    #[IsGranted('ROLE_ADMIN', me)]\n+    #[IsGranted('ROLE_ADMIN', message:)]\n     public function createBooks(Request $request,EntityManagerInterface $em,SerializerInterface $serializer,AuthorRepository $authorRepository,ValidatorInterface $validator):JsonResponse\n     {\n        $book = $serializer->deserialize($request->getContent(),Book::class, 'json');\n \n"
+                },
+                {
+                    "date": 1688692938060,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -52,9 +52,9 @@\n         return new JsonResponse(null,Response::HTTP_NO_CONTENT);\n     }\n \n     #[Route('/api/books',name:'app_create_book', methods:[\"POST\"])]\n-    #[IsGranted('ROLE_ADMIN', message:)]\n+    #[IsGranted('ROLE_ADMIN', message:\"\")]\n     public function createBooks(Request $request,EntityManagerInterface $em,SerializerInterface $serializer,AuthorRepository $authorRepository,ValidatorInterface $validator):JsonResponse\n     {\n        $book = $serializer->deserialize($request->getContent(),Book::class, 'json');\n \n"
+                },
+                {
+                    "date": 1688692948575,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -52,9 +52,9 @@\n         return new JsonResponse(null,Response::HTTP_NO_CONTENT);\n     }\n \n     #[Route('/api/books',name:'app_create_book', methods:[\"POST\"])]\n-    #[IsGranted('ROLE_ADMIN', message:\"\")]\n+    #[IsGranted('ROLE_ADMIN', message:\"vous n'avez pas le droit de cr\")]\n     public function createBooks(Request $request,EntityManagerInterface $em,SerializerInterface $serializer,AuthorRepository $authorRepository,ValidatorInterface $validator):JsonResponse\n     {\n        $book = $serializer->deserialize($request->getContent(),Book::class, 'json');\n \n"
+                },
+                {
+                    "date": 1688692957281,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -52,9 +52,9 @@\n         return new JsonResponse(null,Response::HTTP_NO_CONTENT);\n     }\n \n     #[Route('/api/books',name:'app_create_book', methods:[\"POST\"])]\n-    #[IsGranted('ROLE_ADMIN', message:\"vous n'avez pas le droit de cr\")]\n+    #[IsGranted('ROLE_ADMIN', message:\"vous n'avez pas le droit de créer un livre\")]\n     public function createBooks(Request $request,EntityManagerInterface $em,SerializerInterface $serializer,AuthorRepository $authorRepository,ValidatorInterface $validator):JsonResponse\n     {\n        $book = $serializer->deserialize($request->getContent(),Book::class, 'json');\n \n"
+                },
+                {
+                    "date": 1688693314166,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -52,9 +52,9 @@\n         return new JsonResponse(null,Response::HTTP_NO_CONTENT);\n     }\n \n     #[Route('/api/books',name:'app_create_book', methods:[\"POST\"])]\n-    #[IsGranted('ROLE_ADMIN', message:\"vous n'avez pas le droit de créer un livre\")]\n+    //#[IsGranted('ROLE_ADMIN', message:\"vous n'avez pas le droit de créer un livre\")]\n     public function createBooks(Request $request,EntityManagerInterface $em,SerializerInterface $serializer,AuthorRepository $authorRepository,ValidatorInterface $validator):JsonResponse\n     {\n        $book = $serializer->deserialize($request->getContent(),Book::class, 'json');\n \n"
+                },
+                {
+                    "date": 1688693321180,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -52,9 +52,9 @@\n         return new JsonResponse(null,Response::HTTP_NO_CONTENT);\n     }\n \n     #[Route('/api/books',name:'app_create_book', methods:[\"POST\"])]\n-    //#[IsGranted('ROLE_ADMIN', message:\"vous n'avez pas le droit de créer un livre\")]\n+    #[IsGranted('ROLE_ADMIN', message:\"vous n'avez pas le droit de créer un livre\")]\n     public function createBooks(Request $request,EntityManagerInterface $em,SerializerInterface $serializer,AuthorRepository $authorRepository,ValidatorInterface $validator):JsonResponse\n     {\n        $book = $serializer->deserialize($request->getContent(),Book::class, 'json');\n \n"
+                },
+                {
+                    "date": 1688693327423,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n \n class BookController extends AbstractController\n {\n     #[Route('/api/books/', name: 'app_total_book',methods:[\"GET\"])]\n-    public function getAllBooks(BookRepository $bookRepository,SerializerInterface $serializer): JsonResponse\n+    public function getAllBooks(,BookRepository $bookRepository,SerializerInterface $serializer): JsonResponse\n     {\n         $Listbooks = $bookRepository->findAll();\n         $jsonBook = $serializer->serialize($Listbooks,'json',[\"groups\"=>\"getBooks\"]);\n \n"
+                },
+                {
+                    "date": 1688693343683,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,10 +18,11 @@\n \n class BookController extends AbstractController\n {\n     #[Route('/api/books/', name: 'app_total_book',methods:[\"GET\"])]\n-    public function getAllBooks(,BookRepository $bookRepository,SerializerInterface $serializer): JsonResponse\n+    public function getAllBooks(Request $request,BookRepository $bookRepository,SerializerInterface $serializer): JsonResponse\n     {\n+        \n         $Listbooks = $bookRepository->findAll();\n         $jsonBook = $serializer->serialize($Listbooks,'json',[\"groups\"=>\"getBooks\"]);\n \n         return new JsonResponse(\n"
+                },
+                {
+                    "date": 1688693349362,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n {\n     #[Route('/api/books/', name: 'app_total_book',methods:[\"GET\"])]\n     public function getAllBooks(Request $request,BookRepository $bookRepository,SerializerInterface $serializer): JsonResponse\n     {\n-        \n+        $page= \n         $Listbooks = $bookRepository->findAll();\n         $jsonBook = $serializer->serialize($Listbooks,'json',[\"groups\"=>\"getBooks\"]);\n \n         return new JsonResponse(\n"
+                },
+                {
+                    "date": 1688693356415,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n {\n     #[Route('/api/books/', name: 'app_total_book',methods:[\"GET\"])]\n     public function getAllBooks(Request $request,BookRepository $bookRepository,SerializerInterface $serializer): JsonResponse\n     {\n-        $page= \n+        $page = $request\n         $Listbooks = $bookRepository->findAll();\n         $jsonBook = $serializer->serialize($Listbooks,'json',[\"groups\"=>\"getBooks\"]);\n \n         return new JsonResponse(\n"
+                },
+                {
+                    "date": 1688693363209,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n {\n     #[Route('/api/books/', name: 'app_total_book',methods:[\"GET\"])]\n     public function getAllBooks(Request $request,BookRepository $bookRepository,SerializerInterface $serializer): JsonResponse\n     {\n-        $page = $request\n+        $page = $request->pa\n         $Listbooks = $bookRepository->findAll();\n         $jsonBook = $serializer->serialize($Listbooks,'json',[\"groups\"=>\"getBooks\"]);\n \n         return new JsonResponse(\n"
+                },
+                {
+                    "date": 1688693372002,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n {\n     #[Route('/api/books/', name: 'app_total_book',methods:[\"GET\"])]\n     public function getAllBooks(Request $request,BookRepository $bookRepository,SerializerInterface $serializer): JsonResponse\n     {\n-        $page = $request->pa\n+        $page = $request->get()\n         $Listbooks = $bookRepository->findAll();\n         $jsonBook = $serializer->serialize($Listbooks,'json',[\"groups\"=>\"getBooks\"]);\n \n         return new JsonResponse(\n"
+                },
+                {
+                    "date": 1688693377209,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n {\n     #[Route('/api/books/', name: 'app_total_book',methods:[\"GET\"])]\n     public function getAllBooks(Request $request,BookRepository $bookRepository,SerializerInterface $serializer): JsonResponse\n     {\n-        $page = $request->get()\n+        $page = $request->get('page')\n         $Listbooks = $bookRepository->findAll();\n         $jsonBook = $serializer->serialize($Listbooks,'json',[\"groups\"=>\"getBooks\"]);\n \n         return new JsonResponse(\n"
+                },
+                {
+                    "date": 1688693383915,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,10 @@\n {\n     #[Route('/api/books/', name: 'app_total_book',methods:[\"GET\"])]\n     public function getAllBooks(Request $request,BookRepository $bookRepository,SerializerInterface $serializer): JsonResponse\n     {\n-        $page = $request->get('page')\n+        $page = $request->get('page',1);\n+        $limit\n         $Listbooks = $bookRepository->findAll();\n         $jsonBook = $serializer->serialize($Listbooks,'json',[\"groups\"=>\"getBooks\"]);\n \n         return new JsonResponse(\n"
+                },
+                {
+                    "date": 1688693393011,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n     #[Route('/api/books/', name: 'app_total_book',methods:[\"GET\"])]\n     public function getAllBooks(Request $request,BookRepository $bookRepository,SerializerInterface $serializer): JsonResponse\n     {\n         $page = $request->get('page',1);\n-        $limit\n+        $limit = $request->get('')\n         $Listbooks = $bookRepository->findAll();\n         $jsonBook = $serializer->serialize($Listbooks,'json',[\"groups\"=>\"getBooks\"]);\n \n         return new JsonResponse(\n"
+                },
+                {
+                    "date": 1688693398490,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n     #[Route('/api/books/', name: 'app_total_book',methods:[\"GET\"])]\n     public function getAllBooks(Request $request,BookRepository $bookRepository,SerializerInterface $serializer): JsonResponse\n     {\n         $page = $request->get('page',1);\n-        $limit = $request->get('')\n+        $limit = $request->get('limit')\n         $Listbooks = $bookRepository->findAll();\n         $jsonBook = $serializer->serialize($Listbooks,'json',[\"groups\"=>\"getBooks\"]);\n \n         return new JsonResponse(\n"
+                },
+                {
+                    "date": 1688693406365,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n     #[Route('/api/books/', name: 'app_total_book',methods:[\"GET\"])]\n     public function getAllBooks(Request $request,BookRepository $bookRepository,SerializerInterface $serializer): JsonResponse\n     {\n         $page = $request->get('page',1);\n-        $limit = $request->get('limit')\n+        $limit = $request->get('limit',3);\n         $Listbooks = $bookRepository->findAll();\n         $jsonBook = $serializer->serialize($Listbooks,'json',[\"groups\"=>\"getBooks\"]);\n \n         return new JsonResponse(\n"
+                },
+                {
+                    "date": 1688693517722,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n     public function getAllBooks(Request $request,BookRepository $bookRepository,SerializerInterface $serializer): JsonResponse\n     {\n         $page = $request->get('page',1);\n         $limit = $request->get('limit',3);\n-        $Listbooks = $bookRepository->findAll();\n+        $Listbooks = $bookRepository->find\n         $jsonBook = $serializer->serialize($Listbooks,'json',[\"groups\"=>\"getBooks\"]);\n \n         return new JsonResponse(\n             $jsonBook,Response::HTTP_OK,[],true\n"
+                },
+                {
+                    "date": 1688693541506,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n     public function getAllBooks(Request $request,BookRepository $bookRepository,SerializerInterface $serializer): JsonResponse\n     {\n         $page = $request->get('page',1);\n         $limit = $request->get('limit',3);\n-        $Listbooks = $bookRepository->find\n+        $Listbooks = $bookRepository->findAllWith\n         $jsonBook = $serializer->serialize($Listbooks,'json',[\"groups\"=>\"getBooks\"]);\n \n         return new JsonResponse(\n             $jsonBook,Response::HTTP_OK,[],true\n"
+                },
+                {
+                    "date": 1688693547244,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n     public function getAllBooks(Request $request,BookRepository $bookRepository,SerializerInterface $serializer): JsonResponse\n     {\n         $page = $request->get('page',1);\n         $limit = $request->get('limit',3);\n-        $Listbooks = $bookRepository->findAllWith\n+        $Listbooks = $bookRepository->findAllWithagination()\n         $jsonBook = $serializer->serialize($Listbooks,'json',[\"groups\"=>\"getBooks\"]);\n \n         return new JsonResponse(\n             $jsonBook,Response::HTTP_OK,[],true\n"
+                },
+                {
+                    "date": 1688693554663,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n     public function getAllBooks(Request $request,BookRepository $bookRepository,SerializerInterface $serializer): JsonResponse\n     {\n         $page = $request->get('page',1);\n         $limit = $request->get('limit',3);\n-        $Listbooks = $bookRepository->findAllWithagination()\n+        $Listbooks = $bookRepository->findAllWithPagination()\n         $jsonBook = $serializer->serialize($Listbooks,'json',[\"groups\"=>\"getBooks\"]);\n \n         return new JsonResponse(\n             $jsonBook,Response::HTTP_OK,[],true\n"
+                },
+                {
+                    "date": 1688693562174,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n     public function getAllBooks(Request $request,BookRepository $bookRepository,SerializerInterface $serializer): JsonResponse\n     {\n         $page = $request->get('page',1);\n         $limit = $request->get('limit',3);\n-        $Listbooks = $bookRepository->findAllWithPagination()\n+        $Listbooks = $bookRepository->findAllWithPagination($page,)\n         $jsonBook = $serializer->serialize($Listbooks,'json',[\"groups\"=>\"getBooks\"]);\n \n         return new JsonResponse(\n             $jsonBook,Response::HTTP_OK,[],true\n"
+                },
+                {
+                    "date": 1688694705118,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,13 +18,13 @@\n \n class BookController extends AbstractController\n {\n     #[Route('/api/books/', name: 'app_total_book',methods:[\"GET\"])]\n-    public function getAllBooks(Request $request,BookRepository $bookRepository,SerializerInterface $serializer): JsonResponse\n+    public function getAllBooks(Request $request,BookRepository $bookRepository,SerializerInterface $serializer,Tag): JsonResponse\n     {\n         $page = $request->get('page',1);\n         $limit = $request->get('limit',3);\n-        $Listbooks = $bookRepository->findAllWithPagination($page,)\n+        $Listbooks = $bookRepository->findAllWithPagination($page,$limit);\n         $jsonBook = $serializer->serialize($Listbooks,'json',[\"groups\"=>\"getBooks\"]);\n \n         return new JsonResponse(\n             $jsonBook,Response::HTTP_OK,[],true\n"
+                },
+                {
+                    "date": 1688694710985,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,13 +14,14 @@\n use Symfony\\Component\\Security\\Http\\Attribute\\IsGranted;\n use Symfony\\Component\\Serializer\\Normalizer\\AbstractNormalizer;\n use Symfony\\Component\\Serializer\\SerializerInterface;\n use Symfony\\Component\\Validator\\Validator\\ValidatorInterface;\n+use Symfony\\Contracts\\Cache\\TagAwareCacheInterface;\n \n class BookController extends AbstractController\n {\n     #[Route('/api/books/', name: 'app_total_book',methods:[\"GET\"])]\n-    public function getAllBooks(Request $request,BookRepository $bookRepository,SerializerInterface $serializer,Tag): JsonResponse\n+    public function getAllBooks(Request $request,BookRepository $bookRepository,SerializerInterface $serializer,TagAwareCacheInterface): JsonResponse\n     {\n         $page = $request->get('page',1);\n         $limit = $request->get('limit',3);\n         $Listbooks = $bookRepository->findAllWithPagination($page,$limit);\n"
+                },
+                {
+                    "date": 1688694717034,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,9 @@\n \n class BookController extends AbstractController\n {\n     #[Route('/api/books/', name: 'app_total_book',methods:[\"GET\"])]\n-    public function getAllBooks(Request $request,BookRepository $bookRepository,SerializerInterface $serializer,TagAwareCacheInterface): JsonResponse\n+    public function getAllBooks(Request $request,BookRepository $bookRepository,SerializerInterface $serializer,TagAwareCacheInterface $cahce): JsonResponse\n     {\n         $page = $request->get('page',1);\n         $limit = $request->get('limit',3);\n         $Listbooks = $bookRepository->findAllWithPagination($page,$limit);\n"
+                },
+                {
+                    "date": 1688694770629,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,8 +23,10 @@\n     public function getAllBooks(Request $request,BookRepository $bookRepository,SerializerInterface $serializer,TagAwareCacheInterface $cahce): JsonResponse\n     {\n         $page = $request->get('page',1);\n         $limit = $request->get('limit',3);\n+\n+        $\n         $Listbooks = $bookRepository->findAllWithPagination($page,$limit);\n         $jsonBook = $serializer->serialize($Listbooks,'json',[\"groups\"=>\"getBooks\"]);\n \n         return new JsonResponse(\n"
+                },
+                {
+                    "date": 1688694776438,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n     {\n         $page = $request->get('page',1);\n         $limit = $request->get('limit',3);\n \n-        $\n+        $idcache = \n         $Listbooks = $bookRepository->findAllWithPagination($page,$limit);\n         $jsonBook = $serializer->serialize($Listbooks,'json',[\"groups\"=>\"getBooks\"]);\n \n         return new JsonResponse(\n"
+                },
+                {
+                    "date": 1688694783373,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n     {\n         $page = $request->get('page',1);\n         $limit = $request->get('limit',3);\n \n-        $idcache = \n+        $idCache = \n         $Listbooks = $bookRepository->findAllWithPagination($page,$limit);\n         $jsonBook = $serializer->serialize($Listbooks,'json',[\"groups\"=>\"getBooks\"]);\n \n         return new JsonResponse(\n"
+                },
+                {
+                    "date": 1688694790980,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n     {\n         $page = $request->get('page',1);\n         $limit = $request->get('limit',3);\n \n-        $idCache = \n+        $idCache = \"get\" \n         $Listbooks = $bookRepository->findAllWithPagination($page,$limit);\n         $jsonBook = $serializer->serialize($Listbooks,'json',[\"groups\"=>\"getBooks\"]);\n \n         return new JsonResponse(\n"
+                },
+                {
+                    "date": 1688694799368,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n     {\n         $page = $request->get('page',1);\n         $limit = $request->get('limit',3);\n \n-        $idCache = \"get\" \n+        $idCache = \"getAllBooks\" .  \n         $Listbooks = $bookRepository->findAllWithPagination($page,$limit);\n         $jsonBook = $serializer->serialize($Listbooks,'json',[\"groups\"=>\"getBooks\"]);\n \n         return new JsonResponse(\n"
+                },
+                {
+                    "date": 1688694806037,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n     {\n         $page = $request->get('page',1);\n         $limit = $request->get('limit',3);\n \n-        $idCache = \"getAllBooks\" .  \n+        $idCache = \"getAllBooks\" . $page . \n         $Listbooks = $bookRepository->findAllWithPagination($page,$limit);\n         $jsonBook = $serializer->serialize($Listbooks,'json',[\"groups\"=>\"getBooks\"]);\n \n         return new JsonResponse(\n"
+                },
+                {
+                    "date": 1688694815343,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n     {\n         $page = $request->get('page',1);\n         $limit = $request->get('limit',3);\n \n-        $idCache = \"getAllBooks\" . $page . \n+        $idCache = \"getAllBooks\" . $page . \"-\" . $limit \n         $Listbooks = $bookRepository->findAllWithPagination($page,$limit);\n         $jsonBook = $serializer->serialize($Listbooks,'json',[\"groups\"=>\"getBooks\"]);\n \n         return new JsonResponse(\n"
+                },
+                {
+                    "date": 1688695073259,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,11 @@\n     {\n         $page = $request->get('page',1);\n         $limit = $request->get('limit',3);\n \n-        $idCache = \"getAllBooks\" . $page . \"-\" . $limit \n+        $idCache = \"getAllBooks\" . $page . \"-\" . $limit;\n+        \n+        \n         $Listbooks = $bookRepository->findAllWithPagination($page,$limit);\n         $jsonBook = $serializer->serialize($Listbooks,'json',[\"groups\"=>\"getBooks\"]);\n \n         return new JsonResponse(\n"
+                },
+                {
+                    "date": 1688695078713,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,8 +26,9 @@\n         $limit = $request->get('limit',3);\n \n         $idCache = \"getAllBooks\" . $page . \"-\" . $limit;\n         \n+        $\n         \n         $Listbooks = $bookRepository->findAllWithPagination($page,$limit);\n         $jsonBook = $serializer->serialize($Listbooks,'json',[\"groups\"=>\"getBooks\"]);\n \n"
+                },
+                {
+                    "date": 1688695085353,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n         $limit = $request->get('limit',3);\n \n         $idCache = \"getAllBooks\" . $page . \"-\" . $limit;\n         \n-        $\n+        $bookList = $cahce\n         \n         $Listbooks = $bookRepository->findAllWithPagination($page,$limit);\n         $jsonBook = $serializer->serialize($Listbooks,'json',[\"groups\"=>\"getBooks\"]);\n \n"
+                },
+                {
+                    "date": 1688695093464,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n         $limit = $request->get('limit',3);\n \n         $idCache = \"getAllBooks\" . $page . \"-\" . $limit;\n         \n-        $bookList = $cahce\n+        $bookList = $cahce->get($idCache,)\n         \n         $Listbooks = $bookRepository->findAllWithPagination($page,$limit);\n         $jsonBook = $serializer->serialize($Listbooks,'json',[\"groups\"=>\"getBooks\"]);\n \n"
+                },
+                {
+                    "date": 1688695099806,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n         $limit = $request->get('limit',3);\n \n         $idCache = \"getAllBooks\" . $page . \"-\" . $limit;\n         \n-        $bookList = $cahce->get($idCache,)\n+        $bookList = $cahce->get($idCache,functi)\n         \n         $Listbooks = $bookRepository->findAllWithPagination($page,$limit);\n         $jsonBook = $serializer->serialize($Listbooks,'json',[\"groups\"=>\"getBooks\"]);\n \n"
+                },
+                {
+                    "date": 1688695110424,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n         $limit = $request->get('limit',3);\n \n         $idCache = \"getAllBooks\" . $page . \"-\" . $limit;\n         \n-        $bookList = $cahce->get($idCache,functi)\n+        $bookList = $cahce->get($idCache,function(I))\n         \n         $Listbooks = $bookRepository->findAllWithPagination($page,$limit);\n         $jsonBook = $serializer->serialize($Listbooks,'json',[\"groups\"=>\"getBooks\"]);\n \n"
+                },
+                {
+                    "date": 1688695116686,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n         $limit = $request->get('limit',3);\n \n         $idCache = \"getAllBooks\" . $page . \"-\" . $limit;\n         \n-        $bookList = $cahce->get($idCache,function(I))\n+        $bookList = $cahce->get($idCache,function(Iterm))\n         \n         $Listbooks = $bookRepository->findAllWithPagination($page,$limit);\n         $jsonBook = $serializer->serialize($Listbooks,'json',[\"groups\"=>\"getBooks\"]);\n \n"
+                },
+                {
+                    "date": 1688695126524,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,8 +14,9 @@\n use Symfony\\Component\\Security\\Http\\Attribute\\IsGranted;\n use Symfony\\Component\\Serializer\\Normalizer\\AbstractNormalizer;\n use Symfony\\Component\\Serializer\\SerializerInterface;\n use Symfony\\Component\\Validator\\Validator\\ValidatorInterface;\n+use Symfony\\Contracts\\Cache\\ItemInterface;\n use Symfony\\Contracts\\Cache\\TagAwareCacheInterface;\n \n class BookController extends AbstractController\n {\n@@ -26,9 +27,9 @@\n         $limit = $request->get('limit',3);\n \n         $idCache = \"getAllBooks\" . $page . \"-\" . $limit;\n         \n-        $bookList = $cahce->get($idCache,function(Iterm))\n+        $bookList = $cahce->get($idCache,function(ItemInterface $))\n         \n         $Listbooks = $bookRepository->findAllWithPagination($page,$limit);\n         $jsonBook = $serializer->serialize($Listbooks,'json',[\"groups\"=>\"getBooks\"]);\n \n"
+                },
+                {
+                    "date": 1688695134912,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,9 +27,9 @@\n         $limit = $request->get('limit',3);\n \n         $idCache = \"getAllBooks\" . $page . \"-\" . $limit;\n         \n-        $bookList = $cahce->get($idCache,function(ItemInterface $))\n+        $bookList = $cahce->get($idCache,function(ItemInterface $item))\n         \n         $Listbooks = $bookRepository->findAllWithPagination($page,$limit);\n         $jsonBook = $serializer->serialize($Listbooks,'json',[\"groups\"=>\"getBooks\"]);\n \n"
+                },
+                {
+                    "date": 1688695144088,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,9 +27,9 @@\n         $limit = $request->get('limit',3);\n \n         $idCache = \"getAllBooks\" . $page . \"-\" . $limit;\n         \n-        $bookList = $cahce->get($idCache,function(ItemInterface $item,))\n+        $bookList = $cahce->get($idCache,function(ItemInterface $item))\n         \n         $Listbooks = $bookRepository->findAllWithPagination($page,$limit);\n         $jsonBook = $serializer->serialize($Listbooks,'json',[\"groups\"=>\"getBooks\"]);\n \n"
+                },
+                {
+                    "date": 1688701672531,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,9 +46,9 @@\n     public function getAllBooks(BookRepository $bookRepository, SerializerInterface $serializer, Request $request, TagAwareCacheInterface $cache): JsonResponse\n     {\n         $page = $request->get('page', 1);\n         $limit = $request->get('limit', 3);\n-        $context = SerializationContext::create()->\n+        $context = SerializationContext::create()->s\n         $idCache = \"getAllBooks-\" . $page . \"-\" . $limit;\n         $bookList = $cache->get($idCache, function (ItemInterface $item) use ($bookRepository, $page, $limit) {\n             echo (\"N'EST PAS ENCORE ENREGISTRE\");\n             $item->tag(\"booksCache\");\n"
+                }
+            ],
+            "date": 1688550168584,
+            "name": "Commit-0",
+            "content": "<?php\n\nnamespace App\\Controller;\n\nuse Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController;\nuse Symfony\\Component\\HttpFoundation\\JsonResponse;\nuse Symfony\\Component\\Routing\\Annotation\\Route;\n\nclass BookController extends AbstractController\n{\n    #[Route('/api/book', name: 'app_book')]\n    public function index(): JsonResponse\n    {\n        return $this->json([\n            'message' => 'Welcome to your new controller!',\n            'path' => 'src/Controller/BookController.php',\n        ]);\n    }\n}\n"
+        }
+    ]
+}

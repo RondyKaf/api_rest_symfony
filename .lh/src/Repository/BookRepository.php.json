@@ -1,0 +1,102 @@
+{
+    "sourceFile": "src/Repository/BookRepository.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 21,
+            "patches": [
+                {
+                    "date": 1688693666066,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1688693688393,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -38,9 +38,9 @@\n             $this->getEntityManager()->flush();\n         }\n     }\n \n-    public func\n+    public function ()\n //    /**\n //     * @return Book[] Returns an array of Book objects\n //     */\n //    public function findByExampleField($value): array\n"
+                },
+                {
+                    "date": 1688693694446,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -38,9 +38,11 @@\n             $this->getEntityManager()->flush();\n         }\n     }\n \n-    public function ()\n+    public function findAllWithPagination(){\n+        \n+    }\n //    /**\n //     * @return Book[] Returns an array of Book objects\n //     */\n //    public function findByExampleField($value): array\n"
+                },
+                {
+                    "date": 1688693701237,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -38,10 +38,10 @@\n             $this->getEntityManager()->flush();\n         }\n     }\n \n-    public function findAllWithPagination(){\n-        \n+    public function findAllWithPagination($page,){\n+\n     }\n //    /**\n //     * @return Book[] Returns an array of Book objects\n //     */\n"
+                },
+                {
+                    "date": 1688693712663,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -38,10 +38,10 @@\n             $this->getEntityManager()->flush();\n         }\n     }\n \n-    public function findAllWithPagination($page,){\n-\n+    public function findAllWithPagination($page,$limit){\n+        $\n     }\n //    /**\n //     * @return Book[] Returns an array of Book objects\n //     */\n"
+                },
+                {
+                    "date": 1688693720152,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -39,9 +39,9 @@\n         }\n     }\n \n     public function findAllWithPagination($page,$limit){\n-        $\n+        $qd = $this-\n     }\n //    /**\n //     * @return Book[] Returns an array of Book objects\n //     */\n"
+                },
+                {
+                    "date": 1688693729372,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -39,9 +39,9 @@\n         }\n     }\n \n     public function findAllWithPagination($page,$limit){\n-        $qd = $this-\n+        $qd = $this->crea\n     }\n //    /**\n //     * @return Book[] Returns an array of Book objects\n //     */\n"
+                },
+                {
+                    "date": 1688693740248,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -39,9 +39,10 @@\n         }\n     }\n \n     public function findAllWithPagination($page,$limit){\n-        $qd = $this->crea\n+        $qd = $this->createQueryBuilder('b')\n+        ->\n     }\n //    /**\n //     * @return Book[] Returns an array of Book objects\n //     */\n"
+                },
+                {
+                    "date": 1688693745766,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,9 +40,9 @@\n     }\n \n     public function findAllWithPagination($page,$limit){\n         $qd = $this->createQueryBuilder('b')\n-        ->\n+        ->set\n     }\n //    /**\n //     * @return Book[] Returns an array of Book objects\n //     */\n"
+                },
+                {
+                    "date": 1688693752335,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,9 +40,9 @@\n     }\n \n     public function findAllWithPagination($page,$limit){\n         $qd = $this->createQueryBuilder('b')\n-        ->set\n+        ->setFirstResult(())\n     }\n //    /**\n //     * @return Book[] Returns an array of Book objects\n //     */\n"
+                },
+                {
+                    "date": 1688693758027,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,9 +40,9 @@\n     }\n \n     public function findAllWithPagination($page,$limit){\n         $qd = $this->createQueryBuilder('b')\n-        ->setFirstResult(())\n+        ->setFirstResult(($page -1) )\n     }\n //    /**\n //     * @return Book[] Returns an array of Book objects\n //     */\n"
+                },
+                {
+                    "date": 1688693763756,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,9 +40,9 @@\n     }\n \n     public function findAllWithPagination($page,$limit){\n         $qd = $this->createQueryBuilder('b')\n-        ->setFirstResult(($page -1) )\n+        ->setFirstResult(($page -1) $)\n     }\n //    /**\n //     * @return Book[] Returns an array of Book objects\n //     */\n"
+                },
+                {
+                    "date": 1688693771319,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,9 +40,10 @@\n     }\n \n     public function findAllWithPagination($page,$limit){\n         $qd = $this->createQueryBuilder('b')\n-        ->setFirstResult(($page -1) $)\n+        ->setFirstResult(($page -1) $limit)\n+        ->e\n     }\n //    /**\n //     * @return Book[] Returns an array of Book objects\n //     */\n"
+                },
+                {
+                    "date": 1688693783561,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -41,9 +41,9 @@\n \n     public function findAllWithPagination($page,$limit){\n         $qd = $this->createQueryBuilder('b')\n         ->setFirstResult(($page -1) $limit)\n-        ->e\n+        ->\n     }\n //    /**\n //     * @return Book[] Returns an array of Book objects\n //     */\n"
+                },
+                {
+                    "date": 1688693788920,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,9 +40,9 @@\n     }\n \n     public function findAllWithPagination($page,$limit){\n         $qd = $this->createQueryBuilder('b')\n-        ->setFirstResult(($page -1) $limit)\n+        ->setFirstResult(($page -1) * $limit)\n         ->\n     }\n //    /**\n //     * @return Book[] Returns an array of Book objects\n"
+                },
+                {
+                    "date": 1688693794065,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -41,9 +41,9 @@\n \n     public function findAllWithPagination($page,$limit){\n         $qd = $this->createQueryBuilder('b')\n         ->setFirstResult(($page -1) * $limit)\n-        ->\n+        ->setMaxResults()\n     }\n //    /**\n //     * @return Book[] Returns an array of Book objects\n //     */\n"
+                },
+                {
+                    "date": 1688693803994,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -41,9 +41,11 @@\n \n     public function findAllWithPagination($page,$limit){\n         $qd = $this->createQueryBuilder('b')\n         ->setFirstResult(($page -1) * $limit)\n-        ->setMaxResults()\n+        ->setMaxResults($limit);\n+\n+        return \n     }\n //    /**\n //     * @return Book[] Returns an array of Book objects\n //     */\n"
+                },
+                {
+                    "date": 1688693810243,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,9 +43,9 @@\n         $qd = $this->createQueryBuilder('b')\n         ->setFirstResult(($page -1) * $limit)\n         ->setMaxResults($limit);\n \n-        return \n+        return $qd->\n     }\n //    /**\n //     * @return Book[] Returns an array of Book objects\n //     */\n"
+                },
+                {
+                    "date": 1688693816905,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,9 +43,9 @@\n         $qd = $this->createQueryBuilder('b')\n         ->setFirstResult(($page -1) * $limit)\n         ->setMaxResults($limit);\n \n-        return $qd->\n+        return $qd->getQuery()->\n     }\n //    /**\n //     * @return Book[] Returns an array of Book objects\n //     */\n"
+                },
+                {
+                    "date": 1688693826765,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,9 +43,9 @@\n         $qd = $this->createQueryBuilder('b')\n         ->setFirstResult(($page -1) * $limit)\n         ->setMaxResults($limit);\n \n-        return $qd->getQuery()->\n+        return $qd->getQuery()->getResult()\n     }\n //    /**\n //     * @return Book[] Returns an array of Book objects\n //     */\n"
+                },
+                {
+                    "date": 1688697409540,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,9 +43,11 @@\n         $qd = $this->createQueryBuilder('b')\n         ->setFirstResult(($page -1) * $limit)\n         ->setMaxResults($limit);\n \n-        return $qd->getQuery()->getResult()\n+        $query = $qb->getQuery();\n+        $query->setFetchMode(Book::class, \"author\", \\Doctrine\\ORM\\Mapping\\ClassMetadata::FETCH_EAGER);\n+        return $query->getResult();\n     }\n //    /**\n //     * @return Book[] Returns an array of Book objects\n //     */\n"
+                },
+                {
+                    "date": 1688697427138,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -39,9 +39,9 @@\n         }\n     }\n \n     public function findAllWithPagination($page,$limit){\n-        $qd = $this->createQueryBuilder('b')\n+        $qb = $this->createQueryBuilder('b')\n         ->setFirstResult(($page -1) * $limit)\n         ->setMaxResults($limit);\n \n         $query = $qb->getQuery();\n"
+                }
+            ],
+            "date": 1688693666066,
+            "name": "Commit-0",
+            "content": "<?php\n\nnamespace App\\Repository;\n\nuse App\\Entity\\Book;\nuse Doctrine\\Bundle\\DoctrineBundle\\Repository\\ServiceEntityRepository;\nuse Doctrine\\Persistence\\ManagerRegistry;\n\n/**\n * @extends ServiceEntityRepository<Book>\n *\n * @method Book|null find($id, $lockMode = null, $lockVersion = null)\n * @method Book|null findOneBy(array $criteria, array $orderBy = null)\n * @method Book[]    findAll()\n * @method Book[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)\n */\nclass BookRepository extends ServiceEntityRepository\n{\n    public function __construct(ManagerRegistry $registry)\n    {\n        parent::__construct($registry, Book::class);\n    }\n\n    public function save(Book $entity, bool $flush = false): void\n    {\n        $this->getEntityManager()->persist($entity);\n\n        if ($flush) {\n            $this->getEntityManager()->flush();\n        }\n    }\n\n    public function remove(Book $entity, bool $flush = false): void\n    {\n        $this->getEntityManager()->remove($entity);\n\n        if ($flush) {\n            $this->getEntityManager()->flush();\n        }\n    }\n\n    public func\n//    /**\n//     * @return Book[] Returns an array of Book objects\n//     */\n//    public function findByExampleField($value): array\n//    {\n//        return $this->createQueryBuilder('b')\n//            ->andWhere('b.exampleField = :val')\n//            ->setParameter('val', $value)\n//            ->orderBy('b.id', 'ASC')\n//            ->setMaxResults(10)\n//            ->getQuery()\n//            ->getResult()\n//        ;\n//    }\n\n//    public function findOneBySomeField($value): ?Book\n//    {\n//        return $this->createQueryBuilder('b')\n//            ->andWhere('b.exampleField = :val')\n//            ->setParameter('val', $value)\n//            ->getQuery()\n//            ->getOneOrNullResult()\n//        ;\n//    }\n}\n"
+        }
+    ]
+}

@@ -1,0 +1,74 @@
+{
+    "sourceFile": "src/Repository/AuthorRepository.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 14,
+            "patches": [
+                {
+                    "date": 1688698164296,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1688698172931,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -38,9 +38,9 @@\n             $this->getEntityManager()->flush();\n         }\n     }\n \n-    public function \n+    public function findAll\n //    /**\n //     * @return Author[] Returns an array of Author objects\n //     */\n //    public function findByExampleField($value): array\n"
+                },
+                {
+                    "date": 1688698179550,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -38,9 +38,9 @@\n             $this->getEntityManager()->flush();\n         }\n     }\n \n-    public function findAll\n+    public function findAllWithPagination\n //    /**\n //     * @return Author[] Returns an array of Author objects\n //     */\n //    public function findByExampleField($value): array\n"
+                },
+                {
+                    "date": 1688698188551,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -38,9 +38,9 @@\n             $this->getEntityManager()->flush();\n         }\n     }\n \n-    public function findAllWithPagination\n+    public function findAllWithPagination($page,$limit)\n //    /**\n //     * @return Author[] Returns an array of Author objects\n //     */\n //    public function findByExampleField($value): array\n"
+                },
+                {
+                    "date": 1688698202831,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -38,9 +38,11 @@\n             $this->getEntityManager()->flush();\n         }\n     }\n \n-    public function findAllWithPagination($page,$limit)\n+    public function findAllWithPagination($page,$limit){\n+        $\n+    }\n //    /**\n //     * @return Author[] Returns an array of Author objects\n //     */\n //    public function findByExampleField($value): array\n"
+                },
+                {
+                    "date": 1688698210761,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -39,9 +39,9 @@\n         }\n     }\n \n     public function findAllWithPagination($page,$limit){\n-        $\n+        $qb = $this->\n     }\n //    /**\n //     * @return Author[] Returns an array of Author objects\n //     */\n"
+                },
+                {
+                    "date": 1688698219709,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -39,9 +39,9 @@\n         }\n     }\n \n     public function findAllWithPagination($page,$limit){\n-        $qb = $this->\n+        $qb = $this->createQueryBuilder()\n     }\n //    /**\n //     * @return Author[] Returns an array of Author objects\n //     */\n"
+                },
+                {
+                    "date": 1688698226672,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -39,9 +39,9 @@\n         }\n     }\n \n     public function findAllWithPagination($page,$limit){\n-        $qb = $this->createQueryBuilder()\n+        $qb = $this->createQueryBuilder(($page))\n     }\n //    /**\n //     * @return Author[] Returns an array of Author objects\n //     */\n"
+                },
+                {
+                    "date": 1688698235202,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -39,9 +39,9 @@\n         }\n     }\n \n     public function findAllWithPagination($page,$limit){\n-        $qb = $this->createQueryBuilder(($page))\n+        $qb = $this->createQueryBuilder(($page -1) )\n     }\n //    /**\n //     * @return Author[] Returns an array of Author objects\n //     */\n"
+                },
+                {
+                    "date": 1688698244560,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -39,9 +39,10 @@\n         }\n     }\n \n     public function findAllWithPagination($page,$limit){\n-        $qb = $this->createQueryBuilder(($page -1) )\n+        $qb = $this->createQueryBuilder(($page -1) * $limit);\n+        ->set\n     }\n //    /**\n //     * @return Author[] Returns an array of Author objects\n //     */\n"
+                },
+                {
+                    "date": 1688698251916,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,9 +40,9 @@\n     }\n \n     public function findAllWithPagination($page,$limit){\n         $qb = $this->createQueryBuilder(($page -1) * $limit);\n-        ->set\n+        ->\n     }\n //    /**\n //     * @return Author[] Returns an array of Author objects\n //     */\n"
+                },
+                {
+                    "date": 1688698257443,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -39,10 +39,9 @@\n         }\n     }\n \n     public function findAllWithPagination($page,$limit){\n-        $qb = $this->createQueryBuilder(($page -1) * $limit);\n-        ->\n+        $qb = $this->createQueryBuilder(($page -1) * $limit)\n     }\n //    /**\n //     * @return Author[] Returns an array of Author objects\n //     */\n"
+                },
+                {
+                    "date": 1688698262913,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,8 +40,9 @@\n     }\n \n     public function findAllWithPagination($page,$limit){\n         $qb = $this->createQueryBuilder(($page -1) * $limit)\n+        ->setFirstResult()\n     }\n //    /**\n //     * @return Author[] Returns an array of Author objects\n //     */\n"
+                },
+                {
+                    "date": 1688698271123,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,9 +40,9 @@\n     }\n \n     public function findAllWithPagination($page,$limit){\n         $qb = $this->createQueryBuilder(($page -1) * $limit)\n-        ->setFirstResult(($page))\n+        ->setFirstResult(($page ))\n     }\n //    /**\n //     * @return Author[] Returns an array of Author objects\n //     */\n"
+                },
+                {
+                    "date": 1688698334422,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -41,9 +41,9 @@\n \n     public function findAllWithPagination($page,$limit){\n         $qb = $this->createQueryBuilder('b')\n         ->setFirstResult(($page -1) * $limit)\n-        ->setMaxResults($limit)\n+        ->setMaxResults($limit);\n         \n     }\n //    /**\n //     * @return Author[] Returns an array of Author objects\n"
+                }
+            ],
+            "date": 1688698164296,
+            "name": "Commit-0",
+            "content": "<?php\n\nnamespace App\\Repository;\n\nuse App\\Entity\\Author;\nuse Doctrine\\Bundle\\DoctrineBundle\\Repository\\ServiceEntityRepository;\nuse Doctrine\\Persistence\\ManagerRegistry;\n\n/**\n * @extends ServiceEntityRepository<Author>\n *\n * @method Author|null find($id, $lockMode = null, $lockVersion = null)\n * @method Author|null findOneBy(array $criteria, array $orderBy = null)\n * @method Author[]    findAll()\n * @method Author[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)\n */\nclass AuthorRepository extends ServiceEntityRepository\n{\n    public function __construct(ManagerRegistry $registry)\n    {\n        parent::__construct($registry, Author::class);\n    }\n\n    public function save(Author $entity, bool $flush = false): void\n    {\n        $this->getEntityManager()->persist($entity);\n\n        if ($flush) {\n            $this->getEntityManager()->flush();\n        }\n    }\n\n    public function remove(Author $entity, bool $flush = false): void\n    {\n        $this->getEntityManager()->remove($entity);\n\n        if ($flush) {\n            $this->getEntityManager()->flush();\n        }\n    }\n\n    public function \n//    /**\n//     * @return Author[] Returns an array of Author objects\n//     */\n//    public function findByExampleField($value): array\n//    {\n//        return $this->createQueryBuilder('a')\n//            ->andWhere('a.exampleField = :val')\n//            ->setParameter('val', $value)\n//            ->orderBy('a.id', 'ASC')\n//            ->setMaxResults(10)\n//            ->getQuery()\n//            ->getResult()\n//        ;\n//    }\n\n//    public function findOneBySomeField($value): ?Author\n//    {\n//        return $this->createQueryBuilder('a')\n//            ->andWhere('a.exampleField = :val')\n//            ->setParameter('val', $value)\n//            ->getQuery()\n//            ->getOneOrNullResult()\n//        ;\n//    }\n}\n"
+        }
+    ]
+}

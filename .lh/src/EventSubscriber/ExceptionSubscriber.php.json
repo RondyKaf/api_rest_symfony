@@ -1,0 +1,50 @@
+{
+    "sourceFile": "src/EventSubscriber/ExceptionSubscriber.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 8,
+            "patches": [
+                {
+                    "date": 1688677134863,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1688677154729,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,26 @@\n class ExceptionSubscriber implements EventSubscriberInterface\n {\n     public function onKernelException(ExceptionEvent $event): void\n     {\n-        \n+        $exception = $event->getThrowable();\n+\n+        if ($exception instanceof HttpException) {\n+            $data = [\n+                'status' => $exception->getStatusCode(),\n+                'message' => $exception->getMessage()\n+            ];\n+\n+            $event->setResponse(new JsonResponse($data));\n+      } else {\n+            $data = [\n+                'status' => 500, // Le status n'existe pas car ce n'est pas une exception HTTP, donc on met 500 par défaut.\n+                'message' => $exception->getMessage()\n+            ];\n+\n+            $event->setResponse(new JsonResponse($data));\n+      }\n+\n     }\n \n     public static function getSubscribedEvents(): array\n     {\n"
+                },
+                {
+                    "date": 1688677160896,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,8 +3,9 @@\n namespace App\\EventSubscriber;\n \n use Symfony\\Component\\EventDispatcher\\EventSubscriberInterface;\n use Symfony\\Component\\HttpKernel\\Event\\ExceptionEvent;\n+use Symfony\\Component\\HttpKernel\\Exception\\HttpException;\n use Symfony\\Component\\HttpKernel\\KernelEvents;\n \n class ExceptionSubscriber implements EventSubscriberInterface\n {\n"
+                },
+                {
+                    "date": 1688677241764,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,8 +2,9 @@\n \n namespace App\\EventSubscriber;\n \n use Symfony\\Component\\EventDispatcher\\EventSubscriberInterface;\n+use Symfony\\Component\\HttpFoundation\\JsonResponse;\n use Symfony\\Component\\HttpKernel\\Event\\ExceptionEvent;\n use Symfony\\Component\\HttpKernel\\Exception\\HttpException;\n use Symfony\\Component\\HttpKernel\\KernelEvents;\n \n@@ -22,9 +23,10 @@\n             $event->setResponse(new JsonResponse($data));\n       } else {\n             $data = [\n                 'status' => 500, // Le status n'existe pas car ce n'est pas une exception HTTP, donc on met 500 par défaut.\n-                'message' => $exception->getMessage()\n+                'message' => $exception->getMessage(),\n+                ''\n             ];\n \n             $event->setResponse(new JsonResponse($data));\n       }\n"
+                },
+                {
+                    "date": 1688677246972,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n       } else {\n             $data = [\n                 'status' => 500, // Le status n'existe pas car ce n'est pas une exception HTTP, donc on met 500 par défaut.\n                 'message' => $exception->getMessage(),\n-                ''\n+                'text'=>\n             ];\n \n             $event->setResponse(new JsonResponse($data));\n       }\n"
+                },
+                {
+                    "date": 1688677252679,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n       } else {\n             $data = [\n                 'status' => 500, // Le status n'existe pas car ce n'est pas une exception HTTP, donc on met 500 par défaut.\n                 'message' => $exception->getMessage(),\n-                'text'=>\n+                \n             ];\n \n             $event->setResponse(new JsonResponse($data));\n       }\n"
+                },
+                {
+                    "date": 1688677258307,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,10 @@\n \n         if ($exception instanceof HttpException) {\n             $data = [\n                 'status' => $exception->getStatusCode(),\n-                'message' => $exception->getMessage()\n+                'message' => $exception->getMessage(),\n+                'text'=> $exc\n             ];\n \n             $event->setResponse(new JsonResponse($data));\n       } else {\n"
+                },
+                {
+                    "date": 1688677268074,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n         if ($exception instanceof HttpException) {\n             $data = [\n                 'status' => $exception->getStatusCode(),\n                 'message' => $exception->getMessage(),\n-                'text'=> $exc\n+                'text'=> $exception->getCode()\n             ];\n \n             $event->setResponse(new JsonResponse($data));\n       } else {\n"
+                },
+                {
+                    "date": 1688677286345,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n         if ($exception instanceof HttpException) {\n             $data = [\n                 'status' => $exception->getStatusCode(),\n                 'message' => $exception->getMessage(),\n-                'text'=> $exception->getCode()\n+                ''=> $exception->getCode()\n             ];\n \n             $event->setResponse(new JsonResponse($data));\n       } else {\n"
+                }
+            ],
+            "date": 1688677134863,
+            "name": "Commit-0",
+            "content": "<?php\n\nnamespace App\\EventSubscriber;\n\nuse Symfony\\Component\\EventDispatcher\\EventSubscriberInterface;\nuse Symfony\\Component\\HttpKernel\\Event\\ExceptionEvent;\nuse Symfony\\Component\\HttpKernel\\KernelEvents;\n\nclass ExceptionSubscriber implements EventSubscriberInterface\n{\n    public function onKernelException(ExceptionEvent $event): void\n    {\n        \n    }\n\n    public static function getSubscribedEvents(): array\n    {\n        return [\n            KernelEvents::EXCEPTION => 'onKernelException',\n        ];\n    }\n}\n"
+        }
+    ]
+}

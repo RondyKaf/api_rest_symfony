@@ -1,0 +1,230 @@
+{
+    "sourceFile": "src/DataFixtures/AppFixtures.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 53,
+            "patches": [
+                {
+                    "date": 1688548782311,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1688548787382,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,9 @@\n use Doctrine\\Persistence\\ObjectManager;\n \n class AppFixtures extends Fixture\n {\n-    private $\n+    private $userPassword\n     public function load(ObjectManager $manager): void\n     {\n         // $product = new Product();\n         // $manager->persist($product);\n"
+                },
+                {
+                    "date": 1688548793724,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,11 @@\n use Doctrine\\Persistence\\ObjectManager;\n \n class AppFixtures extends Fixture\n {\n-    private $userPassword\n+    private $userPasswordHasher;\n+\n+    public \n     public function load(ObjectManager $manager): void\n     {\n         // $product = new Product();\n         // $manager->persist($product);\n"
+                },
+                {
+                    "date": 1688548801137,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n class AppFixtures extends Fixture\n {\n     private $userPasswordHasher;\n \n-    public \n+    public function __construct()\n     public function load(ObjectManager $manager): void\n     {\n         // $product = new Product();\n         // $manager->persist($product);\n"
+                },
+                {
+                    "date": 1688548808260,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n class AppFixtures extends Fixture\n {\n     private $userPasswordHasher;\n \n-    public function __construct()\n+    public function __construct(UserPa)\n     public function load(ObjectManager $manager): void\n     {\n         // $product = new Product();\n         // $manager->persist($product);\n"
+                },
+                {
+                    "date": 1688548814690,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,14 +3,15 @@\n namespace App\\DataFixtures;\n \n use Doctrine\\Bundle\\FixturesBundle\\Fixture;\n use Doctrine\\Persistence\\ObjectManager;\n+use Symfony\\Component\\PasswordHasher\\Hasher\\UserPasswordHasherInterface;\n \n class AppFixtures extends Fixture\n {\n     private $userPasswordHasher;\n \n-    public function __construct(UserPa)\n+    public function __construct(UserPasswordHasherInterface $user)\n     public function load(ObjectManager $manager): void\n     {\n         // $product = new Product();\n         // $manager->persist($product);\n"
+                },
+                {
+                    "date": 1688548821462,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n class AppFixtures extends Fixture\n {\n     private $userPasswordHasher;\n \n-    public function __construct(UserPasswordHasherInterface $user)\n+    public function __construct(UserPasswordHasherInterface $userPasswordHasher)\n     public function load(ObjectManager $manager): void\n     {\n         // $product = new Product();\n         // $manager->persist($product);\n"
+                },
+                {
+                    "date": 1688548831076,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,11 @@\n class AppFixtures extends Fixture\n {\n     private $userPasswordHasher;\n \n-    public function __construct(UserPasswordHasherInterface $userPasswordHasher)\n+    public function __construct(UserPasswordHasherInterface $userPasswordHasher){\n+        $this->\n+    }\n     public function load(ObjectManager $manager): void\n     {\n         // $product = new Product();\n         // $manager->persist($product);\n"
+                },
+                {
+                    "date": 1688548836968,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n {\n     private $userPasswordHasher;\n \n     public function __construct(UserPasswordHasherInterface $userPasswordHasher){\n-        $this->\n+        $this->userPasswordHasher = us\n     }\n     public function load(ObjectManager $manager): void\n     {\n         // $product = new Product();\n"
+                },
+                {
+                    "date": 1688548843936,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,12 +10,14 @@\n {\n     private $userPasswordHasher;\n \n     public function __construct(UserPasswordHasherInterface $userPasswordHasher){\n-        $this->userPasswordHasher = us\n+        $this->userPasswordHasher = $userPasswordHasher;\n     }\n     public function load(ObjectManager $manager): void\n     {\n+\n+        \n         // $product = new Product();\n         // $manager->persist($product);\n \n         $manager->flush();\n"
+                },
+                {
+                    "date": 1688548859857,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,8 +15,9 @@\n     }\n     public function load(ObjectManager $manager): void\n     {\n \n+\n         \n         // $product = new Product();\n         // $manager->persist($product);\n \n"
+                },
+                {
+                    "date": 1688548871209,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n     public function load(ObjectManager $manager): void\n     {\n \n \n-        \n+        $User = new USER\n         // $product = new Product();\n         // $manager->persist($product);\n \n         $manager->flush();\n"
+                },
+                {
+                    "date": 1688548877972,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,10 @@\n     public function load(ObjectManager $manager): void\n     {\n \n \n-        $User = new USER\n+        $User = new User();\n+        \n         // $product = new Product();\n         // $manager->persist($product);\n \n         $manager->flush();\n"
+                },
+                {
+                    "date": 1688548884340,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n     public function load(ObjectManager $manager): void\n     {\n \n \n-        $User = new User();\n+        $user = new User();\n         \n         // $product = new Product();\n         // $manager->persist($product);\n \n"
+                },
+                {
+                    "date": 1688548892952,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,9 @@\n <?php\n \n namespace App\\DataFixtures;\n \n+use App\\Entity\\User;\n use Doctrine\\Bundle\\FixturesBundle\\Fixture;\n use Doctrine\\Persistence\\ObjectManager;\n use Symfony\\Component\\PasswordHasher\\Hasher\\UserPasswordHasherInterface;\n \n@@ -17,8 +18,9 @@\n     {\n \n \n         $user = new User();\n+        $user->\n         \n         // $product = new Product();\n         // $manager->persist($product);\n \n"
+                },
+                {
+                    "date": 1688548904550,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n     {\n \n \n         $user = new User();\n-        $user->\n+        $user->setEmail(\"rondykfm@gmail.com\")\n         \n         // $product = new Product();\n         // $manager->persist($product);\n \n"
+                },
+                {
+                    "date": 1688548910746,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,10 @@\n     {\n \n \n         $user = new User();\n-        $user->setEmail(\"rondykfm@gmail.com\")\n+        $user->setEmail(\"rondykfm@gmail.com\");\n+        $user->set\n         \n         // $product = new Product();\n         // $manager->persist($product);\n \n"
+                },
+                {
+                    "date": 1688548918987,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,9 @@\n \n \n         $user = new User();\n         $user->setEmail(\"rondykfm@gmail.com\");\n-        $user->set\n+        $user->setRoles([\"ROLE\"])\n         \n         // $product = new Product();\n         // $manager->persist($product);\n \n"
+                },
+                {
+                    "date": 1688548929569,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,10 @@\n \n \n         $user = new User();\n         $user->setEmail(\"rondykfm@gmail.com\");\n-        $user->setRoles([\"ROLE\"])\n+        $user->setRoles([\"ROLE_USER\"]);\n+        $user->set\n         \n         // $product = new Product();\n         // $manager->persist($product);\n \n"
+                },
+                {
+                    "date": 1688548934832,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n \n         $user = new User();\n         $user->setEmail(\"rondykfm@gmail.com\");\n         $user->setRoles([\"ROLE_USER\"]);\n-        $user->set\n+        $user->setPassword($us)\n         \n         // $product = new Product();\n         // $manager->persist($product);\n \n"
+                },
+                {
+                    "date": 1688548943199,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n \n         $user = new User();\n         $user->setEmail(\"rondykfm@gmail.com\");\n         $user->setRoles([\"ROLE_USER\"]);\n-        $user->setPassword($us)\n+        $user->setPassword($this->)\n         \n         // $product = new Product();\n         // $manager->persist($product);\n \n"
+                },
+                {
+                    "date": 1688548949692,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n \n         $user = new User();\n         $user->setEmail(\"rondykfm@gmail.com\");\n         $user->setRoles([\"ROLE_USER\"]);\n-        $user->setPassword($this->)\n+        $user->setPassword($this->userPasswordHasher->hashPassword($))\n         \n         // $product = new Product();\n         // $manager->persist($product);\n \n"
+                },
+                {
+                    "date": 1688548998689,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n \n         $user = new User();\n         $user->setEmail(\"rondykfm@gmail.com\");\n         $user->setRoles([\"ROLE_USER\"]);\n-        $user->setPassword($this->userPasswordHasher->hashPassword($))\n+        $user->setPassword($this->userPasswordHasher->hashPassword($user,\"\"))\n         \n         // $product = new Product();\n         // $manager->persist($product);\n \n"
+                },
+                {
+                    "date": 1688549004165,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n \n         $user = new User();\n         $user->setEmail(\"rondykfm@gmail.com\");\n         $user->setRoles([\"ROLE_USER\"]);\n-        $user->setPassword($this->userPasswordHasher->hashPassword($user,\"\"))\n+        $user->setPassword($this->userPasswordHasher->hashPassword($user,\"password\"))\n         \n         // $product = new Product();\n         // $manager->persist($product);\n \n"
+                },
+                {
+                    "date": 1688549010880,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,10 @@\n \n         $user = new User();\n         $user->setEmail(\"rondykfm@gmail.com\");\n         $user->setRoles([\"ROLE_USER\"]);\n-        $user->setPassword($this->userPasswordHasher->hashPassword($user,\"password\"))\n+        $user->setPassword($this->userPasswordHasher->hashPassword($user,\"password\"));\n+        $manager->persist()\n         \n         // $product = new Product();\n         // $manager->persist($product);\n \n"
+                },
+                {
+                    "date": 1688549020336,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,15 @@\n         $user = new User();\n         $user->setEmail(\"rondykfm@gmail.com\");\n         $user->setRoles([\"ROLE_USER\"]);\n         $user->setPassword($this->userPasswordHasher->hashPassword($user,\"password\"));\n-        $manager->persist()\n+        $manager->persist($user);\n+\n+        $user = new User();\n+        $user->setEmail(\"rondykfm@gmail.com\");\n+        $user->setRoles([\"ROLE_USER\"]);\n+        $user->setPassword($this->userPasswordHasher->hashPassword($user,\"password\"));\n+        $manager->persist($user);\n         \n         // $product = new Product();\n         // $manager->persist($product);\n \n"
+                },
+                {
+                    "date": 1688549026592,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,9 @@\n         $user->setRoles([\"ROLE_USER\"]);\n         $user->setPassword($this->userPasswordHasher->hashPassword($user,\"password\"));\n         $manager->persist($user);\n \n-        $user = new User();\n+        $userAdmin = new User();\n         $user->setEmail(\"rondykfm@gmail.com\");\n         $user->setRoles([\"ROLE_USER\"]);\n         $user->setPassword($this->userPasswordHasher->hashPassword($user,\"password\"));\n         $manager->persist($user);\n"
+                },
+                {
+                    "date": 1688549040962,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,12 +24,12 @@\n         $user->setPassword($this->userPasswordHasher->hashPassword($user,\"password\"));\n         $manager->persist($user);\n \n         $userAdmin = new User();\n-        $user->setEmail(\"rondykfm@gmail.com\");\n-        $user->setRoles([\"ROLE_USER\"]);\n-        $user->setPassword($this->userPasswordHasher->hashPassword($user,\"password\"));\n-        $manager->persist($user);\n+        $userAdmin->setEmail(\"rondykfm@gmail.com\");\n+        $userAdmin->setRoles([\"ROLE_USER\"]);\n+        $userAdmin->setPassword($this->userPasswordHasher->hashPassword($userAdmin,\"password\"));\n+        $manager->persist($userAdmin);\n         \n         // $product = new Product();\n         // $manager->persist($product);\n \n"
+                },
+                {
+                    "date": 1688549576956,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n         $user->setPassword($this->userPasswordHasher->hashPassword($user,\"password\"));\n         $manager->persist($user);\n \n         $userAdmin = new User();\n-        $userAdmin->setEmail(\"rondykfm@gmail.com\");\n+        $userAdmin->setEmail(\"rondykfmAdmin@gmail.com\");\n         $userAdmin->setRoles([\"ROLE_USER\"]);\n         $userAdmin->setPassword($this->userPasswordHasher->hashPassword($userAdmin,\"password\"));\n         $manager->persist($userAdmin);\n         \n"
+                },
+                {
+                    "date": 1688551489264,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,7 +32,9 @@\n         \n         // $product = new Product();\n         // $manager->persist($product);\n \n+\n+        \n         $manager->flush();\n     }\n }\n"
+                },
+                {
+                    "date": 1688551528189,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,9 +32,9 @@\n         \n         // $product = new Product();\n         // $manager->persist($product);\n \n+        for($i = 0; $i<)\n \n-        \n         $manager->flush();\n     }\n }\n"
+                },
+                {
+                    "date": 1688551539139,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,9 +32,9 @@\n         \n         // $product = new Product();\n         // $manager->persist($product);\n \n-        for($i = 0; $i<)\n+        for($i = 0; $i < 40 ; )\n \n         $manager->flush();\n     }\n }\n"
+                },
+                {
+                    "date": 1688551548342,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,9 +32,11 @@\n         \n         // $product = new Product();\n         // $manager->persist($product);\n \n-        for($i = 0; $i < 40 ; )\n+        for($i = 0; $i < 40 ; $i++){\n+            $user\n+        }\n \n         $manager->flush();\n     }\n }\n"
+                },
+                {
+                    "date": 1688551553644,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,9 +33,9 @@\n         // $product = new Product();\n         // $manager->persist($product);\n \n         for($i = 0; $i < 40 ; $i++){\n-            $user\n+            $\n         }\n \n         $manager->flush();\n     }\n"
+                },
+                {
+                    "date": 1688551561187,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,9 +33,9 @@\n         // $product = new Product();\n         // $manager->persist($product);\n \n         for($i = 0; $i < 40 ; $i++){\n-            $\n+            $author\n         }\n \n         $manager->flush();\n     }\n"
+                },
+                {
+                    "date": 1688551572043,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,9 @@\n <?php\n \n namespace App\\DataFixtures;\n \n+use App\\Entity\\Author;\n use App\\Entity\\User;\n use Doctrine\\Bundle\\FixturesBundle\\Fixture;\n use Doctrine\\Persistence\\ObjectManager;\n use Symfony\\Component\\PasswordHasher\\Hasher\\UserPasswordHasherInterface;\n@@ -33,9 +34,10 @@\n         // $product = new Product();\n         // $manager->persist($product);\n \n         for($i = 0; $i < 40 ; $i++){\n-            $author\n+            $author = new Author();\n+            $author->\n         }\n \n         $manager->flush();\n     }\n"
+                },
+                {
+                    "date": 1688551584676,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,9 +35,9 @@\n         // $manager->persist($product);\n \n         for($i = 0; $i < 40 ; $i++){\n             $author = new Author();\n-            $author->\n+            $author->setFirstName(\"firstName\")\n         }\n \n         $manager->flush();\n     }\n"
+                },
+                {
+                    "date": 1688551591214,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,9 +35,9 @@\n         // $manager->persist($product);\n \n         for($i = 0; $i < 40 ; $i++){\n             $author = new Author();\n-            $author->setFirstName(\"firstName\")\n+            $author->setFirstName(\"firstName : \" . $i)\n         }\n \n         $manager->flush();\n     }\n"
+                },
+                {
+                    "date": 1688551596827,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,9 +35,10 @@\n         // $manager->persist($product);\n \n         for($i = 0; $i < 40 ; $i++){\n             $author = new Author();\n-            $author->setFirstName(\"firstName : \" . $i)\n+            $author->setFirstName(\"firstName : \" . $i);\n+            $author->set\n         }\n \n         $manager->flush();\n     }\n"
+                },
+                {
+                    "date": 1688551606790,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,9 +36,9 @@\n \n         for($i = 0; $i < 40 ; $i++){\n             $author = new Author();\n             $author->setFirstName(\"firstName : \" . $i);\n-            $author->set\n+            $author->setLastName()\n         }\n \n         $manager->flush();\n     }\n"
+                },
+                {
+                    "date": 1688551613219,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,9 +36,9 @@\n \n         for($i = 0; $i < 40 ; $i++){\n             $author = new Author();\n             $author->setFirstName(\"firstName : \" . $i);\n-            $author->setLastName()\n+            $author->setLastName(\"lastName \",)\n         }\n \n         $manager->flush();\n     }\n"
+                },
+                {
+                    "date": 1688551621719,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,9 +36,10 @@\n \n         for($i = 0; $i < 40 ; $i++){\n             $author = new Author();\n             $author->setFirstName(\"firstName : \" . $i);\n-            $author->setLastName(\"lastName \",)\n+            $author->setLastName(\"lastName : \" . $i);\n+            \n         }\n \n         $manager->flush();\n     }\n"
+                },
+                {
+                    "date": 1688551628399,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,9 +37,9 @@\n         for($i = 0; $i < 40 ; $i++){\n             $author = new Author();\n             $author->setFirstName(\"firstName : \" . $i);\n             $author->setLastName(\"lastName : \" . $i);\n-            \n+            $manager->persist()\n         }\n \n         $manager->flush();\n     }\n"
+                },
+                {
+                    "date": 1688551670946,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,9 +37,9 @@\n         for($i = 0; $i < 40 ; $i++){\n             $author = new Author();\n             $author->setFirstName(\"firstName : \" . $i);\n             $author->setLastName(\"lastName : \" . $i);\n-            $manager->persist()\n+            $manager->persist($)\n         }\n \n         $manager->flush();\n     }\n"
+                },
+                {
+                    "date": 1688551680101,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,9 +37,11 @@\n         for($i = 0; $i < 40 ; $i++){\n             $author = new Author();\n             $author->setFirstName(\"firstName : \" . $i);\n             $author->setLastName(\"lastName : \" . $i);\n-            $manager->persist($)\n+            $manager->persist($author);\n+\n+            $listAuthor []\n         }\n \n         $manager->flush();\n     }\n"
+                },
+                {
+                    "date": 1688551687865,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -39,10 +39,11 @@\n             $author->setFirstName(\"firstName : \" . $i);\n             $author->setLastName(\"lastName : \" . $i);\n             $manager->persist($author);\n \n-            $listAuthor []\n+            $listAuthor [] = $author;\n         }\n+        \n \n         $manager->flush();\n     }\n }\n"
+                },
+                {
+                    "date": 1688551693398,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -41,9 +41,10 @@\n             $manager->persist($author);\n \n             $listAuthor [] = $author;\n         }\n-        \n \n+        for(i)\n+\n         $manager->flush();\n     }\n }\n"
+                },
+                {
+                    "date": 1688551698920,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,9 +42,9 @@\n \n             $listAuthor [] = $author;\n         }\n \n-        for(i)\n+        for(i = 0;)\n \n         $manager->flush();\n     }\n }\n"
+                },
+                {
+                    "date": 1688551717487,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,9 +42,9 @@\n \n             $listAuthor [] = $author;\n         }\n \n-        for(i = 0;)\n+        fori = 0;)\n \n         $manager->flush();\n     }\n }\n"
+                },
+                {
+                    "date": 1688551722825,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,9 +42,9 @@\n \n             $listAuthor [] = $author;\n         }\n \n-        fori = 0;)\n+        for($i = 0, )\n \n         $manager->flush();\n     }\n }\n"
+                },
+                {
+                    "date": 1688551728425,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,9 +42,9 @@\n \n             $listAuthor [] = $author;\n         }\n \n-        for($i = 0, )\n+        for($i = 0, $i < 40)\n \n         $manager->flush();\n     }\n }\n"
+                },
+                {
+                    "date": 1688551735909,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,9 +42,9 @@\n \n             $listAuthor [] = $author;\n         }\n \n-        for($i = 0, $i < 40)\n+        for($i = 0; $i < 40;)\n \n         $manager->flush();\n     }\n }\n"
+                },
+                {
+                    "date": 1688551743419,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,9 +42,11 @@\n \n             $listAuthor [] = $author;\n         }\n \n-        for($i = 0; $i < 40;)\n+        for($i = 0; $i < 40; $i++){\n+            \n+        }\n \n         $manager->flush();\n     }\n }\n"
+                },
+                {
+                    "date": 1688551750347,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,9 +43,9 @@\n             $listAuthor [] = $author;\n         }\n \n         for($i = 0; $i < 40; $i++){\n-            $book\n+            $book \n         }\n \n         $manager->flush();\n     }\n"
+                }
+            ],
+            "date": 1688548782311,
+            "name": "Commit-0",
+            "content": "<?php\n\nnamespace App\\DataFixtures;\n\nuse Doctrine\\Bundle\\FixturesBundle\\Fixture;\nuse Doctrine\\Persistence\\ObjectManager;\n\nclass AppFixtures extends Fixture\n{\n    private $\n    public function load(ObjectManager $manager): void\n    {\n        // $product = new Product();\n        // $manager->persist($product);\n\n        $manager->flush();\n    }\n}\n"
+        }
+    ]
+}

@@ -1,0 +1,1154 @@
+{
+    "sourceFile": "src/Controller/AuthorController.php",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 284,
+            "patches": [
+                {
+                    "date": 1688552068117,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1688552075876,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n use Symfony\\Component\\Routing\\Annotation\\Route;\n \n class AuthorController extends AbstractController\n {\n-    #[Route('/author', name: 'app_author',metod)]\n+    #[Route('/author', name: 'app_author',methods:[\"GET\"])]\n     public function index(): JsonResponse\n     {\n         return $this->json([\n             'message' => 'Welcome to your new controller!',\n"
+                },
+                {
+                    "date": 1688552083951,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n \n class AuthorController extends AbstractController\n {\n     #[Route('/author', name: 'app_author',methods:[\"GET\"])]\n-    public function index(): JsonResponse\n+    public function getAllAuthors(): JsonResponse\n     {\n         return $this->json([\n             'message' => 'Welcome to your new controller!',\n             'path' => 'src/Controller/AuthorController.php',\n"
+                },
+                {
+                    "date": 1688552090798,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n \n class AuthorController extends AbstractController\n {\n     #[Route('/author', name: 'app_author',methods:[\"GET\"])]\n-    public function getAllAuthors(): JsonResponse\n+    public function getAllAuthors(Autho): JsonResponse\n     {\n         return $this->json([\n             'message' => 'Welcome to your new controller!',\n             'path' => 'src/Controller/AuthorController.php',\n"
+                },
+                {
+                    "date": 1688552096618,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,16 +1,17 @@\n <?php\n \n namespace App\\Controller;\n \n+use App\\Repository\\AuthorRepository;\n use Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController;\n use Symfony\\Component\\HttpFoundation\\JsonResponse;\n use Symfony\\Component\\Routing\\Annotation\\Route;\n \n class AuthorController extends AbstractController\n {\n     #[Route('/author', name: 'app_author',methods:[\"GET\"])]\n-    public function getAllAuthors(Autho): JsonResponse\n+    public function getAllAuthors(AuthorRepository): JsonResponse\n     {\n         return $this->json([\n             'message' => 'Welcome to your new controller!',\n             'path' => 'src/Controller/AuthorController.php',\n"
+                },
+                {
+                    "date": 1688552101989,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n \n class AuthorController extends AbstractController\n {\n     #[Route('/author', name: 'app_author',methods:[\"GET\"])]\n-    public function getAllAuthors(AuthorRepository): JsonResponse\n+    public function getAllAuthors(AuthorRepository $authorRepository, SEr): JsonResponse\n     {\n         return $this->json([\n             'message' => 'Welcome to your new controller!',\n             'path' => 'src/Controller/AuthorController.php',\n"
+                },
+                {
+                    "date": 1688552109310,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n \n class AuthorController extends AbstractController\n {\n     #[Route('/author', name: 'app_author',methods:[\"GET\"])]\n-    public function getAllAuthors(AuthorRepository $authorRepository, SEr): JsonResponse\n+    public function getAllAuthors(AuthorRepository $authorRepository, Seziali): JsonResponse\n     {\n         return $this->json([\n             'message' => 'Welcome to your new controller!',\n             'path' => 'src/Controller/AuthorController.php',\n"
+                },
+                {
+                    "date": 1688552197287,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n \n class AuthorController extends AbstractController\n {\n     #[Route('/author', name: 'app_author',methods:[\"GET\"])]\n-    public function getAllAuthors(AuthorRepository $authorRepository, Seziali): JsonResponse\n+    public function getAllAuthors(AuthorRepository $authorRepository, Ser): JsonResponse\n     {\n         return $this->json([\n             'message' => 'Welcome to your new controller!',\n             'path' => 'src/Controller/AuthorController.php',\n"
+                },
+                {
+                    "date": 1688552202600,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n \n class AuthorController extends AbstractController\n {\n     #[Route('/author', name: 'app_author',methods:[\"GET\"])]\n-    public function getAllAuthors(AuthorRepository $authorRepository, Ser): JsonResponse\n+    public function getAllAuthors(AuthorRepository $authorRepository, Seria): JsonResponse\n     {\n         return $this->json([\n             'message' => 'Welcome to your new controller!',\n             'path' => 'src/Controller/AuthorController.php',\n"
+                },
+                {
+                    "date": 1688552209399,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,13 +5,14 @@\n use App\\Repository\\AuthorRepository;\n use Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController;\n use Symfony\\Component\\HttpFoundation\\JsonResponse;\n use Symfony\\Component\\Routing\\Annotation\\Route;\n+use Symfony\\Component\\Serializer\\SerializerInterface;\n \n class AuthorController extends AbstractController\n {\n     #[Route('/author', name: 'app_author',methods:[\"GET\"])]\n-    public function getAllAuthors(AuthorRepository $authorRepository, Seria): JsonResponse\n+    public function getAllAuthors(AuthorRepository $authorRepository, SerializerInterface $ser): JsonResponse\n     {\n         return $this->json([\n             'message' => 'Welcome to your new controller!',\n             'path' => 'src/Controller/AuthorController.php',\n"
+                },
+                {
+                    "date": 1688552216924,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,10 +10,11 @@\n \n class AuthorController extends AbstractController\n {\n     #[Route('/author', name: 'app_author',methods:[\"GET\"])]\n-    public function getAllAuthors(AuthorRepository $authorRepository, SerializerInterface $ser): JsonResponse\n+    public function getAllAuthors(AuthorRepository $authorRepository, SerializerInterface $serializer): JsonResponse\n     {\n+        $\n         return $this->json([\n             'message' => 'Welcome to your new controller!',\n             'path' => 'src/Controller/AuthorController.php',\n         ]);\n"
+                },
+                {
+                    "date": 1688552224393,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n {\n     #[Route('/author', name: 'app_author',methods:[\"GET\"])]\n     public function getAllAuthors(AuthorRepository $authorRepository, SerializerInterface $serializer): JsonResponse\n     {\n-        $\n+        $booksList = \n         return $this->json([\n             'message' => 'Welcome to your new controller!',\n             'path' => 'src/Controller/AuthorController.php',\n         ]);\n"
+                },
+                {
+                    "date": 1688552230299,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n {\n     #[Route('/author', name: 'app_author',methods:[\"GET\"])]\n     public function getAllAuthors(AuthorRepository $authorRepository, SerializerInterface $serializer): JsonResponse\n     {\n-        $booksList = \n+        $booksList = $\n         return $this->json([\n             'message' => 'Welcome to your new controller!',\n             'path' => 'src/Controller/AuthorController.php',\n         ]);\n"
+                },
+                {
+                    "date": 1688552236308,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n {\n     #[Route('/author', name: 'app_author',methods:[\"GET\"])]\n     public function getAllAuthors(AuthorRepository $authorRepository, SerializerInterface $serializer): JsonResponse\n     {\n-        $booksList = $\n+        $booksList = $authorRepository->find()\n         return $this->json([\n             'message' => 'Welcome to your new controller!',\n             'path' => 'src/Controller/AuthorController.php',\n         ]);\n"
+                },
+                {
+                    "date": 1688552244047,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,10 @@\n {\n     #[Route('/author', name: 'app_author',methods:[\"GET\"])]\n     public function getAllAuthors(AuthorRepository $authorRepository, SerializerInterface $serializer): JsonResponse\n     {\n-        $booksList = $authorRepository->find()\n+        $booksList = $authorRepository->findAll();\n+        $json\n         return $this->json([\n             'message' => 'Welcome to your new controller!',\n             'path' => 'src/Controller/AuthorController.php',\n         ]);\n"
+                },
+                {
+                    "date": 1688552254630,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n     #[Route('/author', name: 'app_author',methods:[\"GET\"])]\n     public function getAllAuthors(AuthorRepository $authorRepository, SerializerInterface $serializer): JsonResponse\n     {\n         $booksList = $authorRepository->findAll();\n-        $json\n+        $jsonBook = $\n         return $this->json([\n             'message' => 'Welcome to your new controller!',\n             'path' => 'src/Controller/AuthorController.php',\n         ]);\n"
+                },
+                {
+                    "date": 1688552261736,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n     #[Route('/author', name: 'app_author',methods:[\"GET\"])]\n     public function getAllAuthors(AuthorRepository $authorRepository, SerializerInterface $serializer): JsonResponse\n     {\n         $booksList = $authorRepository->findAll();\n-        $jsonBook = $\n+        $jsonBook = $serializer->serialize()\n         return $this->json([\n             'message' => 'Welcome to your new controller!',\n             'path' => 'src/Controller/AuthorController.php',\n         ]);\n"
+                },
+                {
+                    "date": 1688552267832,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n     #[Route('/author', name: 'app_author',methods:[\"GET\"])]\n     public function getAllAuthors(AuthorRepository $authorRepository, SerializerInterface $serializer): JsonResponse\n     {\n         $booksList = $authorRepository->findAll();\n-        $jsonBook = $serializer->serialize()\n+        $jsonBook = $serializer->serialize($booksList,)\n         return $this->json([\n             'message' => 'Welcome to your new controller!',\n             'path' => 'src/Controller/AuthorController.php',\n         ]);\n"
+                },
+                {
+                    "date": 1688552273579,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n     #[Route('/author', name: 'app_author',methods:[\"GET\"])]\n     public function getAllAuthors(AuthorRepository $authorRepository, SerializerInterface $serializer): JsonResponse\n     {\n         $booksList = $authorRepository->findAll();\n-        $jsonBook = $serializer->serialize($booksList,)\n+        $jsonBook = $serializer->serialize($booksList,'json',)\n         return $this->json([\n             'message' => 'Welcome to your new controller!',\n             'path' => 'src/Controller/AuthorController.php',\n         ]);\n"
+                },
+                {
+                    "date": 1688552280147,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n     #[Route('/author', name: 'app_author',methods:[\"GET\"])]\n     public function getAllAuthors(AuthorRepository $authorRepository, SerializerInterface $serializer): JsonResponse\n     {\n         $booksList = $authorRepository->findAll();\n-        $jsonBook = $serializer->serialize($booksList,'json',)\n+        $jsonBook = $serializer->serialize($booksList,'json',[\"groups\"])\n         return $this->json([\n             'message' => 'Welcome to your new controller!',\n             'path' => 'src/Controller/AuthorController.php',\n         ]);\n"
+                },
+                {
+                    "date": 1688552286974,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n     #[Route('/author', name: 'app_author',methods:[\"GET\"])]\n     public function getAllAuthors(AuthorRepository $authorRepository, SerializerInterface $serializer): JsonResponse\n     {\n         $booksList = $authorRepository->findAll();\n-        $jsonBook = $serializer->serialize($booksList,'json',[\"groups\"])\n+        $jsonBook = $serializer->serialize($booksList,'json',[\"groups\"=>\"getAuthors\"])\n         return $this->json([\n             'message' => 'Welcome to your new controller!',\n             'path' => 'src/Controller/AuthorController.php',\n         ]);\n"
+                },
+                {
+                    "date": 1688552298588,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,10 +13,11 @@\n     #[Route('/author', name: 'app_author',methods:[\"GET\"])]\n     public function getAllAuthors(AuthorRepository $authorRepository, SerializerInterface $serializer): JsonResponse\n     {\n         $booksList = $authorRepository->findAll();\n-        $jsonBook = $serializer->serialize($booksList,'json',[\"groups\"=>\"getAuthors\"])\n-        return $this->json([\n+        $jsonBook = $serializer->serialize($booksList,'json',[\"groups\"=>\"getAuthors\"]);\n+\n+        return new JsonResponse([\n             'message' => 'Welcome to your new controller!',\n             'path' => 'src/Controller/AuthorController.php',\n         ]);\n     }\n"
+                },
+                {
+                    "date": 1688552305420,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,10 +15,7 @@\n     {\n         $booksList = $authorRepository->findAll();\n         $jsonBook = $serializer->serialize($booksList,'json',[\"groups\"=>\"getAuthors\"]);\n \n-        return new JsonResponse([\n-            'message' => 'Welcome to your new controller!',\n-            'path' => 'src/Controller/AuthorController.php',\n-        ]);\n+        return new JsonResponse($);\n     }\n }\n"
+                },
+                {
+                    "date": 1688552312572,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,8 +4,9 @@\n \n use App\\Repository\\AuthorRepository;\n use Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController;\n use Symfony\\Component\\HttpFoundation\\JsonResponse;\n+use Symfony\\Component\\HttpFoundation\\Response;\n use Symfony\\Component\\Routing\\Annotation\\Route;\n use Symfony\\Component\\Serializer\\SerializerInterface;\n \n class AuthorController extends AbstractController\n@@ -15,7 +16,7 @@\n     {\n         $booksList = $authorRepository->findAll();\n         $jsonBook = $serializer->serialize($booksList,'json',[\"groups\"=>\"getAuthors\"]);\n \n-        return new JsonResponse($);\n+        return new JsonResponse($jsonBook,Response::H);\n     }\n }\n"
+                },
+                {
+                    "date": 1688552318853,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,7 +16,7 @@\n     {\n         $booksList = $authorRepository->findAll();\n         $jsonBook = $serializer->serialize($booksList,'json',[\"groups\"=>\"getAuthors\"]);\n \n-        return new JsonResponse($jsonBook,Response::H);\n+        return new JsonResponse($jsonBook,Response::HTTP_OK;);\n     }\n }\n"
+                },
+                {
+                    "date": 1688552325017,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,7 +16,7 @@\n     {\n         $booksList = $authorRepository->findAll();\n         $jsonBook = $serializer->serialize($booksList,'json',[\"groups\"=>\"getAuthors\"]);\n \n-        return new JsonResponse($jsonBook,Response::HTTP_OK;);\n+        return new JsonResponse($jsonBook,Response::HTTP_OK,[],treu);\n     }\n }\n"
+                },
+                {
+                    "date": 1688552334425,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,13 +10,13 @@\n use Symfony\\Component\\Serializer\\SerializerInterface;\n \n class AuthorController extends AbstractController\n {\n-    #[Route('/author', name: 'app_author',methods:[\"GET\"])]\n+    #[Route('api/author', name: 'app_author',methods:[\"GET\"])]\n     public function getAllAuthors(AuthorRepository $authorRepository, SerializerInterface $serializer): JsonResponse\n     {\n         $booksList = $authorRepository->findAll();\n         $jsonBook = $serializer->serialize($booksList,'json',[\"groups\"=>\"getAuthors\"]);\n \n-        return new JsonResponse($jsonBook,Response::HTTP_OK,[],treu);\n+        return new JsonResponse($jsonBook,Response::HTTP_OK,[],true);\n     }\n }\n"
+                },
+                {
+                    "date": 1688552341818,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n use Symfony\\Component\\Serializer\\SerializerInterface;\n \n class AuthorController extends AbstractController\n {\n-    #[Route('api/author', name: 'app_author',methods:[\"GET\"])]\n+    #[Route('/api/authors', name: 'app_author',methods:[\"GET\"])]\n     public function getAllAuthors(AuthorRepository $authorRepository, SerializerInterface $serializer): JsonResponse\n     {\n         $booksList = $authorRepository->findAll();\n         $jsonBook = $serializer->serialize($booksList,'json',[\"groups\"=>\"getAuthors\"]);\n"
+                },
+                {
+                    "date": 1688599676156,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n     #[Route('/api/authors', name: 'app_author',methods:[\"GET\"])]\n     public function getAllAuthors(AuthorRepository $authorRepository, SerializerInterface $serializer): JsonResponse\n     {\n         $booksList = $authorRepository->findAll();\n-        $jsonBook = $serializer->serialize($booksList,'json',[\"groups\"=>\"getAuthors\"]);\n+        $jsonBook = $serializer->serialize($booksList,'json',[\"groups\"=>\"getBoo\"]);\n \n         return new JsonResponse($jsonBook,Response::HTTP_OK,[],true);\n     }\n }\n"
+                },
+                {
+                    "date": 1688599708090,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,11 @@\n     #[Route('/api/authors', name: 'app_author',methods:[\"GET\"])]\n     public function getAllAuthors(AuthorRepository $authorRepository, SerializerInterface $serializer): JsonResponse\n     {\n         $booksList = $authorRepository->findAll();\n-        $jsonBook = $serializer->serialize($booksList,'json',[\"groups\"=>\"getBoo\"]);\n+        $jsonBook = $serializer->serialize($booksList,'json',[\"groups\"=>\"getBooks\"]);\n \n         return new JsonResponse($jsonBook,Response::HTTP_OK,[],true);\n     }\n+\n+    #\n }\n"
+                },
+                {
+                    "date": 1688599713843,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,6 +19,6 @@\n \n         return new JsonResponse($jsonBook,Response::HTTP_OK,[],true);\n     }\n \n-    #\n+    #[Route]\n }\n"
+                },
+                {
+                    "date": 1688599724333,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,6 +19,6 @@\n \n         return new JsonResponse($jsonBook,Response::HTTP_OK,[],true);\n     }\n \n-    #[Route]\n+    #[Route('/api/')]\n }\n"
+                },
+                {
+                    "date": 1688599738035,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,6 +19,6 @@\n \n         return new JsonResponse($jsonBook,Response::HTTP_OK,[],true);\n     }\n \n-    #[Route('/api/')]\n+    #[Route('/api/authors',)]\n }\n"
+                },
+                {
+                    "date": 1688599743596,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,6 +19,6 @@\n \n         return new JsonResponse($jsonBook,Response::HTTP_OK,[],true);\n     }\n \n-    #[Route('/api/authors',)]\n+    #[Route('/api/authors',name)]\n }\n"
+                },
+                {
+                    "date": 1688599753738,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,6 +19,6 @@\n \n         return new JsonResponse($jsonBook,Response::HTTP_OK,[],true);\n     }\n \n-    #[Route('/api/authors',name)]\n+    #[Route('/api/authors',name: '')]\n }\n"
+                },
+                {
+                    "date": 1688599759558,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n use Symfony\\Component\\Serializer\\SerializerInterface;\n \n class AuthorController extends AbstractController\n {\n-    #[Route('/api/authors', name: 'app_author',methods:[\"GET\"])]\n+    #[Route('/api/authors', name: 'app_all_author',methods:[\"GET\"])]\n     public function getAllAuthors(AuthorRepository $authorRepository, SerializerInterface $serializer): JsonResponse\n     {\n         $booksList = $authorRepository->findAll();\n         $jsonBook = $serializer->serialize($booksList,'json',[\"groups\"=>\"getBooks\"]);\n"
+                },
+                {
+                    "date": 1688599767345,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,6 +19,6 @@\n \n         return new JsonResponse($jsonBook,Response::HTTP_OK,[],true);\n     }\n \n-    #[Route('/api/authors',name: '')]\n+    #[Route('/api/authors',name: 'app_detail_')]\n }\n"
+                },
+                {
+                    "date": 1688599773924,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,6 +19,6 @@\n \n         return new JsonResponse($jsonBook,Response::HTTP_OK,[],true);\n     }\n \n-    #[Route('/api/authors',name: 'app_detail_')]\n+    #[Route('/api/authors',name: 'app_detail_authors')]\n }\n"
+                },
+                {
+                    "date": 1688599782346,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,15 +10,15 @@\n use Symfony\\Component\\Serializer\\SerializerInterface;\n \n class AuthorController extends AbstractController\n {\n-    #[Route('/api/authors', name: 'app_all_author',methods:[\"GET\"])]\n+    #[Route('/api/authors', name: 'app_all_authors',methods:[\"GET\"])]\n     public function getAllAuthors(AuthorRepository $authorRepository, SerializerInterface $serializer): JsonResponse\n     {\n         $booksList = $authorRepository->findAll();\n         $jsonBook = $serializer->serialize($booksList,'json',[\"groups\"=>\"getBooks\"]);\n \n         return new JsonResponse($jsonBook,Response::HTTP_OK,[],true);\n     }\n \n-    #[Route('/api/authors',name: 'app_detail_authors')]\n+    #[Route('/api/authors',name: 'app_detail_authors',me)]\n }\n"
+                },
+                {
+                    "date": 1688599792323,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,6 +19,6 @@\n \n         return new JsonResponse($jsonBook,Response::HTTP_OK,[],true);\n     }\n \n-    #[Route('/api/authors',name: 'app_detail_authors',me)]\n+    #[Route('/api/authors',name: 'app_detail_authors',methods:[\"Get\"])]\n }\n"
+                },
+                {
+                    "date": 1688599798796,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,6 +19,6 @@\n \n         return new JsonResponse($jsonBook,Response::HTTP_OK,[],true);\n     }\n \n-    #[Route('/api/authors',name: 'app_detail_authors',methods:[\"Get\"])]\n+    #[Route('/api/authors/',name: 'app_detail_authors',methods:[\"GET\"])]\n }\n"
+                },
+                {
+                    "date": 1688599805422,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,6 +19,6 @@\n \n         return new JsonResponse($jsonBook,Response::HTTP_OK,[],true);\n     }\n \n-    #[Route('/api/authors/',name: 'app_detail_authors',methods:[\"GET\"])]\n+    #[Route('/api/authors/{id}',name: 'app_detail_authors',methods:[\"GET\"])]\n }\n"
+                },
+                {
+                    "date": 1688599812454,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,5 +20,6 @@\n         return new JsonResponse($jsonBook,Response::HTTP_OK,[],true);\n     }\n \n     #[Route('/api/authors/{id}',name: 'app_detail_authors',methods:[\"GET\"])]\n+    public \n }\n"
+                },
+                {
+                    "date": 1688599817964,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,6 +20,6 @@\n         return new JsonResponse($jsonBook,Response::HTTP_OK,[],true);\n     }\n \n     #[Route('/api/authors/{id}',name: 'app_detail_authors',methods:[\"GET\"])]\n-    public \n+    public function \n }\n"
+                },
+                {
+                    "date": 1688599827851,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,6 +20,6 @@\n         return new JsonResponse($jsonBook,Response::HTTP_OK,[],true);\n     }\n \n     #[Route('/api/authors/{id}',name: 'app_detail_authors',methods:[\"GET\"])]\n-    public function \n+    public function getDetailAuthors()\n }\n"
+                },
+                {
+                    "date": 1688599834876,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,6 +20,6 @@\n         return new JsonResponse($jsonBook,Response::HTTP_OK,[],true);\n     }\n \n     #[Route('/api/authors/{id}',name: 'app_detail_authors',methods:[\"GET\"])]\n-    public function getDetailAuthors()\n+    public function getDetailAuthors(Author)\n }\n"
+                },
+                {
+                    "date": 1688599848817,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,9 @@\n <?php\n \n namespace App\\Controller;\n \n+use App\\Entity\\Author;\n use App\\Repository\\AuthorRepository;\n use Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController;\n use Symfony\\Component\\HttpFoundation\\JsonResponse;\n use Symfony\\Component\\HttpFoundation\\Response;\n@@ -20,6 +21,6 @@\n         return new JsonResponse($jsonBook,Response::HTTP_OK,[],true);\n     }\n \n     #[Route('/api/authors/{id}',name: 'app_detail_authors',methods:[\"GET\"])]\n-    public function getDetailAuthors(Author)\n+    public function getDetailAuthors(Author $author,M)\n }\n"
+                },
+                {
+                    "date": 1688599880185,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,6 +21,6 @@\n         return new JsonResponse($jsonBook,Response::HTTP_OK,[],true);\n     }\n \n     #[Route('/api/authors/{id}',name: 'app_detail_authors',methods:[\"GET\"])]\n-    public function getDetailAuthors(Author $author,M)\n+    public function getDetailAuthors()\n }\n"
+                },
+                {
+                    "date": 1688599886332,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,6 +21,6 @@\n         return new JsonResponse($jsonBook,Response::HTTP_OK,[],true);\n     }\n \n     #[Route('/api/authors/{id}',name: 'app_detail_authors',methods:[\"GET\"])]\n-    public function getDetailAuthors()\n+    public function getDetailAuthors(AuthorRepository $authorRepository)\n }\n"
+                },
+                {
+                    "date": 1688600016256,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,6 +21,6 @@\n         return new JsonResponse($jsonBook,Response::HTTP_OK,[],true);\n     }\n \n     #[Route('/api/authors/{id}',name: 'app_detail_authors',methods:[\"GET\"])]\n-    public function getDetailAuthors(AuthorRepository $authorRepository)\n+    public function getDetailAuthors(int $id,AuthorRepository $authorRepository)\n }\n"
+                },
+                {
+                    "date": 1688600029894,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,6 +21,6 @@\n         return new JsonResponse($jsonBook,Response::HTTP_OK,[],true);\n     }\n \n     #[Route('/api/authors/{id}',name: 'app_detail_authors',methods:[\"GET\"])]\n-    public function getDetailAuthors(int $id,AuthorRepository $authorRepository)\n+    public function getDetailAuthors(int $id,AuthorRepository $authorRepository,SerializerInterface)\n }\n"
+                },
+                {
+                    "date": 1688600035577,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,6 +21,6 @@\n         return new JsonResponse($jsonBook,Response::HTTP_OK,[],true);\n     }\n \n     #[Route('/api/authors/{id}',name: 'app_detail_authors',methods:[\"GET\"])]\n-    public function getDetailAuthors(int $id,AuthorRepository $authorRepository,SerializerInterface)\n+    public function getDetailAuthors(int $id,AuthorRepository $authorRepository,SerializerInterface $serializer)\n }\n"
+                },
+                {
+                    "date": 1688600041431,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,6 +21,8 @@\n         return new JsonResponse($jsonBook,Response::HTTP_OK,[],true);\n     }\n \n     #[Route('/api/authors/{id}',name: 'app_detail_authors',methods:[\"GET\"])]\n-    public function getDetailAuthors(int $id,AuthorRepository $authorRepository,SerializerInterface $serializer)\n+    public function getDetailAuthors(int $id,AuthorRepository $authorRepository,SerializerInterface $serializer){\n+        \n+    }\n }\n"
+                },
+                {
+                    "date": 1688600047125,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,8 +21,9 @@\n         return new JsonResponse($jsonBook,Response::HTTP_OK,[],true);\n     }\n \n     #[Route('/api/authors/{id}',name: 'app_detail_authors',methods:[\"GET\"])]\n-    public function getDetailAuthors(int $id,AuthorRepository $authorRepository,SerializerInterface $serializer){\n-        \n+    public function getDetailAuthors(int $id,AuthorRepository $authorRepository,SerializerInterface $serializer):\n+    {\n+\n     }\n }\n"
+                },
+                {
+                    "date": 1688600056589,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n         return new JsonResponse($jsonBook,Response::HTTP_OK,[],true);\n     }\n \n     #[Route('/api/authors/{id}',name: 'app_detail_authors',methods:[\"GET\"])]\n-    public function getDetailAuthors(int $id,AuthorRepository $authorRepository,SerializerInterface $serializer):\n+    public function getDetailAuthors(int $id,AuthorRepository $authorRepository,SerializerInterface $serializer): JsonResponse\n     {\n \n     }\n }\n"
+                },
+                {
+                    "date": 1688600061704,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,7 +23,7 @@\n \n     #[Route('/api/authors/{id}',name: 'app_detail_authors',methods:[\"GET\"])]\n     public function getDetailAuthors(int $id,AuthorRepository $authorRepository,SerializerInterface $serializer): JsonResponse\n     {\n-\n+        \n     }\n }\n"
+                },
+                {
+                    "date": 1688600068208,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,7 +23,7 @@\n \n     #[Route('/api/authors/{id}',name: 'app_detail_authors',methods:[\"GET\"])]\n     public function getDetailAuthors(int $id,AuthorRepository $authorRepository,SerializerInterface $serializer): JsonResponse\n     {\n-        \n+        $book\n     }\n }\n"
+                },
+                {
+                    "date": 1688600089992,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,16 +14,16 @@\n {\n     #[Route('/api/authors', name: 'app_all_authors',methods:[\"GET\"])]\n     public function getAllAuthors(AuthorRepository $authorRepository, SerializerInterface $serializer): JsonResponse\n     {\n-        $booksList = $authorRepository->findAll();\n-        $jsonBook = $serializer->serialize($booksList,'json',[\"groups\"=>\"getBooks\"]);\n+        $Au = $authorRepository->findAll();\n+        $jsonBook = $serializer->serialize($Au,'json',[\"groups\"=>\"getBooks\"]);\n \n         return new JsonResponse($jsonBook,Response::HTTP_OK,[],true);\n     }\n \n     #[Route('/api/authors/{id}',name: 'app_detail_authors',methods:[\"GET\"])]\n     public function getDetailAuthors(int $id,AuthorRepository $authorRepository,SerializerInterface $serializer): JsonResponse\n     {\n-        $book\n+        $b\n     }\n }\n"
+                },
+                {
+                    "date": 1688600098710,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,10 +14,10 @@\n {\n     #[Route('/api/authors', name: 'app_all_authors',methods:[\"GET\"])]\n     public function getAllAuthors(AuthorRepository $authorRepository, SerializerInterface $serializer): JsonResponse\n     {\n-        $Au = $authorRepository->findAll();\n-        $jsonBook = $serializer->serialize($Au,'json',[\"groups\"=>\"getBooks\"]);\n+        $authorList = $authorRepository->findAll();\n+        $jsonBook = $serializer->serialize($authorList,'json',[\"groups\"=>\"getBooks\"]);\n \n         return new JsonResponse($jsonBook,Response::HTTP_OK,[],true);\n     }\n \n"
+                },
+                {
+                    "date": 1688600105262,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,7 +23,7 @@\n \n     #[Route('/api/authors/{id}',name: 'app_detail_authors',methods:[\"GET\"])]\n     public function getDetailAuthors(int $id,AuthorRepository $authorRepository,SerializerInterface $serializer): JsonResponse\n     {\n-        $b\n+        $author = $au\n     }\n }\n"
+                },
+                {
+                    "date": 1688600110518,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,7 +23,7 @@\n \n     #[Route('/api/authors/{id}',name: 'app_detail_authors',methods:[\"GET\"])]\n     public function getDetailAuthors(int $id,AuthorRepository $authorRepository,SerializerInterface $serializer): JsonResponse\n     {\n-        $author = $au\n+        $author = $authorRepository->fin\n     }\n }\n"
+                },
+                {
+                    "date": 1688600117687,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,7 +23,8 @@\n \n     #[Route('/api/authors/{id}',name: 'app_detail_authors',methods:[\"GET\"])]\n     public function getDetailAuthors(int $id,AuthorRepository $authorRepository,SerializerInterface $serializer): JsonResponse\n     {\n-        $author = $authorRepository->fin\n+        $author = $authorRepository->find($id);\n+        if\n     }\n }\n"
+                },
+                {
+                    "date": 1688600123567,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,7 +24,9 @@\n     #[Route('/api/authors/{id}',name: 'app_detail_authors',methods:[\"GET\"])]\n     public function getDetailAuthors(int $id,AuthorRepository $authorRepository,SerializerInterface $serializer): JsonResponse\n     {\n         $author = $authorRepository->find($id);\n-        if\n+        if($author){\n+            \n+        }\n     }\n }\n"
+                },
+                {
+                    "date": 1688600132939,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,8 +25,8 @@\n     public function getDetailAuthors(int $id,AuthorRepository $authorRepository,SerializerInterface $serializer): JsonResponse\n     {\n         $author = $authorRepository->find($id);\n         if($author){\n-            \n+            $json\n         }\n     }\n }\n"
+                },
+                {
+                    "date": 1688600142967,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,8 +25,8 @@\n     public function getDetailAuthors(int $id,AuthorRepository $authorRepository,SerializerInterface $serializer): JsonResponse\n     {\n         $author = $authorRepository->find($id);\n         if($author){\n-            $json\n+            $jsonAuthor = \n         }\n     }\n }\n"
+                },
+                {
+                    "date": 1688600148806,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,8 +25,8 @@\n     public function getDetailAuthors(int $id,AuthorRepository $authorRepository,SerializerInterface $serializer): JsonResponse\n     {\n         $author = $authorRepository->find($id);\n         if($author){\n-            $jsonAuthor = \n+            $jsonAuthor = $serializer->de\n         }\n     }\n }\n"
+                },
+                {
+                    "date": 1688600154923,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,8 +25,8 @@\n     public function getDetailAuthors(int $id,AuthorRepository $authorRepository,SerializerInterface $serializer): JsonResponse\n     {\n         $author = $authorRepository->find($id);\n         if($author){\n-            $jsonAuthor = $serializer->de\n+            $jsonAuthor = $serializer->serialize()\n         }\n     }\n }\n"
+                },
+                {
+                    "date": 1688600161616,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,8 +25,8 @@\n     public function getDetailAuthors(int $id,AuthorRepository $authorRepository,SerializerInterface $serializer): JsonResponse\n     {\n         $author = $authorRepository->find($id);\n         if($author){\n-            $jsonAuthor = $serializer->serialize()\n+            $jsonAuthor = $serializer->serialize($author,)\n         }\n     }\n }\n"
+                },
+                {
+                    "date": 1688600167891,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,8 +25,8 @@\n     public function getDetailAuthors(int $id,AuthorRepository $authorRepository,SerializerInterface $serializer): JsonResponse\n     {\n         $author = $authorRepository->find($id);\n         if($author){\n-            $jsonAuthor = $serializer->serialize($author,)\n+            $jsonAuthor = $serializer->serialize($author,\"json\")\n         }\n     }\n }\n"
+                },
+                {
+                    "date": 1688600174596,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,8 +25,8 @@\n     public function getDetailAuthors(int $id,AuthorRepository $authorRepository,SerializerInterface $serializer): JsonResponse\n     {\n         $author = $authorRepository->find($id);\n         if($author){\n-            $jsonAuthor = $serializer->serialize($author,\"json\")\n+            $jsonAuthor = $serializer->serialize($author,\"json\",[\"groups\"])\n         }\n     }\n }\n"
+                },
+                {
+                    "date": 1688600179757,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,8 +25,8 @@\n     public function getDetailAuthors(int $id,AuthorRepository $authorRepository,SerializerInterface $serializer): JsonResponse\n     {\n         $author = $authorRepository->find($id);\n         if($author){\n-            $jsonAuthor = $serializer->serialize($author,\"json\",[\"groups\"])\n+            $jsonAuthor = $serializer->serialize($author,\"json\",[\"groups\"=>\"get\"])\n         }\n     }\n }\n"
+                },
+                {
+                    "date": 1688600185892,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,8 +25,8 @@\n     public function getDetailAuthors(int $id,AuthorRepository $authorRepository,SerializerInterface $serializer): JsonResponse\n     {\n         $author = $authorRepository->find($id);\n         if($author){\n-            $jsonAuthor = $serializer->serialize($author,\"json\",[\"groups\"=>\"get\"])\n+            $jsonAuthor = $serializer->serialize($author,\"json\",[\"groups\"=>\"getBooks\"])\n         }\n     }\n }\n"
+                },
+                {
+                    "date": 1688600196187,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,8 +25,9 @@\n     public function getDetailAuthors(int $id,AuthorRepository $authorRepository,SerializerInterface $serializer): JsonResponse\n     {\n         $author = $authorRepository->find($id);\n         if($author){\n-            $jsonAuthor = $serializer->serialize($author,\"json\",[\"groups\"=>\"getBooks\"])\n+            $jsonAuthor = $serializer->serialize($author,\"json\",[\"groups\"=>\"getBooks\"]);\n+            return new JsonResponse\n         }\n     }\n }\n"
+                },
+                {
+                    "date": 1688600210505,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,8 +26,9 @@\n     {\n         $author = $authorRepository->find($id);\n         if($author){\n             $jsonAuthor = $serializer->serialize($author,\"json\",[\"groups\"=>\"getBooks\"]);\n-            return new JsonResponse\n+            return new JsonResponse();\n         }\n+        return new JsonResponse\n     }\n }\n"
+                },
+                {
+                    "date": 1688600225177,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,7 +28,7 @@\n         if($author){\n             $jsonAuthor = $serializer->serialize($author,\"json\",[\"groups\"=>\"getBooks\"]);\n             return new JsonResponse();\n         }\n-        return new JsonResponse\n+        return new JsonResponse(null,Response::)\n     }\n }\n"
+                },
+                {
+                    "date": 1688600251927,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,7 +28,7 @@\n         if($author){\n             $jsonAuthor = $serializer->serialize($author,\"json\",[\"groups\"=>\"getBooks\"]);\n             return new JsonResponse();\n         }\n-        return new JsonResponse(null,Response::)\n+        return new JsonResponse(null,Response::HTTP_OK)\n     }\n }\n"
+                },
+                {
+                    "date": 1688600260339,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n     {\n         $author = $authorRepository->find($id);\n         if($author){\n             $jsonAuthor = $serializer->serialize($author,\"json\",[\"groups\"=>\"getBooks\"]);\n-            return new JsonResponse();\n+            return new JsonResponse($jsonAuthor);\n         }\n-        return new JsonResponse(null,Response::HTTP_OK)\n+        return new JsonResponse(null,Response::HTTP_OK);\n     }\n }\n"
+                },
+                {
+                    "date": 1688600265713,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n     {\n         $author = $authorRepository->find($id);\n         if($author){\n             $jsonAuthor = $serializer->serialize($author,\"json\",[\"groups\"=>\"getBooks\"]);\n-            return new JsonResponse($jsonAuthor);\n+            return new JsonResponse($jsonAuthor,Response::);\n         }\n         return new JsonResponse(null,Response::HTTP_OK);\n     }\n }\n"
+                },
+                {
+                    "date": 1688600273028,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n     {\n         $author = $authorRepository->find($id);\n         if($author){\n             $jsonAuthor = $serializer->serialize($author,\"json\",[\"groups\"=>\"getBooks\"]);\n-            return new JsonResponse($jsonAuthor,Response::);\n+            return new JsonResponse($jsonAuthor,Response::HTTP_OK,);\n         }\n         return new JsonResponse(null,Response::HTTP_OK);\n     }\n }\n"
+                },
+                {
+                    "date": 1688600280346,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n     {\n         $author = $authorRepository->find($id);\n         if($author){\n             $jsonAuthor = $serializer->serialize($author,\"json\",[\"groups\"=>\"getBooks\"]);\n-            return new JsonResponse($jsonAuthor,Response::HTTP_OK,);\n+            return new JsonResponse($jsonAuthor,Response::HTTP_OK,[],true);\n         }\n         return new JsonResponse(null,Response::HTTP_OK);\n     }\n }\n"
+                },
+                {
+                    "date": 1688600872102,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,5 +30,6 @@\n             return new JsonResponse($jsonAuthor,Response::HTTP_OK,[],true);\n         }\n         return new JsonResponse(null,Response::HTTP_OK);\n     }\n+    \n }\n"
+                },
+                {
+                    "date": 1688600883122,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,8 +3,9 @@\n namespace App\\Controller;\n \n use App\\Entity\\Author;\n use App\\Repository\\AuthorRepository;\n+use Doctrine\\ORM\\EntityManagerInterface;\n use Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController;\n use Symfony\\Component\\HttpFoundation\\JsonResponse;\n use Symfony\\Component\\HttpFoundation\\Response;\n use Symfony\\Component\\Routing\\Annotation\\Route;\n@@ -30,6 +31,15 @@\n             return new JsonResponse($jsonAuthor,Response::HTTP_OK,[],true);\n         }\n         return new JsonResponse(null,Response::HTTP_OK);\n     }\n-    \n+\n+    #[Route('/api/authors/{id}', name: 'deleteAuthor', methods: ['DELETE'])]\n+    public function deleteAuthor(Author $author, EntityManagerInterface $em): JsonResponse {\n+        \n+        $em->remove($author);\n+        \n+        $em->flush();\n+        dd($author->getBooks());\n+        return new JsonResponse(null, Response::HTTP_NO_CONTENT);\n+    }\n }\n"
+                },
+                {
+                    "date": 1688601055640,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -41,5 +41,18 @@\n         $em->flush();\n         dd($author->getBooks());\n         return new JsonResponse(null, Response::HTTP_NO_CONTENT);\n     }\n+\n+    #[Route('/api/authors', name: 'createAuthor', methods: ['POST'])]\n+    public function createAuthor(Request $request, SerializerInterface $serializer,\n+        EntityManagerInterface $em, UrlGeneratorInterface $urlGenerator): JsonResponse {\n+        $author = $serializer->deserialize($request->getContent(), Author::class, 'json');\n+        $em->persist($author);\n+        $em->flush();\n+\n+        $jsonAuthor = $serializer->serialize($author, 'json', ['groups' => 'getAuthors']);\n+        $location = $urlGenerator->generate('detailAuthor', ['id' => $author->getId()], UrlGeneratorInterface::ABSOLUTE_URL);\n+        return new JsonResponse($jsonAuthor, Response::HTTP_CREATED, [\"Location\" => $location], true);\t\n+    }\n+\n }\n"
+                },
+                {
+                    "date": 1688601062560,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,8 +6,9 @@\n use App\\Repository\\AuthorRepository;\n use Doctrine\\ORM\\EntityManagerInterface;\n use Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController;\n use Symfony\\Component\\HttpFoundation\\JsonResponse;\n+use Symfony\\Component\\HttpFoundation\\Request;\n use Symfony\\Component\\HttpFoundation\\Response;\n use Symfony\\Component\\Routing\\Annotation\\Route;\n use Symfony\\Component\\Serializer\\SerializerInterface;\n \n"
+                },
+                {
+                    "date": 1688601068888,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,8 +9,9 @@\n use Symfony\\Component\\HttpFoundation\\JsonResponse;\n use Symfony\\Component\\HttpFoundation\\Request;\n use Symfony\\Component\\HttpFoundation\\Response;\n use Symfony\\Component\\Routing\\Annotation\\Route;\n+use Symfony\\Component\\Routing\\Generator\\UrlGeneratorInterface;\n use Symfony\\Component\\Serializer\\SerializerInterface;\n \n class AuthorController extends AbstractController\n {\n"
+                },
+                {
+                    "date": 1688601221168,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n         return new JsonResponse($jsonBook,Response::HTTP_OK,[],true);\n     }\n \n     #[Route('/api/authors/{id}',name: 'app_detail_authors',methods:[\"GET\"])]\n-    public function getDetailAuthors(int $id,AuthorRepository $authorRepository,SerializerInterface $serializer): JsonResponse\n+    public function deAuthors(int $id,AuthorRepository $authorRepository,SerializerInterface $serializer): JsonResponse\n     {\n         $author = $authorRepository->find($id);\n         if($author){\n             $jsonAuthor = $serializer->serialize($author,\"json\",[\"groups\"=>\"getBooks\"]);\n"
+                },
+                {
+                    "date": 1688601357001,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n         return new JsonResponse($jsonBook,Response::HTTP_OK,[],true);\n     }\n \n     #[Route('/api/authors/{id}',name: 'app_detail_authors',methods:[\"GET\"])]\n-    public function deAuthors(int $id,AuthorRepository $authorRepository,SerializerInterface $serializer): JsonResponse\n+    public function detailAuthors(int $id,AuthorRepository $authorRepository,SerializerInterface $serializer): JsonResponse\n     {\n         $author = $authorRepository->find($id);\n         if($author){\n             $jsonAuthor = $serializer->serialize($author,\"json\",[\"groups\"=>\"getBooks\"]);\n@@ -51,9 +51,9 @@\n         $author = $serializer->deserialize($request->getContent(), Author::class, 'json');\n         $em->persist($author);\n         $em->flush();\n \n-        $jsonAuthor = $serializer->serialize($author, 'json', ['groups' => 'getAuthors']);\n+        $jsonAuthor = $serializer->serialize($author, 'json', ['groups' => 'getB']);\n         $location = $urlGenerator->generate('detailAuthor', ['id' => $author->getId()], UrlGeneratorInterface::ABSOLUTE_URL);\n         return new JsonResponse($jsonAuthor, Response::HTTP_CREATED, [\"Location\" => $location], true);\t\n     }\n \n"
+                },
+                {
+                    "date": 1688601517854,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -44,17 +44,7 @@\n         dd($author->getBooks());\n         return new JsonResponse(null, Response::HTTP_NO_CONTENT);\n     }\n \n-    #[Route('/api/authors', name: 'createAuthor', methods: ['POST'])]\n-    public function createAuthor(Request $request, SerializerInterface $serializer,\n-        EntityManagerInterface $em, UrlGeneratorInterface $urlGenerator): JsonResponse {\n-        $author = $serializer->deserialize($request->getContent(), Author::class, 'json');\n-        $em->persist($author);\n-        $em->flush();\n+    \n \n-        $jsonAuthor = $serializer->serialize($author, 'json', ['groups' => 'getB']);\n-        $location = $urlGenerator->generate('detailAuthor', ['id' => $author->getId()], UrlGeneratorInterface::ABSOLUTE_URL);\n-        return new JsonResponse($jsonAuthor, Response::HTTP_CREATED, [\"Location\" => $location], true);\t\n-    }\n-\n }\n"
+                },
+                {
+                    "date": 1688601536156,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,8 +43,5 @@\n         $em->flush();\n         dd($author->getBooks());\n         return new JsonResponse(null, Response::HTTP_NO_CONTENT);\n     }\n-\n-    \n-\n }\n"
+                },
+                {
+                    "date": 1688690994789,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,5 +43,7 @@\n         $em->flush();\n         dd($author->getBooks());\n         return new JsonResponse(null, Response::HTTP_NO_CONTENT);\n     }\n+\n+    \n }\n"
+                },
+                {
+                    "date": 1688691003098,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -44,6 +44,6 @@\n         dd($author->getBooks());\n         return new JsonResponse(null, Response::HTTP_NO_CONTENT);\n     }\n \n-    \n+    #[Route]\n }\n"
+                },
+                {
+                    "date": 1688691010417,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -44,6 +44,6 @@\n         dd($author->getBooks());\n         return new JsonResponse(null, Response::HTTP_NO_CONTENT);\n     }\n \n-    #[Route]\n+    #[Route('/api/')]\n }\n"
+                },
+                {
+                    "date": 1688691016344,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -44,6 +44,6 @@\n         dd($author->getBooks());\n         return new JsonResponse(null, Response::HTTP_NO_CONTENT);\n     }\n \n-    #[Route('/api/')]\n+    #[Route('/api/authors/')]\n }\n"
+                },
+                {
+                    "date": 1688691022941,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -44,6 +44,6 @@\n         dd($author->getBooks());\n         return new JsonResponse(null, Response::HTTP_NO_CONTENT);\n     }\n \n-    #[Route('/api/authors/')]\n+    #[Route('/api/authors', name)]\n }\n"
+                },
+                {
+                    "date": 1688691030158,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -44,6 +44,6 @@\n         dd($author->getBooks());\n         return new JsonResponse(null, Response::HTTP_NO_CONTENT);\n     }\n \n-    #[Route('/api/authors', name)]\n+    #[Route('/api/authors', name:'app_create')]\n }\n"
+                },
+                {
+                    "date": 1688691039287,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -44,6 +44,6 @@\n         dd($author->getBooks());\n         return new JsonResponse(null, Response::HTTP_NO_CONTENT);\n     }\n \n-    #[Route('/api/authors', name:'app_create')]\n+    #[Route('/api/authors', name:'app_create_author', method)]\n }\n"
+                },
+                {
+                    "date": 1688691049292,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -44,6 +44,6 @@\n         dd($author->getBooks());\n         return new JsonResponse(null, Response::HTTP_NO_CONTENT);\n     }\n \n-    #[Route('/api/authors', name:'app_create_author', method)]\n+    #[Route('/api/authors', name:'app_create_author', methods:[\"POST\"])]\n }\n"
+                },
+                {
+                    "date": 1688691056197,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,5 +45,6 @@\n         return new JsonResponse(null, Response::HTTP_NO_CONTENT);\n     }\n \n     #[Route('/api/authors', name:'app_create_author', methods:[\"POST\"])]\n+    public function\n }\n"
+                },
+                {
+                    "date": 1688691061845,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,6 +45,6 @@\n         return new JsonResponse(null, Response::HTTP_NO_CONTENT);\n     }\n \n     #[Route('/api/authors', name:'app_create_author', methods:[\"POST\"])]\n-    public function\n+    public function create\n }\n"
+                },
+                {
+                    "date": 1688691069603,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,6 +45,6 @@\n         return new JsonResponse(null, Response::HTTP_NO_CONTENT);\n     }\n \n     #[Route('/api/authors', name:'app_create_author', methods:[\"POST\"])]\n-    public function create\n+    public function createAuthor()\n }\n"
+                },
+                {
+                    "date": 1688691074823,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,6 +45,6 @@\n         return new JsonResponse(null, Response::HTTP_NO_CONTENT);\n     }\n \n     #[Route('/api/authors', name:'app_create_author', methods:[\"POST\"])]\n-    public function createAuthor()\n+    public function createAuthor():JsonResponse\n }\n"
+                },
+                {
+                    "date": 1688691092551,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,6 +45,9 @@\n         return new JsonResponse(null, Response::HTTP_NO_CONTENT);\n     }\n \n     #[Route('/api/authors', name:'app_create_author', methods:[\"POST\"])]\n-    public function createAuthor():JsonResponse\n+    public function createAuthor(Req):JsonResponse\n+    {\n+\n+    }\n }\n"
+                },
+                {
+                    "date": 1688691097894,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,9 +45,9 @@\n         return new JsonResponse(null, Response::HTTP_NO_CONTENT);\n     }\n \n     #[Route('/api/authors', name:'app_create_author', methods:[\"POST\"])]\n-    public function createAuthor(Req):JsonResponse\n+    public function createAuthor(Request $request,):JsonResponse\n     {\n \n     }\n }\n"
+                },
+                {
+                    "date": 1688691112410,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,9 +45,9 @@\n         return new JsonResponse(null, Response::HTTP_NO_CONTENT);\n     }\n \n     #[Route('/api/authors', name:'app_create_author', methods:[\"POST\"])]\n-    public function createAuthor(Request $request,):JsonResponse\n+    public function createAuthor(Request $request,EntityManagerInterface $em,):JsonResponse\n     {\n \n     }\n }\n"
+                },
+                {
+                    "date": 1688691125304,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,9 +45,9 @@\n         return new JsonResponse(null, Response::HTTP_NO_CONTENT);\n     }\n \n     #[Route('/api/authors', name:'app_create_author', methods:[\"POST\"])]\n-    public function createAuthor(Request $request,EntityManagerInterface $em,):JsonResponse\n+    public function createAuthor(Request $request,EntityManagerInterface $em,SerializerInterface $serializer,):JsonResponse\n     {\n \n     }\n }\n"
+                },
+                {
+                    "date": 1688691136728,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,9 +45,9 @@\n         return new JsonResponse(null, Response::HTTP_NO_CONTENT);\n     }\n \n     #[Route('/api/authors', name:'app_create_author', methods:[\"POST\"])]\n-    public function createAuthor(Request $request,EntityManagerInterface $em,SerializerInterface $serializer,):JsonResponse\n+    public function createAuthor(Request $request,EntityManagerInterface $em,SerializerInterface $serializer,Url):JsonResponse\n     {\n \n     }\n }\n"
+                },
+                {
+                    "date": 1688691151230,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,9 +45,9 @@\n         return new JsonResponse(null, Response::HTTP_NO_CONTENT);\n     }\n \n     #[Route('/api/authors', name:'app_create_author', methods:[\"POST\"])]\n-    public function createAuthor(Request $request,EntityManagerInterface $em,SerializerInterface $serializer,Url):JsonResponse\n+    public function createAuthor(Request $request,EntityManagerInterface $em,SerializerInterface $serializer,UrlGeneratorInterface $urlGenerator):JsonResponse\n     {\n \n     }\n }\n"
+                },
+                {
+                    "date": 1688691157535,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,7 +47,7 @@\n \n     #[Route('/api/authors', name:'app_create_author', methods:[\"POST\"])]\n     public function createAuthor(Request $request,EntityManagerInterface $em,SerializerInterface $serializer,UrlGeneratorInterface $urlGenerator):JsonResponse\n     {\n-\n+        \n     }\n }\n"
+                },
+                {
+                    "date": 1688691170394,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,7 +47,7 @@\n \n     #[Route('/api/authors', name:'app_create_author', methods:[\"POST\"])]\n     public function createAuthor(Request $request,EntityManagerInterface $em,SerializerInterface $serializer,UrlGeneratorInterface $urlGenerator):JsonResponse\n     {\n-        \n+        $a\n     }\n }\n"
+                },
+                {
+                    "date": 1688691175981,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,7 +47,7 @@\n \n     #[Route('/api/authors', name:'app_create_author', methods:[\"POST\"])]\n     public function createAuthor(Request $request,EntityManagerInterface $em,SerializerInterface $serializer,UrlGeneratorInterface $urlGenerator):JsonResponse\n     {\n-        $a\n+        $authors =\n     }\n }\n"
+                },
+                {
+                    "date": 1688691191393,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,7 +47,7 @@\n \n     #[Route('/api/authors', name:'app_create_author', methods:[\"POST\"])]\n     public function createAuthor(Request $request,EntityManagerInterface $em,SerializerInterface $serializer,UrlGeneratorInterface $urlGenerator):JsonResponse\n     {\n-        $authors =\n+        $authors = $serializer->deserialize()\n     }\n }\n"
+                },
+                {
+                    "date": 1688691197564,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,7 +47,7 @@\n \n     #[Route('/api/authors', name:'app_create_author', methods:[\"POST\"])]\n     public function createAuthor(Request $request,EntityManagerInterface $em,SerializerInterface $serializer,UrlGeneratorInterface $urlGenerator):JsonResponse\n     {\n-        $authors = $serializer->deserialize()\n+        $authors = $serializer->deserialize($)\n     }\n }\n"
+                },
+                {
+                    "date": 1688691210645,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,7 +47,7 @@\n \n     #[Route('/api/authors', name:'app_create_author', methods:[\"POST\"])]\n     public function createAuthor(Request $request,EntityManagerInterface $em,SerializerInterface $serializer,UrlGeneratorInterface $urlGenerator):JsonResponse\n     {\n-        $authors = $serializer->deserialize($)\n+        $authors = $serializer->deserialize($request->getCon)\n     }\n }\n"
+                },
+                {
+                    "date": 1688691215818,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,7 +47,7 @@\n \n     #[Route('/api/authors', name:'app_create_author', methods:[\"POST\"])]\n     public function createAuthor(Request $request,EntityManagerInterface $em,SerializerInterface $serializer,UrlGeneratorInterface $urlGenerator):JsonResponse\n     {\n-        $authors = $serializer->deserialize($request->getCon)\n+        $authors = $serializer->deserialize($request->getContent(), )\n     }\n }\n"
+                },
+                {
+                    "date": 1688691223515,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,7 +47,7 @@\n \n     #[Route('/api/authors', name:'app_create_author', methods:[\"POST\"])]\n     public function createAuthor(Request $request,EntityManagerInterface $em,SerializerInterface $serializer,UrlGeneratorInterface $urlGenerator):JsonResponse\n     {\n-        $authors = $serializer->deserialize($request->getContent(), )\n+        $authors = $serializer->deserialize($request->getContent(), 'json', Author)\n     }\n }\n"
+                },
+                {
+                    "date": 1688691245900,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,7 +47,7 @@\n \n     #[Route('/api/authors', name:'app_create_author', methods:[\"POST\"])]\n     public function createAuthor(Request $request,EntityManagerInterface $em,SerializerInterface $serializer,UrlGeneratorInterface $urlGenerator):JsonResponse\n     {\n-        $authors = $serializer->deserialize($request->getContent(), 'json', Author)\n+        $authors = $serializer->deserialize($request->getContent(), Author::class,)\n     }\n }\n"
+                },
+                {
+                    "date": 1688691251691,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,7 +47,7 @@\n \n     #[Route('/api/authors', name:'app_create_author', methods:[\"POST\"])]\n     public function createAuthor(Request $request,EntityManagerInterface $em,SerializerInterface $serializer,UrlGeneratorInterface $urlGenerator):JsonResponse\n     {\n-        $authors = $serializer->deserialize($request->getContent(), Author::class,)\n+        $authors = $serializer->deserialize($request->getContent(),Author::class,'json')\n     }\n }\n"
+                },
+                {
+                    "date": 1688691259553,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,7 +47,8 @@\n \n     #[Route('/api/authors', name:'app_create_author', methods:[\"POST\"])]\n     public function createAuthor(Request $request,EntityManagerInterface $em,SerializerInterface $serializer,UrlGeneratorInterface $urlGenerator):JsonResponse\n     {\n-        $authors = $serializer->deserialize($request->getContent(),Author::class,'json')\n+        $authors = $serializer->deserialize($request->getContent(),Author::class,'json');\n+        \n     }\n }\n"
+                },
+                {
+                    "date": 1688691265295,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -48,7 +48,7 @@\n     #[Route('/api/authors', name:'app_create_author', methods:[\"POST\"])]\n     public function createAuthor(Request $request,EntityManagerInterface $em,SerializerInterface $serializer,UrlGeneratorInterface $urlGenerator):JsonResponse\n     {\n         $authors = $serializer->deserialize($request->getContent(),Author::class,'json');\n-        \n+        $em->persist(au)\n     }\n }\n"
+                },
+                {
+                    "date": 1688691270970,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -48,7 +48,8 @@\n     #[Route('/api/authors', name:'app_create_author', methods:[\"POST\"])]\n     public function createAuthor(Request $request,EntityManagerInterface $em,SerializerInterface $serializer,UrlGeneratorInterface $urlGenerator):JsonResponse\n     {\n         $authors = $serializer->deserialize($request->getContent(),Author::class,'json');\n-        $em->persist(au)\n+        $em->persist($authors);\n+        \n     }\n }\n"
+                },
+                {
+                    "date": 1688691276132,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -49,7 +49,7 @@\n     public function createAuthor(Request $request,EntityManagerInterface $em,SerializerInterface $serializer,UrlGeneratorInterface $urlGenerator):JsonResponse\n     {\n         $authors = $serializer->deserialize($request->getContent(),Author::class,'json');\n         $em->persist($authors);\n-        \n+        $em->flush()\n     }\n }\n"
+                },
+                {
+                    "date": 1688691285209,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -49,7 +49,9 @@\n     public function createAuthor(Request $request,EntityManagerInterface $em,SerializerInterface $serializer,UrlGeneratorInterface $urlGenerator):JsonResponse\n     {\n         $authors = $serializer->deserialize($request->getContent(),Author::class,'json');\n         $em->persist($authors);\n-        $em->flush()\n+        $em->flush();\n+\n+        $jsonAutho\n     }\n }\n"
+                },
+                {
+                    "date": 1688691295652,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,7 +51,7 @@\n         $authors = $serializer->deserialize($request->getContent(),Author::class,'json');\n         $em->persist($authors);\n         $em->flush();\n \n-        $jsonAutho\n+        $jsonAuthors = $serializer\n     }\n }\n"
+                },
+                {
+                    "date": 1688691305694,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,7 +51,7 @@\n         $authors = $serializer->deserialize($request->getContent(),Author::class,'json');\n         $em->persist($authors);\n         $em->flush();\n \n-        $jsonAuthors = $serializer\n+        $jsonAuthors = $serializer->serialize($authors)\n     }\n }\n"
+                },
+                {
+                    "date": 1688691312710,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,7 +51,7 @@\n         $authors = $serializer->deserialize($request->getContent(),Author::class,'json');\n         $em->persist($authors);\n         $em->flush();\n \n-        $jsonAuthors = $serializer->serialize($authors)\n+        $jsonAuthors = $serializer->serialize($authors,'json')\n     }\n }\n"
+                },
+                {
+                    "date": 1688691321377,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,7 +51,7 @@\n         $authors = $serializer->deserialize($request->getContent(),Author::class,'json');\n         $em->persist($authors);\n         $em->flush();\n \n-        $jsonAuthors = $serializer->serialize($authors,'json')\n+        $jsonAuthors = $serializer->serialize($authors,'json',[\"groups\"])\n     }\n }\n"
+                },
+                {
+                    "date": 1688691327397,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,7 +51,7 @@\n         $authors = $serializer->deserialize($request->getContent(),Author::class,'json');\n         $em->persist($authors);\n         $em->flush();\n \n-        $jsonAuthors = $serializer->serialize($authors,'json',[\"groups\"])\n+        $jsonAuthors = $serializer->serialize($authors,'json',[\"groups\":\"\"])\n     }\n }\n"
+                },
+                {
+                    "date": 1688691333442,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,7 +51,7 @@\n         $authors = $serializer->deserialize($request->getContent(),Author::class,'json');\n         $em->persist($authors);\n         $em->flush();\n \n-        $jsonAuthors = $serializer->serialize($authors,'json',[\"groups\":\"\"])\n+        $jsonAuthors = $serializer->serialize($authors,'json',[\"groups\":\"getBooks\"]);\n     }\n }\n"
+                },
+                {
+                    "date": 1688691339759,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,7 +51,7 @@\n         $authors = $serializer->deserialize($request->getContent(),Author::class,'json');\n         $em->persist($authors);\n         $em->flush();\n \n-        $jsonAuthors = $serializer->serialize($authors,'json',[\"groups\":\"getBooks\"]);\n+        $jsonAuthors = $serializer->serialize($authors,'json',[\"groups\"=>\"getBooks\"]);\n     }\n }\n"
+                },
+                {
+                    "date": 1688691348133,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,8 +11,9 @@\n use Symfony\\Component\\HttpFoundation\\Response;\n use Symfony\\Component\\Routing\\Annotation\\Route;\n use Symfony\\Component\\Routing\\Generator\\UrlGeneratorInterface;\n use Symfony\\Component\\Serializer\\SerializerInterface;\n+use Symfony\\Component\\Validator\\Constraints\\Json;\n \n class AuthorController extends AbstractController\n {\n     #[Route('/api/authors', name: 'app_all_authors',methods:[\"GET\"])]\n@@ -52,6 +53,7 @@\n         $em->persist($authors);\n         $em->flush();\n \n         $jsonAuthors = $serializer->serialize($authors,'json',[\"groups\"=>\"getBooks\"]);\n+        return new Json\n     }\n }\n"
+                },
+                {
+                    "date": 1688691359764,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -53,7 +53,7 @@\n         $em->persist($authors);\n         $em->flush();\n \n         $jsonAuthors = $serializer->serialize($authors,'json',[\"groups\"=>\"getBooks\"]);\n-        return new Json\n+        return new JsonResponse(^$jsonAuthors,)\n     }\n }\n"
+                },
+                {
+                    "date": 1688691369117,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -53,7 +53,7 @@\n         $em->persist($authors);\n         $em->flush();\n \n         $jsonAuthors = $serializer->serialize($authors,'json',[\"groups\"=>\"getBooks\"]);\n-        return new JsonResponse(^$jsonAuthors,)\n+        return new JsonResponse(^$jsonAuthors,Response::)\n     }\n }\n"
+                },
+                {
+                    "date": 1688691376062,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -53,7 +53,7 @@\n         $em->persist($authors);\n         $em->flush();\n \n         $jsonAuthors = $serializer->serialize($authors,'json',[\"groups\"=>\"getBooks\"]);\n-        return new JsonResponse(^$jsonAuthors,Response::)\n+        return new JsonResponse(^$jsonAuthors,Response::HTTP_CREATED)\n     }\n }\n"
+                },
+                {
+                    "date": 1688691381292,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -53,7 +53,7 @@\n         $em->persist($authors);\n         $em->flush();\n \n         $jsonAuthors = $serializer->serialize($authors,'json',[\"groups\"=>\"getBooks\"]);\n-        return new JsonResponse(^$jsonAuthors,Response::HTTP_CREATED)\n+        return new JsonResponse($jsonAuthors,Response::HTTP_CREATED,)\n     }\n }\n"
+                },
+                {
+                    "date": 1688691388407,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -53,7 +53,7 @@\n         $em->persist($authors);\n         $em->flush();\n \n         $jsonAuthors = $serializer->serialize($authors,'json',[\"groups\"=>\"getBooks\"]);\n-        return new JsonResponse($jsonAuthors,Response::HTTP_CREATED,)\n+        return new JsonResponse($jsonAuthors,Response::HTTP_CREATED,[],true)\n     }\n }\n"
+                },
+                {
+                    "date": 1688691579900,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -53,7 +53,9 @@\n         $em->persist($authors);\n         $em->flush();\n \n         $jsonAuthors = $serializer->serialize($authors,'json',[\"groups\"=>\"getBooks\"]);\n-        return new JsonResponse($jsonAuthors,Response::HTTP_CREATED,[],true)\n+        return new JsonResponse($jsonAuthors,Response::HTTP_CREATED,[],true);\n     }\n+\n+    \n }\n"
+                },
+                {
+                    "date": 1688691585312,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -56,6 +56,6 @@\n         $jsonAuthors = $serializer->serialize($authors,'json',[\"groups\"=>\"getBooks\"]);\n         return new JsonResponse($jsonAuthors,Response::HTTP_CREATED,[],true);\n     }\n \n-    \n+    #\n }\n"
+                },
+                {
+                    "date": 1688691593567,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -56,6 +56,6 @@\n         $jsonAuthors = $serializer->serialize($authors,'json',[\"groups\"=>\"getBooks\"]);\n         return new JsonResponse($jsonAuthors,Response::HTTP_CREATED,[],true);\n     }\n \n-    #\n+    #[Route()]\n }\n"
+                },
+                {
+                    "date": 1688691601365,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -56,6 +56,6 @@\n         $jsonAuthors = $serializer->serialize($authors,'json',[\"groups\"=>\"getBooks\"]);\n         return new JsonResponse($jsonAuthors,Response::HTTP_CREATED,[],true);\n     }\n \n-    #[Route()]\n+    #[Route(/api/authors)]\n }\n"
+                },
+                {
+                    "date": 1688691606922,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -56,6 +56,6 @@\n         $jsonAuthors = $serializer->serialize($authors,'json',[\"groups\"=>\"getBooks\"]);\n         return new JsonResponse($jsonAuthors,Response::HTTP_CREATED,[],true);\n     }\n \n-    #[Route(/api/authors)]\n+    #[Route(/api/authors/{id},)]\n }\n"
+                },
+                {
+                    "date": 1688691616979,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -56,6 +56,6 @@\n         $jsonAuthors = $serializer->serialize($authors,'json',[\"groups\"=>\"getBooks\"]);\n         return new JsonResponse($jsonAuthors,Response::HTTP_CREATED,[],true);\n     }\n \n-    #[Route(/api/authors/{id},)]\n+    #[Route('/api/authors/{id}',)]\n }\n"
+                },
+                {
+                    "date": 1688691624197,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -56,6 +56,6 @@\n         $jsonAuthors = $serializer->serialize($authors,'json',[\"groups\"=>\"getBooks\"]);\n         return new JsonResponse($jsonAuthors,Response::HTTP_CREATED,[],true);\n     }\n \n-    #[Route('/api/authors/{id}',)]\n+    #[Route('/api/authors/{id}',name:\"\")]\n }\n"
+                },
+                {
+                    "date": 1688691632074,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -56,6 +56,6 @@\n         $jsonAuthors = $serializer->serialize($authors,'json',[\"groups\"=>\"getBooks\"]);\n         return new JsonResponse($jsonAuthors,Response::HTTP_CREATED,[],true);\n     }\n \n-    #[Route('/api/authors/{id}',name:\"\")]\n+    #[Route('/api/authors/{id}',name:\"app_update_authors\")]\n }\n"
+                },
+                {
+                    "date": 1688691637914,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -56,6 +56,6 @@\n         $jsonAuthors = $serializer->serialize($authors,'json',[\"groups\"=>\"getBooks\"]);\n         return new JsonResponse($jsonAuthors,Response::HTTP_CREATED,[],true);\n     }\n \n-    #[Route('/api/authors/{id}',name:\"app_update_authors\")]\n+    #[Route('/api/authors/{id}',name:\"app_update_authors\", methods)]\n }\n"
+                },
+                {
+                    "date": 1688691643674,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -56,6 +56,6 @@\n         $jsonAuthors = $serializer->serialize($authors,'json',[\"groups\"=>\"getBooks\"]);\n         return new JsonResponse($jsonAuthors,Response::HTTP_CREATED,[],true);\n     }\n \n-    #[Route('/api/authors/{id}',name:\"app_update_authors\", methods)]\n+    #[Route('/api/authors/{id}',name:\"app_update_authors\", methods:[\"GET\"])]\n }\n"
+                },
+                {
+                    "date": 1688691870886,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -57,5 +57,6 @@\n         return new JsonResponse($jsonAuthors,Response::HTTP_CREATED,[],true);\n     }\n \n     #[Route('/api/authors/{id}',name:\"app_update_authors\", methods:[\"GET\"])]\n+    public func\n }\n"
+                },
+                {
+                    "date": 1688691876801,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -57,6 +57,6 @@\n         return new JsonResponse($jsonAuthors,Response::HTTP_CREATED,[],true);\n     }\n \n     #[Route('/api/authors/{id}',name:\"app_update_authors\", methods:[\"GET\"])]\n-    public func\n+    public function upda\n }\n"
+                },
+                {
+                    "date": 1688691888007,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -57,6 +57,6 @@\n         return new JsonResponse($jsonAuthors,Response::HTTP_CREATED,[],true);\n     }\n \n     #[Route('/api/authors/{id}',name:\"app_update_authors\", methods:[\"GET\"])]\n-    public function upda\n+    public function updateAuthors()\n }\n"
+                },
+                {
+                    "date": 1688691896255,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -57,6 +57,6 @@\n         return new JsonResponse($jsonAuthors,Response::HTTP_CREATED,[],true);\n     }\n \n     #[Route('/api/authors/{id}',name:\"app_update_authors\", methods:[\"GET\"])]\n-    public function updateAuthors()\n+    public function updateAuthors():JsonResponse\n }\n"
+                },
+                {
+                    "date": 1688691914036,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -57,6 +57,8 @@\n         return new JsonResponse($jsonAuthors,Response::HTTP_CREATED,[],true);\n     }\n \n     #[Route('/api/authors/{id}',name:\"app_update_authors\", methods:[\"GET\"])]\n-    public function updateAuthors():JsonResponse\n+    public function updateAuthors():JsonResponse{\n+        \n+    }\n }\n"
+                },
+                {
+                    "date": 1688691939782,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -57,8 +57,9 @@\n         return new JsonResponse($jsonAuthors,Response::HTTP_CREATED,[],true);\n     }\n \n     #[Route('/api/authors/{id}',name:\"app_update_authors\", methods:[\"GET\"])]\n-    public function updateAuthors():JsonResponse{\n-        \n+    public function updateAuthors(Request $request, SerializerInterface $serializer,\n+    EntityManagerInterface $em, UrlGeneratorInterface $urlGenerator):JsonResponse{\n+\n     }\n }\n"
+                },
+                {
+                    "date": 1688691956400,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -58,8 +58,8 @@\n     }\n \n     #[Route('/api/authors/{id}',name:\"app_update_authors\", methods:[\"GET\"])]\n     public function updateAuthors(Request $request, SerializerInterface $serializer,\n-    EntityManagerInterface $em, UrlGeneratorInterface $urlGenerator):JsonResponse{\n+    EntityManagerInterface $em, Author $current):JsonResponse{\n \n     }\n }\n"
+                },
+                {
+                    "date": 1688691962908,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -58,8 +58,8 @@\n     }\n \n     #[Route('/api/authors/{id}',name:\"app_update_authors\", methods:[\"GET\"])]\n     public function updateAuthors(Request $request, SerializerInterface $serializer,\n-    EntityManagerInterface $em, Author $current):JsonResponse{\n-\n+    EntityManagerInterface $em, Author $currentAuthors):JsonResponse{\n+        \n     }\n }\n"
+                },
+                {
+                    "date": 1688691984316,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -59,7 +59,7 @@\n \n     #[Route('/api/authors/{id}',name:\"app_update_authors\", methods:[\"GET\"])]\n     public function updateAuthors(Request $request, SerializerInterface $serializer,\n     EntityManagerInterface $em, Author $currentAuthors):JsonResponse{\n-        \n+        upd\n     }\n }\n"
+                },
+                {
+                    "date": 1688691990766,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -59,7 +59,7 @@\n \n     #[Route('/api/authors/{id}',name:\"app_update_authors\", methods:[\"GET\"])]\n     public function updateAuthors(Request $request, SerializerInterface $serializer,\n     EntityManagerInterface $em, Author $currentAuthors):JsonResponse{\n-        upd\n+        $update\n     }\n }\n"
+                },
+                {
+                    "date": 1688691999625,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -59,7 +59,7 @@\n \n     #[Route('/api/authors/{id}',name:\"app_update_authors\", methods:[\"GET\"])]\n     public function updateAuthors(Request $request, SerializerInterface $serializer,\n     EntityManagerInterface $em, Author $currentAuthors):JsonResponse{\n-        $update\n+        $updateAuthors = $serializer-\n     }\n }\n"
+                },
+                {
+                    "date": 1688692007533,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -59,7 +59,7 @@\n \n     #[Route('/api/authors/{id}',name:\"app_update_authors\", methods:[\"GET\"])]\n     public function updateAuthors(Request $request, SerializerInterface $serializer,\n     EntityManagerInterface $em, Author $currentAuthors):JsonResponse{\n-        $updateAuthors = $serializer-\n+        $updateAuthors = $serializer->deserialize($request->)\n     }\n }\n"
+                },
+                {
+                    "date": 1688692013262,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -59,7 +59,7 @@\n \n     #[Route('/api/authors/{id}',name:\"app_update_authors\", methods:[\"GET\"])]\n     public function updateAuthors(Request $request, SerializerInterface $serializer,\n     EntityManagerInterface $em, Author $currentAuthors):JsonResponse{\n-        $updateAuthors = $serializer->deserialize($request->)\n+        $updateAuthors = $serializer->deserialize($request->getContent(),)\n     }\n }\n"
+                },
+                {
+                    "date": 1688692018554,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -59,7 +59,7 @@\n \n     #[Route('/api/authors/{id}',name:\"app_update_authors\", methods:[\"GET\"])]\n     public function updateAuthors(Request $request, SerializerInterface $serializer,\n     EntityManagerInterface $em, Author $currentAuthors):JsonResponse{\n-        $updateAuthors = $serializer->deserialize($request->getContent(),)\n+        $updateAuthors = $serializer->deserialize($request->getContent(),Auth)\n     }\n }\n"
+                },
+                {
+                    "date": 1688692028225,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -59,7 +59,7 @@\n \n     #[Route('/api/authors/{id}',name:\"app_update_authors\", methods:[\"GET\"])]\n     public function updateAuthors(Request $request, SerializerInterface $serializer,\n     EntityManagerInterface $em, Author $currentAuthors):JsonResponse{\n-        $updateAuthors = $serializer->deserialize($request->getContent(),Auth)\n+        $updateAuthors = $serializer->deserialize($request->getContent(),Author::class,'json')\n     }\n }\n"
+                },
+                {
+                    "date": 1688692035818,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -59,7 +59,7 @@\n \n     #[Route('/api/authors/{id}',name:\"app_update_authors\", methods:[\"GET\"])]\n     public function updateAuthors(Request $request, SerializerInterface $serializer,\n     EntityManagerInterface $em, Author $currentAuthors):JsonResponse{\n-        $updateAuthors = $serializer->deserialize($request->getContent(),Author::class,'json')\n+        $updateAuthors = $serializer->deserialize($request->getContent(),Author::class,'json',[Abstra])\n     }\n }\n"
+                },
+                {
+                    "date": 1688692042602,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,8 +10,9 @@\n use Symfony\\Component\\HttpFoundation\\Request;\n use Symfony\\Component\\HttpFoundation\\Response;\n use Symfony\\Component\\Routing\\Annotation\\Route;\n use Symfony\\Component\\Routing\\Generator\\UrlGeneratorInterface;\n+use Symfony\\Component\\Serializer\\Normalizer\\AbstractNormalizer;\n use Symfony\\Component\\Serializer\\SerializerInterface;\n use Symfony\\Component\\Validator\\Constraints\\Json;\n \n class AuthorController extends AbstractController\n@@ -59,7 +60,7 @@\n \n     #[Route('/api/authors/{id}',name:\"app_update_authors\", methods:[\"GET\"])]\n     public function updateAuthors(Request $request, SerializerInterface $serializer,\n     EntityManagerInterface $em, Author $currentAuthors):JsonResponse{\n-        $updateAuthors = $serializer->deserialize($request->getContent(),Author::class,'json',[Abstra])\n+        $updateAuthors = $serializer->deserialize($request->getContent(),Author::class,'json',[AbstractNormalizer])\n     }\n }\n"
+                },
+                {
+                    "date": 1688692050244,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -60,7 +60,7 @@\n \n     #[Route('/api/authors/{id}',name:\"app_update_authors\", methods:[\"GET\"])]\n     public function updateAuthors(Request $request, SerializerInterface $serializer,\n     EntityManagerInterface $em, Author $currentAuthors):JsonResponse{\n-        $updateAuthors = $serializer->deserialize($request->getContent(),Author::class,'json',[AbstractNormalizer])\n+        $updateAuthors = $serializer->deserialize($request->getContent(),Author::class,'json',[AbstractNormalizer::OBJECT_TO_POPULATE])\n     }\n }\n"
+                },
+                {
+                    "date": 1688692056057,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -60,7 +60,7 @@\n \n     #[Route('/api/authors/{id}',name:\"app_update_authors\", methods:[\"GET\"])]\n     public function updateAuthors(Request $request, SerializerInterface $serializer,\n     EntityManagerInterface $em, Author $currentAuthors):JsonResponse{\n-        $updateAuthors = $serializer->deserialize($request->getContent(),Author::class,'json',[AbstractNormalizer::OBJECT_TO_POPULATE])\n+        $updateAuthors = $serializer->deserialize($request->getContent(),Author::class,'json',[AbstractNormalizer::OBJECT_TO_POPULATE=>])\n     }\n }\n"
+                },
+                {
+                    "date": 1688692063070,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -60,7 +60,7 @@\n \n     #[Route('/api/authors/{id}',name:\"app_update_authors\", methods:[\"GET\"])]\n     public function updateAuthors(Request $request, SerializerInterface $serializer,\n     EntityManagerInterface $em, Author $currentAuthors):JsonResponse{\n-        $updateAuthors = $serializer->deserialize($request->getContent(),Author::class,'json',[AbstractNormalizer::OBJECT_TO_POPULATE=>])\n+        $updateAuthors = $serializer->deserialize($request->getContent(),Author::class,'json',[AbstractNormalizer::OBJECT_TO_POPULATE => $currentAuthors])\n     }\n }\n"
+                },
+                {
+                    "date": 1688692072447,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -60,7 +60,8 @@\n \n     #[Route('/api/authors/{id}',name:\"app_update_authors\", methods:[\"GET\"])]\n     public function updateAuthors(Request $request, SerializerInterface $serializer,\n     EntityManagerInterface $em, Author $currentAuthors):JsonResponse{\n-        $updateAuthors = $serializer->deserialize($request->getContent(),Author::class,'json',[AbstractNormalizer::OBJECT_TO_POPULATE => $currentAuthors])\n+        $updateAuthors = $serializer->deserialize($request->getContent(),Author::class,'json',[AbstractNormalizer::OBJECT_TO_POPULATE => $currentAuthors]);\n+        \n     }\n }\n"
+                },
+                {
+                    "date": 1688692079014,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -61,7 +61,7 @@\n     #[Route('/api/authors/{id}',name:\"app_update_authors\", methods:[\"GET\"])]\n     public function updateAuthors(Request $request, SerializerInterface $serializer,\n     EntityManagerInterface $em, Author $currentAuthors):JsonResponse{\n         $updateAuthors = $serializer->deserialize($request->getContent(),Author::class,'json',[AbstractNormalizer::OBJECT_TO_POPULATE => $currentAuthors]);\n-        \n+        $em->per\n     }\n }\n"
+                },
+                {
+                    "date": 1688692085683,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -61,7 +61,7 @@\n     #[Route('/api/authors/{id}',name:\"app_update_authors\", methods:[\"GET\"])]\n     public function updateAuthors(Request $request, SerializerInterface $serializer,\n     EntityManagerInterface $em, Author $currentAuthors):JsonResponse{\n         $updateAuthors = $serializer->deserialize($request->getContent(),Author::class,'json',[AbstractNormalizer::OBJECT_TO_POPULATE => $currentAuthors]);\n-        $em->per\n+        $em->persist()\n     }\n }\n"
+                },
+                {
+                    "date": 1688692095382,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -61,7 +61,8 @@\n     #[Route('/api/authors/{id}',name:\"app_update_authors\", methods:[\"GET\"])]\n     public function updateAuthors(Request $request, SerializerInterface $serializer,\n     EntityManagerInterface $em, Author $currentAuthors):JsonResponse{\n         $updateAuthors = $serializer->deserialize($request->getContent(),Author::class,'json',[AbstractNormalizer::OBJECT_TO_POPULATE => $currentAuthors]);\n-        $em->persist()\n+        $em->persist($updateAuthors);\n+        $em->flush()\n     }\n }\n"
+                },
+                {
+                    "date": 1688692102104,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -62,7 +62,9 @@\n     public function updateAuthors(Request $request, SerializerInterface $serializer,\n     EntityManagerInterface $em, Author $currentAuthors):JsonResponse{\n         $updateAuthors = $serializer->deserialize($request->getContent(),Author::class,'json',[AbstractNormalizer::OBJECT_TO_POPULATE => $currentAuthors]);\n         $em->persist($updateAuthors);\n-        $em->flush()\n+        $em->flush();\n+\n+        return\n     }\n }\n"
+                },
+                {
+                    "date": 1688692108117,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -64,7 +64,7 @@\n         $updateAuthors = $serializer->deserialize($request->getContent(),Author::class,'json',[AbstractNormalizer::OBJECT_TO_POPULATE => $currentAuthors]);\n         $em->persist($updateAuthors);\n         $em->flush();\n \n-        return\n+        return new Json\n     }\n }\n"
+                },
+                {
+                    "date": 1688692114628,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -64,7 +64,7 @@\n         $updateAuthors = $serializer->deserialize($request->getContent(),Author::class,'json',[AbstractNormalizer::OBJECT_TO_POPULATE => $currentAuthors]);\n         $em->persist($updateAuthors);\n         $em->flush();\n \n-        return new Json\n+        return new JsonResponse()\n     }\n }\n"
+                },
+                {
+                    "date": 1688692122009,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -64,7 +64,7 @@\n         $updateAuthors = $serializer->deserialize($request->getContent(),Author::class,'json',[AbstractNormalizer::OBJECT_TO_POPULATE => $currentAuthors]);\n         $em->persist($updateAuthors);\n         $em->flush();\n \n-        return new JsonResponse()\n+        return new JsonResponse(null,Response::)\n     }\n }\n"
+                },
+                {
+                    "date": 1688692128022,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -64,7 +64,7 @@\n         $updateAuthors = $serializer->deserialize($request->getContent(),Author::class,'json',[AbstractNormalizer::OBJECT_TO_POPULATE => $currentAuthors]);\n         $em->persist($updateAuthors);\n         $em->flush();\n \n-        return new JsonResponse(null,Response::)\n+        return new JsonResponse(null,Response::HTTP)\n     }\n }\n"
+                },
+                {
+                    "date": 1688692133408,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -64,7 +64,7 @@\n         $updateAuthors = $serializer->deserialize($request->getContent(),Author::class,'json',[AbstractNormalizer::OBJECT_TO_POPULATE => $currentAuthors]);\n         $em->persist($updateAuthors);\n         $em->flush();\n \n-        return new JsonResponse(null,Response::HTTP)\n+        return new JsonResponse(null,Response::HTTP_NO_CONTENT)\n     }\n }\n"
+                },
+                {
+                    "date": 1688692140439,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -57,14 +57,14 @@\n         $jsonAuthors = $serializer->serialize($authors,'json',[\"groups\"=>\"getBooks\"]);\n         return new JsonResponse($jsonAuthors,Response::HTTP_CREATED,[],true);\n     }\n \n-    #[Route('/api/authors/{id}',name:\"app_update_authors\", methods:[\"GET\"])]\n+    #[Route('/api/authors/{id}',name:\"app_update_authors\", methods:[\"PUT\"])]\n     public function updateAuthors(Request $request, SerializerInterface $serializer,\n     EntityManagerInterface $em, Author $currentAuthors):JsonResponse{\n         $updateAuthors = $serializer->deserialize($request->getContent(),Author::class,'json',[AbstractNormalizer::OBJECT_TO_POPULATE => $currentAuthors]);\n         $em->persist($updateAuthors);\n         $em->flush();\n \n-        return new JsonResponse(null,Response::HTTP_NO_CONTENT)\n+        return new JsonResponse(null,Response::HTTP_NO_CONTENT);\n     }\n }\n"
+                },
+                {
+                    "date": 1688692403264,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,8 +50,10 @@\n     #[Route('/api/authors', name:'app_create_author', methods:[\"POST\"])]\n     public function createAuthor(Request $request,EntityManagerInterface $em,SerializerInterface $serializer,UrlGeneratorInterface $urlGenerator):JsonResponse\n     {\n         $authors = $serializer->deserialize($request->getContent(),Author::class,'json');\n+\n+        $\n         $em->persist($authors);\n         $em->flush();\n \n         $jsonAuthors = $serializer->serialize($authors,'json',[\"groups\"=>\"getBooks\"]);\n"
+                },
+                {
+                    "date": 1688692409641,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,9 +51,9 @@\n     public function createAuthor(Request $request,EntityManagerInterface $em,SerializerInterface $serializer,UrlGeneratorInterface $urlGenerator):JsonResponse\n     {\n         $authors = $serializer->deserialize($request->getContent(),Author::class,'json');\n \n-        $\n+        $errors \n         $em->persist($authors);\n         $em->flush();\n \n         $jsonAuthors = $serializer->serialize($authors,'json',[\"groups\"=>\"getBooks\"]);\n"
+                },
+                {
+                    "date": 1688692421360,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,13 +47,13 @@\n         return new JsonResponse(null, Response::HTTP_NO_CONTENT);\n     }\n \n     #[Route('/api/authors', name:'app_create_author', methods:[\"POST\"])]\n-    public function createAuthor(Request $request,EntityManagerInterface $em,SerializerInterface $serializer,UrlGeneratorInterface $urlGenerator):JsonResponse\n+    public function createAuthor(Request $request,EntityManagerInterface $em,SerializerInterface $serializer,):JsonResponse\n     {\n         $authors = $serializer->deserialize($request->getContent(),Author::class,'json');\n \n-        $errors \n+        $errors = \n         $em->persist($authors);\n         $em->flush();\n \n         $jsonAuthors = $serializer->serialize($authors,'json',[\"groups\"=>\"getBooks\"]);\n"
+                },
+                {
+                    "date": 1688692429142,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,9 +47,9 @@\n         return new JsonResponse(null, Response::HTTP_NO_CONTENT);\n     }\n \n     #[Route('/api/authors', name:'app_create_author', methods:[\"POST\"])]\n-    public function createAuthor(Request $request,EntityManagerInterface $em,SerializerInterface $serializer,):JsonResponse\n+    public function createAuthor(Request $request,EntityManagerInterface $em,SerializerInterface $serializer,ValidatoI):JsonResponse\n     {\n         $authors = $serializer->deserialize($request->getContent(),Author::class,'json');\n \n         $errors = \n"
+                },
+                {
+                    "date": 1688692436436,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,8 +13,9 @@\n use Symfony\\Component\\Routing\\Generator\\UrlGeneratorInterface;\n use Symfony\\Component\\Serializer\\Normalizer\\AbstractNormalizer;\n use Symfony\\Component\\Serializer\\SerializerInterface;\n use Symfony\\Component\\Validator\\Constraints\\Json;\n+use Symfony\\Component\\Validator\\Validator\\ValidatorInterface;\n \n class AuthorController extends AbstractController\n {\n     #[Route('/api/authors', name: 'app_all_authors',methods:[\"GET\"])]\n@@ -47,9 +48,9 @@\n         return new JsonResponse(null, Response::HTTP_NO_CONTENT);\n     }\n \n     #[Route('/api/authors', name:'app_create_author', methods:[\"POST\"])]\n-    public function createAuthor(Request $request,EntityManagerInterface $em,SerializerInterface $serializer,ValidatoI):JsonResponse\n+    public function createAuthor(Request $request,EntityManagerInterface $em,SerializerInterface $serializer,ValidatorInterface $):JsonResponse\n     {\n         $authors = $serializer->deserialize($request->getContent(),Author::class,'json');\n \n         $errors = \n"
+                },
+                {
+                    "date": 1688692449069,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -48,13 +48,13 @@\n         return new JsonResponse(null, Response::HTTP_NO_CONTENT);\n     }\n \n     #[Route('/api/authors', name:'app_create_author', methods:[\"POST\"])]\n-    public function createAuthor(Request $request,EntityManagerInterface $em,SerializerInterface $serializer,ValidatorInterface $):JsonResponse\n+    public function createAuthor(Request $request,EntityManagerInterface $em,SerializerInterface $serializer,ValidatorInterface $validate):JsonResponse\n     {\n         $authors = $serializer->deserialize($request->getContent(),Author::class,'json');\n \n-        $errors = \n+        $errors = $validate->\n         $em->persist($authors);\n         $em->flush();\n \n         $jsonAuthors = $serializer->serialize($authors,'json',[\"groups\"=>\"getBooks\"]);\n"
+                },
+                {
+                    "date": 1688692454667,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -52,9 +52,9 @@\n     public function createAuthor(Request $request,EntityManagerInterface $em,SerializerInterface $serializer,ValidatorInterface $validate):JsonResponse\n     {\n         $authors = $serializer->deserialize($request->getContent(),Author::class,'json');\n \n-        $errors = $validate->\n+        $errors = $validate->validate($)\n         $em->persist($authors);\n         $em->flush();\n \n         $jsonAuthors = $serializer->serialize($authors,'json',[\"groups\"=>\"getBooks\"]);\n"
+                },
+                {
+                    "date": 1688692463005,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -52,9 +52,10 @@\n     public function createAuthor(Request $request,EntityManagerInterface $em,SerializerInterface $serializer,ValidatorInterface $validate):JsonResponse\n     {\n         $authors = $serializer->deserialize($request->getContent(),Author::class,'json');\n \n-        $errors = $validate->validate($)\n+        $errors = $validate->validate($authors);\n+        if($e)\n         $em->persist($authors);\n         $em->flush();\n \n         $jsonAuthors = $serializer->serialize($authors,'json',[\"groups\"=>\"getBooks\"]);\n"
+                },
+                {
+                    "date": 1688692470326,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -53,9 +53,9 @@\n     {\n         $authors = $serializer->deserialize($request->getContent(),Author::class,'json');\n \n         $errors = $validate->validate($authors);\n-        if($e)\n+        if($errors->count())\n         $em->persist($authors);\n         $em->flush();\n \n         $jsonAuthors = $serializer->serialize($authors,'json',[\"groups\"=>\"getBooks\"]);\n"
+                },
+                {
+                    "date": 1688692475665,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -53,9 +53,9 @@\n     {\n         $authors = $serializer->deserialize($request->getContent(),Author::class,'json');\n \n         $errors = $validate->validate($authors);\n-        if($errors->count())\n+        if($errors->count() > )\n         $em->persist($authors);\n         $em->flush();\n \n         $jsonAuthors = $serializer->serialize($authors,'json',[\"groups\"=>\"getBooks\"]);\n"
+                },
+                {
+                    "date": 1688692495559,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -53,9 +53,12 @@\n     {\n         $authors = $serializer->deserialize($request->getContent(),Author::class,'json');\n \n         $errors = $validate->validate($authors);\n-        if($errors->count() > )\n+        if($errors->count() > 0){\n+            return new JsonResponse($serializer->serialize($errors,'json'),Response::HTTP_BAD_REQUEST,[],true);\n+\n+        }\n         $em->persist($authors);\n         $em->flush();\n \n         $jsonAuthors = $serializer->serialize($authors,'json',[\"groups\"=>\"getBooks\"]);\n"
+                },
+                {
+                    "date": 1688698073786,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n \n class AuthorController extends AbstractController\n {\n     #[Route('/api/authors', name: 'app_all_authors',methods:[\"GET\"])]\n-    public function getAllAuthors(AuthorRepository $authorRepository, SerializerInterface $serializer): JsonResponse\n+    public function getAllAuthors(AuthorRepository $authorRepository, SerializerInterface $serializer,): JsonResponse\n     {\n         $authorList = $authorRepository->findAll();\n         $jsonBook = $serializer->serialize($authorList,'json',[\"groups\"=>\"getBooks\"]);\n \n@@ -55,9 +55,8 @@\n \n         $errors = $validate->validate($authors);\n         if($errors->count() > 0){\n             return new JsonResponse($serializer->serialize($errors,'json'),Response::HTTP_BAD_REQUEST,[],true);\n-\n         }\n         $em->persist($authors);\n         $em->flush();\n \n"
+                },
+                {
+                    "date": 1688698083118,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n \n class AuthorController extends AbstractController\n {\n     #[Route('/api/authors', name: 'app_all_authors',methods:[\"GET\"])]\n-    public function getAllAuthors(AuthorRepository $authorRepository, SerializerInterface $serializer,): JsonResponse\n+    public function getAllAuthors(AuthorRepository $authorRepository, SerializerInterface $serializer,Request $request, ): JsonResponse\n     {\n         $authorList = $authorRepository->findAll();\n         $jsonBook = $serializer->serialize($authorList,'json',[\"groups\"=>\"getBooks\"]);\n \n"
+                },
+                {
+                    "date": 1688698092027,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n \n class AuthorController extends AbstractController\n {\n     #[Route('/api/authors', name: 'app_all_authors',methods:[\"GET\"])]\n-    public function getAllAuthors(AuthorRepository $authorRepository, SerializerInterface $serializer,Request $request, ): JsonResponse\n+    public function getAllAuthors(AuthorRepository $authorRepository, SerializerInterface $serializer,Request $request, TagAw): JsonResponse\n     {\n         $authorList = $authorRepository->findAll();\n         $jsonBook = $serializer->serialize($authorList,'json',[\"groups\"=>\"getBooks\"]);\n \n"
+                },
+                {
+                    "date": 1688698097917,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,13 +14,14 @@\n use Symfony\\Component\\Serializer\\Normalizer\\AbstractNormalizer;\n use Symfony\\Component\\Serializer\\SerializerInterface;\n use Symfony\\Component\\Validator\\Constraints\\Json;\n use Symfony\\Component\\Validator\\Validator\\ValidatorInterface;\n+use Symfony\\Contracts\\Cache\\TagAwareCacheInterface;\n \n class AuthorController extends AbstractController\n {\n     #[Route('/api/authors', name: 'app_all_authors',methods:[\"GET\"])]\n-    public function getAllAuthors(AuthorRepository $authorRepository, SerializerInterface $serializer,Request $request, TagAw): JsonResponse\n+    public function getAllAuthors(AuthorRepository $authorRepository, SerializerInterface $serializer,Request $request, TagAwareCacheInterface $cah): JsonResponse\n     {\n         $authorList = $authorRepository->findAll();\n         $jsonBook = $serializer->serialize($authorList,'json',[\"groups\"=>\"getBooks\"]);\n \n"
+                },
+                {
+                    "date": 1688698109066,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,10 +19,11 @@\n \n class AuthorController extends AbstractController\n {\n     #[Route('/api/authors', name: 'app_all_authors',methods:[\"GET\"])]\n-    public function getAllAuthors(AuthorRepository $authorRepository, SerializerInterface $serializer,Request $request, TagAwareCacheInterface $cah): JsonResponse\n+    public function getAllAuthors(AuthorRepository $authorRepository, SerializerInterface $serializer,Request $request, TagAwareCacheInterface $cache): JsonResponse\n     {\n+        \n         $authorList = $authorRepository->findAll();\n         $jsonBook = $serializer->serialize($authorList,'json',[\"groups\"=>\"getBooks\"]);\n \n         return new JsonResponse($jsonBook,Response::HTTP_OK,[],true);\n"
+                },
+                {
+                    "date": 1688698114413,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n {\n     #[Route('/api/authors', name: 'app_all_authors',methods:[\"GET\"])]\n     public function getAllAuthors(AuthorRepository $authorRepository, SerializerInterface $serializer,Request $request, TagAwareCacheInterface $cache): JsonResponse\n     {\n-        \n+        $page = \n         $authorList = $authorRepository->findAll();\n         $jsonBook = $serializer->serialize($authorList,'json',[\"groups\"=>\"getBooks\"]);\n \n         return new JsonResponse($jsonBook,Response::HTTP_OK,[],true);\n"
+                },
+                {
+                    "date": 1688698121492,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n {\n     #[Route('/api/authors', name: 'app_all_authors',methods:[\"GET\"])]\n     public function getAllAuthors(AuthorRepository $authorRepository, SerializerInterface $serializer,Request $request, TagAwareCacheInterface $cache): JsonResponse\n     {\n-        $page = \n+        $page = $request->get()\n         $authorList = $authorRepository->findAll();\n         $jsonBook = $serializer->serialize($authorList,'json',[\"groups\"=>\"getBooks\"]);\n \n         return new JsonResponse($jsonBook,Response::HTTP_OK,[],true);\n"
+                },
+                {
+                    "date": 1688698127604,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,9 @@\n {\n     #[Route('/api/authors', name: 'app_all_authors',methods:[\"GET\"])]\n     public function getAllAuthors(AuthorRepository $authorRepository, SerializerInterface $serializer,Request $request, TagAwareCacheInterface $cache): JsonResponse\n     {\n-        $page = $request->get()\n+        $page = $request->get('page', 1)\n         $authorList = $authorRepository->findAll();\n         $jsonBook = $serializer->serialize($authorList,'json',[\"groups\"=>\"getBooks\"]);\n \n         return new JsonResponse($jsonBook,Response::HTTP_OK,[],true);\n"
+                },
+                {
+                    "date": 1688698133304,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,10 @@\n {\n     #[Route('/api/authors', name: 'app_all_authors',methods:[\"GET\"])]\n     public function getAllAuthors(AuthorRepository $authorRepository, SerializerInterface $serializer,Request $request, TagAwareCacheInterface $cache): JsonResponse\n     {\n-        $page = $request->get('page', 1)\n+        $page = $request->get('page', 1);\n+        $limit = \n         $authorList = $authorRepository->findAll();\n         $jsonBook = $serializer->serialize($authorList,'json',[\"groups\"=>\"getBooks\"]);\n \n         return new JsonResponse($jsonBook,Response::HTTP_OK,[],true);\n"
+                },
+                {
+                    "date": 1688698138560,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n     #[Route('/api/authors', name: 'app_all_authors',methods:[\"GET\"])]\n     public function getAllAuthors(AuthorRepository $authorRepository, SerializerInterface $serializer,Request $request, TagAwareCacheInterface $cache): JsonResponse\n     {\n         $page = $request->get('page', 1);\n-        $limit = \n+        $limit = $request->get()\n         $authorList = $authorRepository->findAll();\n         $jsonBook = $serializer->serialize($authorList,'json',[\"groups\"=>\"getBooks\"]);\n \n         return new JsonResponse($jsonBook,Response::HTTP_OK,[],true);\n"
+                },
+                {
+                    "date": 1688698144491,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n     #[Route('/api/authors', name: 'app_all_authors',methods:[\"GET\"])]\n     public function getAllAuthors(AuthorRepository $authorRepository, SerializerInterface $serializer,Request $request, TagAwareCacheInterface $cache): JsonResponse\n     {\n         $page = $request->get('page', 1);\n-        $limit = $request->get()\n+        $limit = $request->get('limit',3)\n         $authorList = $authorRepository->findAll();\n         $jsonBook = $serializer->serialize($authorList,'json',[\"groups\"=>\"getBooks\"]);\n \n         return new JsonResponse($jsonBook,Response::HTTP_OK,[],true);\n"
+                },
+                {
+                    "date": 1688698504935,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,10 @@\n     #[Route('/api/authors', name: 'app_all_authors',methods:[\"GET\"])]\n     public function getAllAuthors(AuthorRepository $authorRepository, SerializerInterface $serializer,Request $request, TagAwareCacheInterface $cache): JsonResponse\n     {\n         $page = $request->get('page', 1);\n-        $limit = $request->get('limit',3)\n+        $limit = $request->get('limit',3);\n+        \n         $authorList = $authorRepository->findAll();\n         $jsonBook = $serializer->serialize($authorList,'json',[\"groups\"=>\"getBooks\"]);\n \n         return new JsonResponse($jsonBook,Response::HTTP_OK,[],true);\n"
+                },
+                {
+                    "date": 1688698517689,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,8 +24,9 @@\n     {\n         $page = $request->get('page', 1);\n         $limit = $request->get('limit',3);\n         \n+\n         $authorList = $authorRepository->findAll();\n         $jsonBook = $serializer->serialize($authorList,'json',[\"groups\"=>\"getBooks\"]);\n \n         return new JsonResponse($jsonBook,Response::HTTP_OK,[],true);\n"
+                },
+                {
+                    "date": 1688698523280,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,10 +23,10 @@\n     public function getAllAuthors(AuthorRepository $authorRepository, SerializerInterface $serializer,Request $request, TagAwareCacheInterface $cache): JsonResponse\n     {\n         $page = $request->get('page', 1);\n         $limit = $request->get('limit',3);\n-        \n \n+        $idCa\n         $authorList = $authorRepository->findAll();\n         $jsonBook = $serializer->serialize($authorList,'json',[\"groups\"=>\"getBooks\"]);\n \n         return new JsonResponse($jsonBook,Response::HTTP_OK,[],true);\n"
+                },
+                {
+                    "date": 1688698530260,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n     {\n         $page = $request->get('page', 1);\n         $limit = $request->get('limit',3);\n \n-        $idCa\n+        $idCache = ''\n         $authorList = $authorRepository->findAll();\n         $jsonBook = $serializer->serialize($authorList,'json',[\"groups\"=>\"getBooks\"]);\n \n         return new JsonResponse($jsonBook,Response::HTTP_OK,[],true);\n"
+                },
+                {
+                    "date": 1688698536717,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n     {\n         $page = $request->get('page', 1);\n         $limit = $request->get('limit',3);\n \n-        $idCache = ''\n+        $idCache = 'getAll'\n         $authorList = $authorRepository->findAll();\n         $jsonBook = $serializer->serialize($authorList,'json',[\"groups\"=>\"getBooks\"]);\n \n         return new JsonResponse($jsonBook,Response::HTTP_OK,[],true);\n"
+                },
+                {
+                    "date": 1688698541850,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n     {\n         $page = $request->get('page', 1);\n         $limit = $request->get('limit',3);\n \n-        $idCache = 'getAll'\n+        $idCache = 'getAllAuthors-'\n         $authorList = $authorRepository->findAll();\n         $jsonBook = $serializer->serialize($authorList,'json',[\"groups\"=>\"getBooks\"]);\n \n         return new JsonResponse($jsonBook,Response::HTTP_OK,[],true);\n"
+                },
+                {
+                    "date": 1688698549584,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n     {\n         $page = $request->get('page', 1);\n         $limit = $request->get('limit',3);\n \n-        $idCache = 'getAllAuthors-'\n+        $idCache = 'getAllAuthors-' . $page . \"\"\n         $authorList = $authorRepository->findAll();\n         $jsonBook = $serializer->serialize($authorList,'json',[\"groups\"=>\"getBooks\"]);\n \n         return new JsonResponse($jsonBook,Response::HTTP_OK,[],true);\n"
+                },
+                {
+                    "date": 1688698555931,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n     {\n         $page = $request->get('page', 1);\n         $limit = $request->get('limit',3);\n \n-        $idCache = 'getAllAuthors-' . $page . \"\"\n+        $idCache = 'getAllAuthors-' . $page . \"-\" . $limit\n         $authorList = $authorRepository->findAll();\n         $jsonBook = $serializer->serialize($authorList,'json',[\"groups\"=>\"getBooks\"]);\n \n         return new JsonResponse($jsonBook,Response::HTTP_OK,[],true);\n"
+                },
+                {
+                    "date": 1688698561647,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,10 @@\n     {\n         $page = $request->get('page', 1);\n         $limit = $request->get('limit',3);\n \n-        $idCache = 'getAllAuthors-' . $page . \"-\" . $limit\n+        $idCache = 'getAllAuthors-' . $page . \"-\" . $limit;\n+        $bo\n         $authorList = $authorRepository->findAll();\n         $jsonBook = $serializer->serialize($authorList,'json',[\"groups\"=>\"getBooks\"]);\n \n         return new JsonResponse($jsonBook,Response::HTTP_OK,[],true);\n"
+                },
+                {
+                    "date": 1688698569889,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,9 @@\n         $page = $request->get('page', 1);\n         $limit = $request->get('limit',3);\n \n         $idCache = 'getAllAuthors-' . $page . \"-\" . $limit;\n-        $bo\n+        $authors\n         $authorList = $authorRepository->findAll();\n         $jsonBook = $serializer->serialize($authorList,'json',[\"groups\"=>\"getBooks\"]);\n \n         return new JsonResponse($jsonBook,Response::HTTP_OK,[],true);\n"
+                },
+                {
+                    "date": 1688698578996,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,9 @@\n         $page = $request->get('page', 1);\n         $limit = $request->get('limit',3);\n \n         $idCache = 'getAllAuthors-' . $page . \"-\" . $limit;\n-        $authors\n+        $listAuthors =\n         $authorList = $authorRepository->findAll();\n         $jsonBook = $serializer->serialize($authorList,'json',[\"groups\"=>\"getBooks\"]);\n \n         return new JsonResponse($jsonBook,Response::HTTP_OK,[],true);\n"
+                },
+                {
+                    "date": 1688698605957,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,9 @@\n         $page = $request->get('page', 1);\n         $limit = $request->get('limit',3);\n \n         $idCache = 'getAllAuthors-' . $page . \"-\" . $limit;\n-        $listAuthors =\n+        $listAuthors = $cache->\n         $authorList = $authorRepository->findAll();\n         $jsonBook = $serializer->serialize($authorList,'json',[\"groups\"=>\"getBooks\"]);\n \n         return new JsonResponse($jsonBook,Response::HTTP_OK,[],true);\n"
+                },
+                {
+                    "date": 1688698615324,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,9 @@\n         $page = $request->get('page', 1);\n         $limit = $request->get('limit',3);\n \n         $idCache = 'getAllAuthors-' . $page . \"-\" . $limit;\n-        $listAuthors = $cache->\n+        $listAuthors = $cache->get($idCache)\n         $authorList = $authorRepository->findAll();\n         $jsonBook = $serializer->serialize($authorList,'json',[\"groups\"=>\"getBooks\"]);\n \n         return new JsonResponse($jsonBook,Response::HTTP_OK,[],true);\n"
+                },
+                {
+                    "date": 1688698621834,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,9 @@\n         $page = $request->get('page', 1);\n         $limit = $request->get('limit',3);\n \n         $idCache = 'getAllAuthors-' . $page . \"-\" . $limit;\n-        $listAuthors = $cache->get($idCache)\n+        $listAuthors = $cache->get($idCache,function)\n         $authorList = $authorRepository->findAll();\n         $jsonBook = $serializer->serialize($authorList,'json',[\"groups\"=>\"getBooks\"]);\n \n         return new JsonResponse($jsonBook,Response::HTTP_OK,[],true);\n"
+                },
+                {
+                    "date": 1688698629441,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,8 +14,9 @@\n use Symfony\\Component\\Serializer\\Normalizer\\AbstractNormalizer;\n use Symfony\\Component\\Serializer\\SerializerInterface;\n use Symfony\\Component\\Validator\\Constraints\\Json;\n use Symfony\\Component\\Validator\\Validator\\ValidatorInterface;\n+use Symfony\\Contracts\\Cache\\ItemInterface;\n use Symfony\\Contracts\\Cache\\TagAwareCacheInterface;\n \n class AuthorController extends AbstractController\n {\n@@ -25,9 +26,9 @@\n         $page = $request->get('page', 1);\n         $limit = $request->get('limit',3);\n \n         $idCache = 'getAllAuthors-' . $page . \"-\" . $limit;\n-        $listAuthors = $cache->get($idCache,function)\n+        $listAuthors = $cache->get($idCache,function(ItemInterface $item))\n         $authorList = $authorRepository->findAll();\n         $jsonBook = $serializer->serialize($authorList,'json',[\"groups\"=>\"getBooks\"]);\n \n         return new JsonResponse($jsonBook,Response::HTTP_OK,[],true);\n"
+                },
+                {
+                    "date": 1688698637875,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n         $page = $request->get('page', 1);\n         $limit = $request->get('limit',3);\n \n         $idCache = 'getAllAuthors-' . $page . \"-\" . $limit;\n-        $listAuthors = $cache->get($idCache,function(ItemInterface $item))\n+        $listAuthors = $cache->get($idCache,function(ItemInterface $item) use ($bok))\n         $authorList = $authorRepository->findAll();\n         $jsonBook = $serializer->serialize($authorList,'json',[\"groups\"=>\"getBooks\"]);\n \n         return new JsonResponse($jsonBook,Response::HTTP_OK,[],true);\n"
+                },
+                {
+                    "date": 1688698643177,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n         $page = $request->get('page', 1);\n         $limit = $request->get('limit',3);\n \n         $idCache = 'getAllAuthors-' . $page . \"-\" . $limit;\n-        $listAuthors = $cache->get($idCache,function(ItemInterface $item) use ($bok))\n+        $listAuthors = $cache->get($idCache,function(ItemInterface $item) use ($bookRes))\n         $authorList = $authorRepository->findAll();\n         $jsonBook = $serializer->serialize($authorList,'json',[\"groups\"=>\"getBooks\"]);\n \n         return new JsonResponse($jsonBook,Response::HTTP_OK,[],true);\n"
+                },
+                {
+                    "date": 1688698651196,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n         $page = $request->get('page', 1);\n         $limit = $request->get('limit',3);\n \n         $idCache = 'getAllAuthors-' . $page . \"-\" . $limit;\n-        $listAuthors = $cache->get($idCache,function(ItemInterface $item) use ($bookRes))\n+        $listAuthors = $cache->get($idCache,function(ItemInterface $item) use ($bookRepository ))\n         $authorList = $authorRepository->findAll();\n         $jsonBook = $serializer->serialize($authorList,'json',[\"groups\"=>\"getBooks\"]);\n \n         return new JsonResponse($jsonBook,Response::HTTP_OK,[],true);\n"
+                },
+                {
+                    "date": 1688698657006,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n         $page = $request->get('page', 1);\n         $limit = $request->get('limit',3);\n \n         $idCache = 'getAllAuthors-' . $page . \"-\" . $limit;\n-        $listAuthors = $cache->get($idCache,function(ItemInterface $item) use ($bookRepository ))\n+        $listAuthors = $cache->get($idCache,function(ItemInterface $item) use ($bookRepository, $page,))\n         $authorList = $authorRepository->findAll();\n         $jsonBook = $serializer->serialize($authorList,'json',[\"groups\"=>\"getBooks\"]);\n \n         return new JsonResponse($jsonBook,Response::HTTP_OK,[],true);\n"
+                },
+                {
+                    "date": 1688698662545,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n         $page = $request->get('page', 1);\n         $limit = $request->get('limit',3);\n \n         $idCache = 'getAllAuthors-' . $page . \"-\" . $limit;\n-        $listAuthors = $cache->get($idCache,function(ItemInterface $item) use ($bookRepository, $page,))\n+        $listAuthors = $cache->get($idCache,function(ItemInterface $item) use ($Repository, $page,))\n         $authorList = $authorRepository->findAll();\n         $jsonBook = $serializer->serialize($authorList,'json',[\"groups\"=>\"getBooks\"]);\n \n         return new JsonResponse($jsonBook,Response::HTTP_OK,[],true);\n"
+                },
+                {
+                    "date": 1688698673020,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n         $page = $request->get('page', 1);\n         $limit = $request->get('limit',3);\n \n         $idCache = 'getAllAuthors-' . $page . \"-\" . $limit;\n-        $listAuthors = $cache->get($idCache,function(ItemInterface $item) use ($Repository, $page,))\n+        $listAuthors = $cache->get($idCache,function(ItemInterface $item) use ($authorRepository, $page,))\n         $authorList = $authorRepository->findAll();\n         $jsonBook = $serializer->serialize($authorList,'json',[\"groups\"=>\"getBooks\"]);\n \n         return new JsonResponse($jsonBook,Response::HTTP_OK,[],true);\n"
+                },
+                {
+                    "date": 1688698690231,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n         $page = $request->get('page', 1);\n         $limit = $request->get('limit',3);\n \n         $idCache = 'getAllAuthors-' . $page . \"-\" . $limit;\n-        $listAuthors = $cache->get($idCache,function(ItemInterface $item) use ($authorRepository, $page,))\n+        $listAuthors = $cache->get($idCache,function(ItemInterface $item) use ($authorRepository, $page,$limit));\n         $authorList = $authorRepository->findAll();\n         $jsonBook = $serializer->serialize($authorList,'json',[\"groups\"=>\"getBooks\"]);\n \n         return new JsonResponse($jsonBook,Response::HTTP_OK,[],true);\n"
+                },
+                {
+                    "date": 1688698699358,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,11 @@\n         $page = $request->get('page', 1);\n         $limit = $request->get('limit',3);\n \n         $idCache = 'getAllAuthors-' . $page . \"-\" . $limit;\n-        $listAuthors = $cache->get($idCache,function(ItemInterface $item) use ($authorRepository, $page,$limit));\n+        $listAuthors = $cache->get($idCache,function(ItemInterface $item) use ($authorRepository, $page,$limit){\n+            echo\n+        });\n         $authorList = $authorRepository->findAll();\n         $jsonBook = $serializer->serialize($authorList,'json',[\"groups\"=>\"getBooks\"]);\n \n         return new JsonResponse($jsonBook,Response::HTTP_OK,[],true);\n"
+                },
+                {
+                    "date": 1688698716732,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,9 +27,9 @@\n         $limit = $request->get('limit',3);\n \n         $idCache = 'getAllAuthors-' . $page . \"-\" . $limit;\n         $listAuthors = $cache->get($idCache,function(ItemInterface $item) use ($authorRepository, $page,$limit){\n-            echo\n+            echo (\"N'EST PAS ENCORE EN\")\n         });\n         $authorList = $authorRepository->findAll();\n         $jsonBook = $serializer->serialize($authorList,'json',[\"groups\"=>\"getBooks\"]);\n \n"
+                },
+                {
+                    "date": 1688698722366,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,9 +27,9 @@\n         $limit = $request->get('limit',3);\n \n         $idCache = 'getAllAuthors-' . $page . \"-\" . $limit;\n         $listAuthors = $cache->get($idCache,function(ItemInterface $item) use ($authorRepository, $page,$limit){\n-            echo (\"N'EST PAS ENCORE EN\")\n+            echo (\"N'EST PAS ENCORE ENREGISTRE\");\n         });\n         $authorList = $authorRepository->findAll();\n         $jsonBook = $serializer->serialize($authorList,'json',[\"groups\"=>\"getBooks\"]);\n \n"
+                },
+                {
+                    "date": 1688698730700,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,8 +28,9 @@\n \n         $idCache = 'getAllAuthors-' . $page . \"-\" . $limit;\n         $listAuthors = $cache->get($idCache,function(ItemInterface $item) use ($authorRepository, $page,$limit){\n             echo (\"N'EST PAS ENCORE ENREGISTRE\");\n+            $item->\n         });\n         $authorList = $authorRepository->findAll();\n         $jsonBook = $serializer->serialize($authorList,'json',[\"groups\"=>\"getBooks\"]);\n \n"
+                },
+                {
+                    "date": 1688698738462,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,9 @@\n \n         $idCache = 'getAllAuthors-' . $page . \"-\" . $limit;\n         $listAuthors = $cache->get($idCache,function(ItemInterface $item) use ($authorRepository, $page,$limit){\n             echo (\"N'EST PAS ENCORE ENREGISTRE\");\n-            $item->\n+            $item->tag(\"authors\")\n         });\n         $authorList = $authorRepository->findAll();\n         $jsonBook = $serializer->serialize($authorList,'json',[\"groups\"=>\"getBooks\"]);\n \n"
+                },
+                {
+                    "date": 1688698744231,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,9 @@\n \n         $idCache = 'getAllAuthors-' . $page . \"-\" . $limit;\n         $listAuthors = $cache->get($idCache,function(ItemInterface $item) use ($authorRepository, $page,$limit){\n             echo (\"N'EST PAS ENCORE ENREGISTRE\");\n-            $item->tag(\"authors\")\n+            $item->tag(\"authorsCahe\");\n         });\n         $authorList = $authorRepository->findAll();\n         $jsonBook = $serializer->serialize($authorList,'json',[\"groups\"=>\"getBooks\"]);\n \n"
+                },
+                {
+                    "date": 1688698750827,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,8 +29,10 @@\n         $idCache = 'getAllAuthors-' . $page . \"-\" . $limit;\n         $listAuthors = $cache->get($idCache,function(ItemInterface $item) use ($authorRepository, $page,$limit){\n             echo (\"N'EST PAS ENCORE ENREGISTRE\");\n             $item->tag(\"authorsCahe\");\n+\n+            retun\n         });\n         $authorList = $authorRepository->findAll();\n         $jsonBook = $serializer->serialize($authorList,'json',[\"groups\"=>\"getBooks\"]);\n \n"
+                },
+                {
+                    "date": 1688698758910,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,9 @@\n         $listAuthors = $cache->get($idCache,function(ItemInterface $item) use ($authorRepository, $page,$limit){\n             echo (\"N'EST PAS ENCORE ENREGISTRE\");\n             $item->tag(\"authorsCahe\");\n \n-            retun\n+            return $authorRepository->fin\n         });\n         $authorList = $authorRepository->findAll();\n         $jsonBook = $serializer->serialize($authorList,'json',[\"groups\"=>\"getBooks\"]);\n \n"
+                },
+                {
+                    "date": 1688698767977,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,9 @@\n         $listAuthors = $cache->get($idCache,function(ItemInterface $item) use ($authorRepository, $page,$limit){\n             echo (\"N'EST PAS ENCORE ENREGISTRE\");\n             $item->tag(\"authorsCahe\");\n \n-            return $authorRepository->fin\n+            return $authorRepository->findAllWithPagination($page,)\n         });\n         $authorList = $authorRepository->findAll();\n         $jsonBook = $serializer->serialize($authorList,'json',[\"groups\"=>\"getBooks\"]);\n \n"
+                },
+                {
+                    "date": 1688698773831,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,9 @@\n         $listAuthors = $cache->get($idCache,function(ItemInterface $item) use ($authorRepository, $page,$limit){\n             echo (\"N'EST PAS ENCORE ENREGISTRE\");\n             $item->tag(\"authorsCahe\");\n \n-            return $authorRepository->findAllWithPagination($page,)\n+            return $authorRepository->findAllWithPagination($page,$limit);\n         });\n         $authorList = $authorRepository->findAll();\n         $jsonBook = $serializer->serialize($authorList,'json',[\"groups\"=>\"getBooks\"]);\n \n"
+                },
+                {
+                    "date": 1688698784118,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,9 +32,9 @@\n             $item->tag(\"authorsCahe\");\n \n             return $authorRepository->findAllWithPagination($page,$limit);\n         });\n-        $authorList = $authorRepository->findAll();\n+       \n         $jsonBook = $serializer->serialize($authorList,'json',[\"groups\"=>\"getBooks\"]);\n \n         return new JsonResponse($jsonBook,Response::HTTP_OK,[],true);\n     }\n"
+                },
+                {
+                    "date": 1688698793735,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,9 +33,9 @@\n \n             return $authorRepository->findAllWithPagination($page,$limit);\n         });\n        \n-        $jsonBook = $serializer->serialize($authorList,'json',[\"groups\"=>\"getBooks\"]);\n+        $jsonBook = $serializer->serialize($listAuthors,'json',[\"groups\"=>\"getBooks\"]);\n \n         return new JsonResponse($jsonBook,Response::HTTP_OK,[],true);\n     }\n \n"
+                },
+                {
+                    "date": 1688698831088,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,9 +50,9 @@\n         return new JsonResponse(null,Response::HTTP_OK);\n     }\n \n     #[Route('/api/authors/{id}', name: 'deleteAuthor', methods: ['DELETE'])]\n-    public function deleteAuthor(Author $author, EntityManagerInterface $em): JsonResponse {\n+    public function deleteAuthor(Author $author, EntityManagerInterface $em;): JsonResponse {\n         \n         $em->remove($author);\n         \n         $em->flush();\n"
+                },
+                {
+                    "date": 1688698849279,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,9 +50,9 @@\n         return new JsonResponse(null,Response::HTTP_OK);\n     }\n \n     #[Route('/api/authors/{id}', name: 'deleteAuthor', methods: ['DELETE'])]\n-    public function deleteAuthor(Author $author, EntityManagerInterface $em;): JsonResponse {\n+    public function deleteAuthor(Author $author, EntityManagerInterface $em,Tag): JsonResponse {\n         \n         $em->remove($author);\n         \n         $em->flush();\n"
+                },
+                {
+                    "date": 1688698855977,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,9 +50,9 @@\n         return new JsonResponse(null,Response::HTTP_OK);\n     }\n \n     #[Route('/api/authors/{id}', name: 'deleteAuthor', methods: ['DELETE'])]\n-    public function deleteAuthor(Author $author, EntityManagerInterface $em,Tag): JsonResponse {\n+    public function deleteAuthor(Author $author, EntityManagerInterface $em,TagAwareCacheInterface $cache): JsonResponse {\n         \n         $em->remove($author);\n         \n         $em->flush();\n"
+                },
+                {
+                    "date": 1688698864485,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -53,9 +53,8 @@\n     #[Route('/api/authors/{id}', name: 'deleteAuthor', methods: ['DELETE'])]\n     public function deleteAuthor(Author $author, EntityManagerInterface $em,TagAwareCacheInterface $cache): JsonResponse {\n         \n         $em->remove($author);\n-        \n         $em->flush();\n         dd($author->getBooks());\n         return new JsonResponse(null, Response::HTTP_NO_CONTENT);\n     }\n"
+                },
+                {
+                    "date": 1688698875611,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -52,11 +52,13 @@\n \n     #[Route('/api/authors/{id}', name: 'deleteAuthor', methods: ['DELETE'])]\n     public function deleteAuthor(Author $author, EntityManagerInterface $em,TagAwareCacheInterface $cache): JsonResponse {\n         \n+        $\n         $em->remove($author);\n         $em->flush();\n         dd($author->getBooks());\n+\n         return new JsonResponse(null, Response::HTTP_NO_CONTENT);\n     }\n \n     #[Route('/api/authors', name:'app_create_author', methods:[\"POST\"])]\n"
+                },
+                {
+                    "date": 1688698883393,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -52,9 +52,9 @@\n \n     #[Route('/api/authors/{id}', name: 'deleteAuthor', methods: ['DELETE'])]\n     public function deleteAuthor(Author $author, EntityManagerInterface $em,TagAwareCacheInterface $cache): JsonResponse {\n         \n-        $\n+        $cache->invalidateTags()\n         $em->remove($author);\n         $em->flush();\n         dd($author->getBooks());\n \n"
+                },
+                {
+                    "date": 1688698898814,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -52,9 +52,9 @@\n \n     #[Route('/api/authors/{id}', name: 'deleteAuthor', methods: ['DELETE'])]\n     public function deleteAuthor(Author $author, EntityManagerInterface $em,TagAwareCacheInterface $cache): JsonResponse {\n         \n-        $cache->invalidateTags()\n+        $cache->invalidateTags([\"authirs\"])\n         $em->remove($author);\n         $em->flush();\n         dd($author->getBooks());\n \n"
+                },
+                {
+                    "date": 1688698908157,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,9 @@\n \n         $idCache = 'getAllAuthors-' . $page . \"-\" . $limit;\n         $listAuthors = $cache->get($idCache,function(ItemInterface $item) use ($authorRepository, $page,$limit){\n             echo (\"N'EST PAS ENCORE ENREGISTRE\");\n-            $item->tag(\"authorsCahe\");\n+            $item->tag(\"authorsCache\");\n \n             return $authorRepository->findAllWithPagination($page,$limit);\n         });\n        \n@@ -52,9 +52,9 @@\n \n     #[Route('/api/authors/{id}', name: 'deleteAuthor', methods: ['DELETE'])]\n     public function deleteAuthor(Author $author, EntityManagerInterface $em,TagAwareCacheInterface $cache): JsonResponse {\n         \n-        $cache->invalidateTags([\"authirs\"])\n+        $cache->invalidateTags([\"authors\"])\n         $em->remove($author);\n         $em->flush();\n         dd($author->getBooks());\n \n"
+                },
+                {
+                    "date": 1688698919408,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -52,9 +52,9 @@\n \n     #[Route('/api/authors/{id}', name: 'deleteAuthor', methods: ['DELETE'])]\n     public function deleteAuthor(Author $author, EntityManagerInterface $em,TagAwareCacheInterface $cache): JsonResponse {\n         \n-        $cache->invalidateTags([\"authors\"])\n+        $cache->invalidateTags([\"authorsCach\"])\n         $em->remove($author);\n         $em->flush();\n         dd($author->getBooks());\n \n"
+                },
+                {
+                    "date": 1688699277057,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,18 +43,18 @@\n     public function detailAuthors(int $id,AuthorRepository $authorRepository,SerializerInterface $serializer): JsonResponse\n     {\n         $author = $authorRepository->find($id);\n         if($author){\n-            $jsonAuthor = $serializer->serialize($author,\"json\",[\"groups\"=>\"getBooks\"]);\n+            $jsonAuthor = $serializer->serialize($author,\"json\",[\"groups\"=>\"getAuthors\"]);\n             return new JsonResponse($jsonAuthor,Response::HTTP_OK,[],true);\n         }\n         return new JsonResponse(null,Response::HTTP_OK);\n     }\n \n     #[Route('/api/authors/{id}', name: 'deleteAuthor', methods: ['DELETE'])]\n     public function deleteAuthor(Author $author, EntityManagerInterface $em,TagAwareCacheInterface $cache): JsonResponse {\n         \n-        $cache->invalidateTags([\"authorsCach\"])\n+        $cache->invalidateTags([\"authorsCache\"]);\n         $em->remove($author);\n         $em->flush();\n         dd($author->getBooks());\n \n"
+                },
+                {
+                    "date": 1688699395928,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -52,9 +52,9 @@\n \n     #[Route('/api/authors/{id}', name: 'deleteAuthor', methods: ['DELETE'])]\n     public function deleteAuthor(Author $author, EntityManagerInterface $em,TagAwareCacheInterface $cache): JsonResponse {\n         \n-        $cache->invalidateTags([\"authorsCache\"]);\n+        \n         $em->remove($author);\n         $em->flush();\n         dd($author->getBooks());\n \n"
+                },
+                {
+                    "date": 1688699415580,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -55,8 +55,11 @@\n         \n         \n         $em->remove($author);\n         $em->flush();\n+\n+        $cache->invalidateTags([\"author\n+        sCache\"]);\n         dd($author->getBooks());\n \n         return new JsonResponse(null, Response::HTTP_NO_CONTENT);\n     }\n"
+                },
+                {
+                    "date": 1688699424840,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -56,11 +56,10 @@\n         \n         $em->remove($author);\n         $em->flush();\n \n-        $cache->invalidateTags([\"author\n-        sCache\"]);\n-        dd($author->getBooks());\n+        $cache->invalidateTags([\"booksCache\"]);\n+        //dd($author->getBooks());\n \n         return new JsonResponse(null, Response::HTTP_NO_CONTENT);\n     }\n \n"
+                },
+                {
+                    "date": 1688699465225,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,16 +50,16 @@\n         return new JsonResponse(null,Response::HTTP_OK);\n     }\n \n     #[Route('/api/authors/{id}', name: 'deleteAuthor', methods: ['DELETE'])]\n-    public function deleteAuthor(Author $author, EntityManagerInterface $em,TagAwareCacheInterface $cache): JsonResponse {\n+    #[IsGranted('ROLE_ADMIN', message: 'Vous n\\'avez pas les droits suffisants pour supprimer un auteur')]\n+    public function deleteAuthor(Author $author, EntityManagerInterface $em, TagAwareCacheInterface $cache): JsonResponse {\n         \n-        \n         $em->remove($author);\n         $em->flush();\n \n+        // On vide le cache.\n         $cache->invalidateTags([\"booksCache\"]);\n-        //dd($author->getBooks());\n \n         return new JsonResponse(null, Response::HTTP_NO_CONTENT);\n     }\n \n"
+                },
+                {
+                    "date": 1688699569014,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,9 +50,9 @@\n         return new JsonResponse(null,Response::HTTP_OK);\n     }\n \n     #[Route('/api/authors/{id}', name: 'deleteAuthor', methods: ['DELETE'])]\n-    #[IsGranted('ROLE_ADMIN', message: 'Vous n\\'avez pas les droits suffisants pour supprimer un auteur')]\n+    //#[IsGranted('ROLE_ADMIN', message: 'Vous n\\'avez pas les droits suffisants pour supprimer un auteur')]\n     public function deleteAuthor(Author $author, EntityManagerInterface $em, TagAwareCacheInterface $cache): JsonResponse {\n         \n         $em->remove($author);\n         $em->flush();\n@@ -81,8 +81,10 @@\n \n     #[Route('/api/authors/{id}',name:\"app_update_authors\", methods:[\"PUT\"])]\n     public function updateAuthors(Request $request, SerializerInterface $serializer,\n     EntityManagerInterface $em, Author $currentAuthors):JsonResponse{\n+\n+        \n         $updateAuthors = $serializer->deserialize($request->getContent(),Author::class,'json',[AbstractNormalizer::OBJECT_TO_POPULATE => $currentAuthors]);\n         $em->persist($updateAuthors);\n         $em->flush();\n \n"
+                },
+                {
+                    "date": 1688699577984,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -80,11 +80,11 @@\n     }\n \n     #[Route('/api/authors/{id}',name:\"app_update_authors\", methods:[\"PUT\"])]\n     public function updateAuthors(Request $request, SerializerInterface $serializer,\n-    EntityManagerInterface $em, Author $currentAuthors):JsonResponse{\n+    EntityManagerInterface $em, Author $currentAuthors,ValidatorInterface $validate):JsonResponse{\n \n-        \n+\n         $updateAuthors = $serializer->deserialize($request->getContent(),Author::class,'json',[AbstractNormalizer::OBJECT_TO_POPULATE => $currentAuthors]);\n         $em->persist($updateAuthors);\n         $em->flush();\n \n"
+                },
+                {
+                    "date": 1688699583319,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -82,9 +82,9 @@\n     #[Route('/api/authors/{id}',name:\"app_update_authors\", methods:[\"PUT\"])]\n     public function updateAuthors(Request $request, SerializerInterface $serializer,\n     EntityManagerInterface $em, Author $currentAuthors,ValidatorInterface $validate):JsonResponse{\n \n-\n+        $errors\n         $updateAuthors = $serializer->deserialize($request->getContent(),Author::class,'json',[AbstractNormalizer::OBJECT_TO_POPULATE => $currentAuthors]);\n         $em->persist($updateAuthors);\n         $em->flush();\n \n"
+                },
+                {
+                    "date": 1688699594068,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -82,9 +82,9 @@\n     #[Route('/api/authors/{id}',name:\"app_update_authors\", methods:[\"PUT\"])]\n     public function updateAuthors(Request $request, SerializerInterface $serializer,\n     EntityManagerInterface $em, Author $currentAuthors,ValidatorInterface $validate):JsonResponse{\n \n-        $errors\n+        $errors = $validate\n         $updateAuthors = $serializer->deserialize($request->getContent(),Author::class,'json',[AbstractNormalizer::OBJECT_TO_POPULATE => $currentAuthors]);\n         $em->persist($updateAuthors);\n         $em->flush();\n \n"
+                },
+                {
+                    "date": 1688699611105,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -82,9 +82,9 @@\n     #[Route('/api/authors/{id}',name:\"app_update_authors\", methods:[\"PUT\"])]\n     public function updateAuthors(Request $request, SerializerInterface $serializer,\n     EntityManagerInterface $em, Author $currentAuthors,ValidatorInterface $validate):JsonResponse{\n \n-        $errors = $validate\n+        $errors = $validate->validate($)\n         $updateAuthors = $serializer->deserialize($request->getContent(),Author::class,'json',[AbstractNormalizer::OBJECT_TO_POPULATE => $currentAuthors]);\n         $em->persist($updateAuthors);\n         $em->flush();\n \n"
+                },
+                {
+                    "date": 1688699616424,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -82,9 +82,10 @@\n     #[Route('/api/authors/{id}',name:\"app_update_authors\", methods:[\"PUT\"])]\n     public function updateAuthors(Request $request, SerializerInterface $serializer,\n     EntityManagerInterface $em, Author $currentAuthors,ValidatorInterface $validate):JsonResponse{\n \n-        $errors = $validate->validate($)\n+        $errors = $validate->validate($currentAuthors);\n+        if\n         $updateAuthors = $serializer->deserialize($request->getContent(),Author::class,'json',[AbstractNormalizer::OBJECT_TO_POPULATE => $currentAuthors]);\n         $em->persist($updateAuthors);\n         $em->flush();\n \n"
+                },
+                {
+                    "date": 1688699622752,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -83,9 +83,9 @@\n     public function updateAuthors(Request $request, SerializerInterface $serializer,\n     EntityManagerInterface $em, Author $currentAuthors,ValidatorInterface $validate):JsonResponse{\n \n         $errors = $validate->validate($currentAuthors);\n-        if\n+        if($errors->get)\n         $updateAuthors = $serializer->deserialize($request->getContent(),Author::class,'json',[AbstractNormalizer::OBJECT_TO_POPULATE => $currentAuthors]);\n         $em->persist($updateAuthors);\n         $em->flush();\n \n"
+                },
+                {
+                    "date": 1688699630989,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -83,9 +83,9 @@\n     public function updateAuthors(Request $request, SerializerInterface $serializer,\n     EntityManagerInterface $em, Author $currentAuthors,ValidatorInterface $validate):JsonResponse{\n \n         $errors = $validate->validate($currentAuthors);\n-        if($errors->get)\n+        if($errors->con)\n         $updateAuthors = $serializer->deserialize($request->getContent(),Author::class,'json',[AbstractNormalizer::OBJECT_TO_POPULATE => $currentAuthors]);\n         $em->persist($updateAuthors);\n         $em->flush();\n \n"
+                },
+                {
+                    "date": 1688699637751,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -83,9 +83,9 @@\n     public function updateAuthors(Request $request, SerializerInterface $serializer,\n     EntityManagerInterface $em, Author $currentAuthors,ValidatorInterface $validate):JsonResponse{\n \n         $errors = $validate->validate($currentAuthors);\n-        if($errors->con)\n+        if($errors->count() > 0)\n         $updateAuthors = $serializer->deserialize($request->getContent(),Author::class,'json',[AbstractNormalizer::OBJECT_TO_POPULATE => $currentAuthors]);\n         $em->persist($updateAuthors);\n         $em->flush();\n \n"
+                },
+                {
+                    "date": 1688699643599,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -83,9 +83,9 @@\n     public function updateAuthors(Request $request, SerializerInterface $serializer,\n     EntityManagerInterface $em, Author $currentAuthors,ValidatorInterface $validate):JsonResponse{\n \n         $errors = $validate->validate($currentAuthors);\n-        if($errors->count() > 0)\n+        if($errors->count() > 0){}\n         $updateAuthors = $serializer->deserialize($request->getContent(),Author::class,'json',[AbstractNormalizer::OBJECT_TO_POPULATE => $currentAuthors]);\n         $em->persist($updateAuthors);\n         $em->flush();\n \n"
+                },
+                {
+                    "date": 1688699652271,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -83,9 +83,22 @@\n     public function updateAuthors(Request $request, SerializerInterface $serializer,\n     EntityManagerInterface $em, Author $currentAuthors,ValidatorInterface $validate):JsonResponse{\n \n         $errors = $validate->validate($currentAuthors);\n-        if($errors->count() > 0){}\n+        if($errors->count() > 0){\n+            #[Route('/api/authors/{id}', name: 'deleteAuthor', methods: ['DELETE'])]\n+    #[IsGranted('ROLE_ADMIN', message: 'Vous n\\'avez pas les droits suffisants pour supprimer un auteur')]\n+    public function deleteAuthor(Author $author, EntityManagerInterface $em, TagAwareCacheInterface $cache): JsonResponse {\n+        \n+        $em->remove($author);\n+        $em->flush();\n+\n+        // On vide le cache.\n+        $cache->invalidateTags([\"booksCache\"]);\n+\n+        return new JsonResponse(null, Response::HTTP_NO_CONTENT);\n+    }\n+        }\n         $updateAuthors = $serializer->deserialize($request->getContent(),Author::class,'json',[AbstractNormalizer::OBJECT_TO_POPULATE => $currentAuthors]);\n         $em->persist($updateAuthors);\n         $em->flush();\n \n"
+                },
+                {
+                    "date": 1688699668574,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,20 +84,9 @@\n     EntityManagerInterface $em, Author $currentAuthors,ValidatorInterface $validate):JsonResponse{\n \n         $errors = $validate->validate($currentAuthors);\n         if($errors->count() > 0){\n-            #[Route('/api/authors/{id}', name: 'deleteAuthor', methods: ['DELETE'])]\n-    #[IsGranted('ROLE_ADMIN', message: 'Vous n\\'avez pas les droits suffisants pour supprimer un auteur')]\n-    public function deleteAuthor(Author $author, EntityManagerInterface $em, TagAwareCacheInterface $cache): JsonResponse {\n-        \n-        $em->remove($author);\n-        $em->flush();\n-\n-        // On vide le cache.\n-        $cache->invalidateTags([\"booksCache\"]);\n-\n-        return new JsonResponse(null, Response::HTTP_NO_CONTENT);\n-    }\n+            return new Json\n         }\n         $updateAuthors = $serializer->deserialize($request->getContent(),Author::class,'json',[AbstractNormalizer::OBJECT_TO_POPULATE => $currentAuthors]);\n         $em->persist($updateAuthors);\n         $em->flush();\n"
+                },
+                {
+                    "date": 1688699675774,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,9 +84,9 @@\n     EntityManagerInterface $em, Author $currentAuthors,ValidatorInterface $validate):JsonResponse{\n \n         $errors = $validate->validate($currentAuthors);\n         if($errors->count() > 0){\n-            return new Json\n+            return new JsonResponse('')\n         }\n         $updateAuthors = $serializer->deserialize($request->getContent(),Author::class,'json',[AbstractNormalizer::OBJECT_TO_POPULATE => $currentAuthors]);\n         $em->persist($updateAuthors);\n         $em->flush();\n"
+                },
+                {
+                    "date": 1688699684434,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,9 +84,9 @@\n     EntityManagerInterface $em, Author $currentAuthors,ValidatorInterface $validate):JsonResponse{\n \n         $errors = $validate->validate($currentAuthors);\n         if($errors->count() > 0){\n-            return new JsonResponse('')\n+            return new JsonResponse($serializer->)\n         }\n         $updateAuthors = $serializer->deserialize($request->getContent(),Author::class,'json',[AbstractNormalizer::OBJECT_TO_POPULATE => $currentAuthors]);\n         $em->persist($updateAuthors);\n         $em->flush();\n"
+                },
+                {
+                    "date": 1688699690230,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,9 +84,9 @@\n     EntityManagerInterface $em, Author $currentAuthors,ValidatorInterface $validate):JsonResponse{\n \n         $errors = $validate->validate($currentAuthors);\n         if($errors->count() > 0){\n-            return new JsonResponse($serializer->)\n+            return new JsonResponse($serializer->serialize(''))\n         }\n         $updateAuthors = $serializer->deserialize($request->getContent(),Author::class,'json',[AbstractNormalizer::OBJECT_TO_POPULATE => $currentAuthors]);\n         $em->persist($updateAuthors);\n         $em->flush();\n"
+                },
+                {
+                    "date": 1688699701594,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,9 +84,9 @@\n     EntityManagerInterface $em, Author $currentAuthors,ValidatorInterface $validate):JsonResponse{\n \n         $errors = $validate->validate($currentAuthors);\n         if($errors->count() > 0){\n-            return new JsonResponse($serializer->serialize(''))\n+            return new JsonResponse($serializer->serialize($errors,'json'))\n         }\n         $updateAuthors = $serializer->deserialize($request->getContent(),Author::class,'json',[AbstractNormalizer::OBJECT_TO_POPULATE => $currentAuthors]);\n         $em->persist($updateAuthors);\n         $em->flush();\n"
+                },
+                {
+                    "date": 1688699707438,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,9 +84,9 @@\n     EntityManagerInterface $em, Author $currentAuthors,ValidatorInterface $validate):JsonResponse{\n \n         $errors = $validate->validate($currentAuthors);\n         if($errors->count() > 0){\n-            return new JsonResponse($serializer->serialize($errors,'json'))\n+            return new JsonResponse($serializer->serialize($errors,'json',))\n         }\n         $updateAuthors = $serializer->deserialize($request->getContent(),Author::class,'json',[AbstractNormalizer::OBJECT_TO_POPULATE => $currentAuthors]);\n         $em->persist($updateAuthors);\n         $em->flush();\n"
+                },
+                {
+                    "date": 1688699714535,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,9 +84,9 @@\n     EntityManagerInterface $em, Author $currentAuthors,ValidatorInterface $validate):JsonResponse{\n \n         $errors = $validate->validate($currentAuthors);\n         if($errors->count() > 0){\n-            return new JsonResponse($serializer->serialize($errors,'json',))\n+            return new JsonResponse($serializer->serialize($errors,'json'))\n         }\n         $updateAuthors = $serializer->deserialize($request->getContent(),Author::class,'json',[AbstractNormalizer::OBJECT_TO_POPULATE => $currentAuthors]);\n         $em->persist($updateAuthors);\n         $em->flush();\n"
+                },
+                {
+                    "date": 1688699720553,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,9 +84,9 @@\n     EntityManagerInterface $em, Author $currentAuthors,ValidatorInterface $validate):JsonResponse{\n \n         $errors = $validate->validate($currentAuthors);\n         if($errors->count() > 0){\n-            return new JsonResponse($serializer->serialize($errors,'json'))\n+            return new JsonResponse($serializer->serialize($errors,'json'),JsonRes)\n         }\n         $updateAuthors = $serializer->deserialize($request->getContent(),Author::class,'json',[AbstractNormalizer::OBJECT_TO_POPULATE => $currentAuthors]);\n         $em->persist($updateAuthors);\n         $em->flush();\n"
+                },
+                {
+                    "date": 1688699734779,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,9 +84,9 @@\n     EntityManagerInterface $em, Author $currentAuthors,ValidatorInterface $validate):JsonResponse{\n \n         $errors = $validate->validate($currentAuthors);\n         if($errors->count() > 0){\n-            return new JsonResponse($serializer->serialize($errors,'json'),JsonRes)\n+            return new JsonResponse($serializer->serialize($errors,'json'),JsonResponse::HTTP_BA)\n         }\n         $updateAuthors = $serializer->deserialize($request->getContent(),Author::class,'json',[AbstractNormalizer::OBJECT_TO_POPULATE => $currentAuthors]);\n         $em->persist($updateAuthors);\n         $em->flush();\n"
+                },
+                {
+                    "date": 1688699741279,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,9 +84,9 @@\n     EntityManagerInterface $em, Author $currentAuthors,ValidatorInterface $validate):JsonResponse{\n \n         $errors = $validate->validate($currentAuthors);\n         if($errors->count() > 0){\n-            return new JsonResponse($serializer->serialize($errors,'json'),JsonResponse::HTTP_BA)\n+            return new JsonResponse($serializer->serialize($errors,'json'),JsonResponse::HTTP_BAD_)\n         }\n         $updateAuthors = $serializer->deserialize($request->getContent(),Author::class,'json',[AbstractNormalizer::OBJECT_TO_POPULATE => $currentAuthors]);\n         $em->persist($updateAuthors);\n         $em->flush();\n"
+                },
+                {
+                    "date": 1688699755514,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,9 +84,9 @@\n     EntityManagerInterface $em, Author $currentAuthors,ValidatorInterface $validate):JsonResponse{\n \n         $errors = $validate->validate($currentAuthors);\n         if($errors->count() > 0){\n-            return new JsonResponse($serializer->serialize($errors,'json'),JsonResponse::HTTP_BAD_)\n+            return new JsonResponse($serializer->serialize($errors,'json'),JsonResponse::HTTP_BAD_REQUEST,);\n         }\n         $updateAuthors = $serializer->deserialize($request->getContent(),Author::class,'json',[AbstractNormalizer::OBJECT_TO_POPULATE => $currentAuthors]);\n         $em->persist($updateAuthors);\n         $em->flush();\n"
+                },
+                {
+                    "date": 1688699765778,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -84,9 +84,9 @@\n     EntityManagerInterface $em, Author $currentAuthors,ValidatorInterface $validate):JsonResponse{\n \n         $errors = $validate->validate($currentAuthors);\n         if($errors->count() > 0){\n-            return new JsonResponse($serializer->serialize($errors,'json'),JsonResponse::HTTP_BAD_REQUEST,);\n+            return new JsonResponse($serializer->serialize($errors,'json'),JsonResponse::HTTP_BAD_REQUEST,[],true);\n         }\n         $updateAuthors = $serializer->deserialize($request->getContent(),Author::class,'json',[AbstractNormalizer::OBJECT_TO_POPULATE => $currentAuthors]);\n         $em->persist($updateAuthors);\n         $em->flush();\n"
+                },
+                {
+                    "date": 1688699787673,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -90,7 +90,8 @@\n         $updateAuthors = $serializer->deserialize($request->getContent(),Author::class,'json',[AbstractNormalizer::OBJECT_TO_POPULATE => $currentAuthors]);\n         $em->persist($updateAuthors);\n         $em->flush();\n \n+        \n         return new JsonResponse(null,Response::HTTP_NO_CONTENT);\n     }\n }\n"
+                },
+                {
+                    "date": 1688699794012,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -90,8 +90,8 @@\n         $updateAuthors = $serializer->deserialize($request->getContent(),Author::class,'json',[AbstractNormalizer::OBJECT_TO_POPULATE => $currentAuthors]);\n         $em->persist($updateAuthors);\n         $em->flush();\n \n-        \n+        //on vide le cache\n         return new JsonResponse(null,Response::HTTP_NO_CONTENT);\n     }\n }\n"
+                },
+                {
+                    "date": 1688699801521,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -80,9 +80,9 @@\n     }\n \n     #[Route('/api/authors/{id}',name:\"app_update_authors\", methods:[\"PUT\"])]\n     public function updateAuthors(Request $request, SerializerInterface $serializer,\n-    EntityManagerInterface $em, Author $currentAuthors,ValidatorInterface $validate):JsonResponse{\n+    EntityManagerInterface $em, Author $currentAuthors,ValidatorInterface $validate,):JsonResponse{\n \n         $errors = $validate->validate($currentAuthors);\n         if($errors->count() > 0){\n             return new JsonResponse($serializer->serialize($errors,'json'),JsonResponse::HTTP_BAD_REQUEST,[],true);\n@@ -91,7 +91,8 @@\n         $em->persist($updateAuthors);\n         $em->flush();\n \n         //on vide le cache\n+        $cache->invalidateTags([\"booksCache\"]);\n         return new JsonResponse(null,Response::HTTP_NO_CONTENT);\n     }\n }\n"
+                },
+                {
+                    "date": 1688699809248,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -80,9 +80,9 @@\n     }\n \n     #[Route('/api/authors/{id}',name:\"app_update_authors\", methods:[\"PUT\"])]\n     public function updateAuthors(Request $request, SerializerInterface $serializer,\n-    EntityManagerInterface $em, Author $currentAuthors,ValidatorInterface $validate,):JsonResponse{\n+    EntityManagerInterface $em, Author $currentAuthors,ValidatorInterface $validate,TagAwareCacheInterface $cahce):JsonResponse{\n \n         $errors = $validate->validate($currentAuthors);\n         if($errors->count() > 0){\n             return new JsonResponse($serializer->serialize($errors,'json'),JsonResponse::HTTP_BAD_REQUEST,[],true);\n"
+                },
+                {
+                    "date": 1688699815720,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -80,9 +80,9 @@\n     }\n \n     #[Route('/api/authors/{id}',name:\"app_update_authors\", methods:[\"PUT\"])]\n     public function updateAuthors(Request $request, SerializerInterface $serializer,\n-    EntityManagerInterface $em, Author $currentAuthors,ValidatorInterface $validate,TagAwareCacheInterface $cahce):JsonResponse{\n+    EntityManagerInterface $em, Author $currentAuthors,ValidatorInterface $validate,TagAwareCacheInterface $cace):JsonResponse{\n \n         $errors = $validate->validate($currentAuthors);\n         if($errors->count() > 0){\n             return new JsonResponse($serializer->serialize($errors,'json'),JsonResponse::HTTP_BAD_REQUEST,[],true);\n"
+                },
+                {
+                    "date": 1688699823199,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -63,9 +63,9 @@\n         return new JsonResponse(null, Response::HTTP_NO_CONTENT);\n     }\n \n     #[Route('/api/authors', name:'app_create_author', methods:[\"POST\"])]\n-    public function createAuthor(Request $request,EntityManagerInterface $em,SerializerInterface $serializer,ValidatorInterface $validate):JsonResponse\n+    public function createAuthor(Request $request,EntityManagerInterface $em,SerializerInterface $serializer,ValidatorInterface $validate,tag):JsonResponse\n     {\n         $authors = $serializer->deserialize($request->getContent(),Author::class,'json');\n \n         $errors = $validate->validate($authors);\n@@ -80,9 +80,9 @@\n     }\n \n     #[Route('/api/authors/{id}',name:\"app_update_authors\", methods:[\"PUT\"])]\n     public function updateAuthors(Request $request, SerializerInterface $serializer,\n-    EntityManagerInterface $em, Author $currentAuthors,ValidatorInterface $validate,TagAwareCacheInterface $cace):JsonResponse{\n+    EntityManagerInterface $em, Author $currentAuthors,ValidatorInterface $validate,TagAwareCacheInterface $cache):JsonResponse{\n \n         $errors = $validate->validate($currentAuthors);\n         if($errors->count() > 0){\n             return new JsonResponse($serializer->serialize($errors,'json'),JsonResponse::HTTP_BAD_REQUEST,[],true);\n"
+                },
+                {
+                    "date": 1688699828852,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -63,9 +63,9 @@\n         return new JsonResponse(null, Response::HTTP_NO_CONTENT);\n     }\n \n     #[Route('/api/authors', name:'app_create_author', methods:[\"POST\"])]\n-    public function createAuthor(Request $request,EntityManagerInterface $em,SerializerInterface $serializer,ValidatorInterface $validate,tag):JsonResponse\n+    public function createAuthor(Request $request,EntityManagerInterface $em,SerializerInterface $serializer,ValidatorInterface $validate,TagAwareCacheInterface $cache):JsonResponse\n     {\n         $authors = $serializer->deserialize($request->getContent(),Author::class,'json');\n \n         $errors = $validate->validate($authors);\n"
+                },
+                {
+                    "date": 1688699838248,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -74,8 +74,10 @@\n         }\n         $em->persist($authors);\n         $em->flush();\n \n+        //on vide le cache\n+\n         $jsonAuthors = $serializer->serialize($authors,'json',[\"groups\"=>\"getBooks\"]);\n         return new JsonResponse($jsonAuthors,Response::HTTP_CREATED,[],true);\n     }\n \n"
+                },
+                {
+                    "date": 1688702087742,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,8 +16,10 @@\n use Symfony\\Component\\Validator\\Constraints\\Json;\n use Symfony\\Component\\Validator\\Validator\\ValidatorInterface;\n use Symfony\\Contracts\\Cache\\ItemInterface;\n use Symfony\\Contracts\\Cache\\TagAwareCacheInterface;\n+use JMS\\Serializer\\SerializationContext;\n+use JMS\\Serializer\\SerializerInterface;\n \n class AuthorController extends AbstractController\n {\n     #[Route('/api/authors', name: 'app_all_authors',methods:[\"GET\"])]\n@@ -75,8 +77,9 @@\n         $em->persist($authors);\n         $em->flush();\n \n         //on vide le cache\n+        $cache->invalidateTags([\"booksCache\"]);\n \n         $jsonAuthors = $serializer->serialize($authors,'json',[\"groups\"=>\"getBooks\"]);\n         return new JsonResponse($jsonAuthors,Response::HTTP_CREATED,[],true);\n     }\n"
+                },
+                {
+                    "date": 1688702109752,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n use Symfony\\Component\\HttpFoundation\\Response;\n use Symfony\\Component\\Routing\\Annotation\\Route;\n use Symfony\\Component\\Routing\\Generator\\UrlGeneratorInterface;\n use Symfony\\Component\\Serializer\\Normalizer\\AbstractNormalizer;\n-use Symfony\\Component\\Serializer\\SerializerInterface;\n+\n use Symfony\\Component\\Validator\\Constraints\\Json;\n use Symfony\\Component\\Validator\\Validator\\ValidatorInterface;\n use Symfony\\Contracts\\Cache\\ItemInterface;\n use Symfony\\Contracts\\Cache\\TagAwareCacheInterface;\n@@ -91,9 +91,9 @@\n         $errors = $validate->validate($currentAuthors);\n         if($errors->count() > 0){\n             return new JsonResponse($serializer->serialize($errors,'json'),JsonResponse::HTTP_BAD_REQUEST,[],true);\n         }\n-        $updateAuthors = $serializer->deserialize($request->getContent(),Author::class,'json',[AbstractNormalizer::OBJECT_TO_POPULATE => $currentAuthors]);\n+        $updateAuthors = $serializer->deserialize($request->getContent(),Author::class,'json',[AbstractNormalizer`::OBJECT_TO_POPULATE => $currentAuthors]);\n         $em->persist($updateAuthors);\n         $em->flush();\n \n         //on vide le cache\n"
+                },
+                {
+                    "date": 1688702124128,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n     public function getAllAuthors(AuthorRepository $authorRepository, SerializerInterface $serializer,Request $request, TagAwareCacheInterface $cache): JsonResponse\n     {\n         $page = $request->get('page', 1);\n         $limit = $request->get('limit',3);\n-\n+        \n         $idCache = 'getAllAuthors-' . $page . \"-\" . $limit;\n         $listAuthors = $cache->get($idCache,function(ItemInterface $item) use ($authorRepository, $page,$limit){\n             echo (\"N'EST PAS ENCORE ENREGISTRE\");\n             $item->tag(\"authorsCache\");\n@@ -91,9 +91,9 @@\n         $errors = $validate->validate($currentAuthors);\n         if($errors->count() > 0){\n             return new JsonResponse($serializer->serialize($errors,'json'),JsonResponse::HTTP_BAD_REQUEST,[],true);\n         }\n-        $updateAuthors = $serializer->deserialize($request->getContent(),Author::class,'json',[AbstractNormalizer`::OBJECT_TO_POPULATE => $currentAuthors]);\n+        $updateAuthors = $serializer->deserialize($request->getContent(),Author::class,'json',[AbstractNormalizer::OBJECT_TO_POPULATE => $currentAuthors]);\n         $em->persist($updateAuthors);\n         $em->flush();\n \n         //on vide le cache\n"
+                },
+                {
+                    "date": 1688702141642,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n     public function getAllAuthors(AuthorRepository $authorRepository, SerializerInterface $serializer,Request $request, TagAwareCacheInterface $cache): JsonResponse\n     {\n         $page = $request->get('page', 1);\n         $limit = $request->get('limit',3);\n-        \n+        $context = Ser\n         $idCache = 'getAllAuthors-' . $page . \"-\" . $limit;\n         $listAuthors = $cache->get($idCache,function(ItemInterface $item) use ($authorRepository, $page,$limit){\n             echo (\"N'EST PAS ENCORE ENREGISTRE\");\n             $item->tag(\"authorsCache\");\n"
+                },
+                {
+                    "date": 1688702146989,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n     public function getAllAuthors(AuthorRepository $authorRepository, SerializerInterface $serializer,Request $request, TagAwareCacheInterface $cache): JsonResponse\n     {\n         $page = $request->get('page', 1);\n         $limit = $request->get('limit',3);\n-        $context = Ser\n+        $context = SerializationContext::create()\n         $idCache = 'getAllAuthors-' . $page . \"-\" . $limit;\n         $listAuthors = $cache->get($idCache,function(ItemInterface $item) use ($authorRepository, $page,$limit){\n             echo (\"N'EST PAS ENCORE ENREGISTRE\");\n             $item->tag(\"authorsCache\");\n"
+                },
+                {
+                    "date": 1688702153968,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n     public function getAllAuthors(AuthorRepository $authorRepository, SerializerInterface $serializer,Request $request, TagAwareCacheInterface $cache): JsonResponse\n     {\n         $page = $request->get('page', 1);\n         $limit = $request->get('limit',3);\n-        $context = SerializationContext::create()\n+        $context = SerializationContext::create()->setGroups()\n         $idCache = 'getAllAuthors-' . $page . \"-\" . $limit;\n         $listAuthors = $cache->get($idCache,function(ItemInterface $item) use ($authorRepository, $page,$limit){\n             echo (\"N'EST PAS ENCORE ENREGISTRE\");\n             $item->tag(\"authorsCache\");\n"
+                },
+                {
+                    "date": 1688702159594,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,9 @@\n     public function getAllAuthors(AuthorRepository $authorRepository, SerializerInterface $serializer,Request $request, TagAwareCacheInterface $cache): JsonResponse\n     {\n         $page = $request->get('page', 1);\n         $limit = $request->get('limit',3);\n-        $context = SerializationContext::create()->setGroups([\"\"])\n+        $context = SerializationContext::create()->setGroups([\"g\"])\n         $idCache = 'getAllAuthors-' . $page . \"-\" . $limit;\n         $listAuthors = $cache->get($idCache,function(ItemInterface $item) use ($authorRepository, $page,$limit){\n             echo (\"N'EST PAS ENCORE ENREGISTRE\");\n             $item->tag(\"authorsCache\");\n"
+                },
+                {
+                    "date": 1688734552315,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -90,9 +90,9 @@\n     public function updateAuthors(Request $request, SerializerInterface $serializer,\n     EntityManagerInterface $em, Author $currentAuthors,ValidatorInterface $validate,TagAwareCacheInterface $cache,):JsonResponse{\n \n         $newAuthors = $request->toArray();\n-        $content =$newAuthors->setFirstName($newAuthors->getFirstName())\n+        $content =$newAuthors->setFirstName($newAuthors->getFirstName());\n \n         $errors = $validate->validate($currentAuthors);\n         if($errors->count() > 0){\n             return new JsonResponse($serializer->serialize($errors,'json'),JsonResponse::HTTP_BAD_REQUEST,[],true);\n"
+                }
+            ],
+            "date": 1688552068117,
+            "name": "Commit-0",
+            "content": "<?php\n\nnamespace App\\Controller;\n\nuse Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController;\nuse Symfony\\Component\\HttpFoundation\\JsonResponse;\nuse Symfony\\Component\\Routing\\Annotation\\Route;\n\nclass AuthorController extends AbstractController\n{\n    #[Route('/author', name: 'app_author',metod)]\n    public function index(): JsonResponse\n    {\n        return $this->json([\n            'message' => 'Welcome to your new controller!',\n            'path' => 'src/Controller/AuthorController.php',\n        ]);\n    }\n}\n"
+        }
+    ]
+}
